@@ -1,12 +1,20 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { provideRouter, Router, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    imports: [RouterOutlet],
+    styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'ecorecicla-app';
+export class AppComponent implements OnInit{
+
+    title = 'ecorecicla-app';
+
+    constructor() {}
+
+    ngOnInit(): void {
+        console.log('ola')
+    }
+
 }
