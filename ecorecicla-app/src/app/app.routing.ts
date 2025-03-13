@@ -1,7 +1,5 @@
-import { ModuleWithProviders } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { HeaderLoginComponent } from "./pages/generic-pages/header/header-login/header-login.component";
-import { HomeComponent } from "./pages/home/home.component";
+import { Routes } from "@angular/router";
+
 import { LoginComponent } from "./auth/login/login.component";
 import { AuthComponent } from "./auth/auth.component";
 import { PagesComponent } from "./pages/pages.component";
