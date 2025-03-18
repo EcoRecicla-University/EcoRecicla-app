@@ -12,6 +12,9 @@ import {MatInputModule} from '@angular/material/input';
 
 export class LoginComponent {
 
-    
+    constructor() { }
 
+    login() {
+        console.log("logou!")
+    }
 }

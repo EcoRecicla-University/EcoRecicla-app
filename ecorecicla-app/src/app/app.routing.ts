@@ -7,6 +7,10 @@ import { RecuperacaoSenhaComponent } from "./auth/recuperacao-senha/recuperacao-
 
 
 export const APP_ROUTES: Routes = [
+    {
+        path: 'auth-redirect',
+        redirectTo: 'home'
+    },
     { 
         path: '',
         component: AuthComponent,
