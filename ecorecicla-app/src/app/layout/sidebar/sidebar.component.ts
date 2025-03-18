@@ -1,4 +1,4 @@
-import { NgForOf } from "@angular/common";
+import { NgForOf, NgStyle } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import {MatIconModule} from '@angular/material/icon';
@@ -12,7 +12,7 @@ type SidebarNavigationItem = {
 @Component ({
     selector: 'app-home-sidebar',
     templateUrl: 'sidebar.component.html',
-    imports: [NgForOf, RouterLink, MatIconModule]
+    imports: [NgStyle,NgForOf, RouterLink, MatIconModule]
 })
 
 export class SidebarComponent {
