@@ -1,4 +1,4 @@
-import { CommonModule, NgForOf } from "@angular/common";
+import { NgForOf } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import {MatIconModule} from '@angular/material/icon';
@@ -31,6 +31,11 @@ export class SidebarComponent {
             icon: 'route',
             label: 'Rota',
             url: '/rota'
+        },
+        {
+            icon: 'person_add',
+            label: 'Cadastro',
+            url: '/cadastro'
         }
     ]
 }

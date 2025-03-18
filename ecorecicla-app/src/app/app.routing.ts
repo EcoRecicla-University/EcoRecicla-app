@@ -4,9 +4,9 @@ import { LoginComponent } from "./auth/login/login.component";
 import { AuthComponent } from "./auth/auth.component";
 import { PagesComponent } from "./pages/pages.component";
 import { RecuperacaoSenhaComponent } from "./auth/recuperacao-senha/recuperacao-senha.component";
-import { Component } from "@angular/core";
 import { RotaComponent } from "./pages/rota/rota.component";
 import { HomeComponent } from "./pages/home/home.component";
+import { CadastroComponent } from "./pages/cadastro/cadastro.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -38,6 +38,9 @@ export const APP_ROUTES: Routes = [
             },
             {
                 path: 'rota', component: RotaComponent
+            },
+            {
+                path: 'cadastro', component: CadastroComponent
             }
         ]
     }
