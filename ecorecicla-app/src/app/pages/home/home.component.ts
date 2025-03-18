@@ -6,5 +6,7 @@ import { Component } from "@angular/core";
     imports: []
 })
 export class HomeComponent {
-    
+    constructor(){}
+
+    usuario: string = 'Eric'
 }

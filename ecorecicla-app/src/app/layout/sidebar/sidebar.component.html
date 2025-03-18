@@ -1,7 +1,7 @@
-<div class="w-full max-w-52 bg-[#06467a54] h-screen">
+<div class="w-full bg-[#06467a54] h-screen">
     <ul class="">
         <li *ngFor="let item of itemsidebar" class="text-white">
-            <a [routerLink]="item.url" class="flex w-full gap-2">
+            <a [routerLink]="item.url" routerLinkActive="text-green-600" class="flex w-full gap-2">
                 <mat-icon [ngStyle]="{'color':'white'}" [fontIcon]="item.icon" class=""></mat-icon>
                 {{ item.label }}
             </a>
