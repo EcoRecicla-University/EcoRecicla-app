@@ -10,12 +10,12 @@ type SidebarNavigationItem = {
 }
 
 @Component ({
-    selector: 'app-home-sidebar',
+    selector: 'app-layout-private-sidebar',
     templateUrl: 'sidebar.component.html',
     imports: [NgStyle,NgForOf, RouterLink, MatIconModule, RouterLinkActive]
 })
 
-export class SidebarComponent {
+export class LayoutPrivateSidebarComponent {
 
     constructor() {
 

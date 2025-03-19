@@ -1,12 +1,11 @@
 import { Routes } from "@angular/router";
 
-import { LoginComponent } from "./auth/login/login.component";
-import { AuthComponent } from "./auth/auth.component";
-import { PagesComponent } from "./pages/pages.component";
+import { LayoutAuthComponent } from "./layout/auth/auth.component";
 import { RecuperacaoSenhaComponent } from "./auth/recuperacao-senha/recuperacao-senha.component";
 import { RotaComponent } from "./pages/rota/rota.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { CadastroComponent } from "./pages/cadastro/cadastro.component";
+import { LayoutPrivateComponent } from "./layout/private/private.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -19,10 +18,11 @@ export const APP_ROUTES: Routes = [
     },
     { 
         path: '',
-        component: AuthComponent,
+        component: LayoutAuthComponent,
         children: [
             { 
-                path: 'login', component: LoginComponent
+                path: 'login',
+                loadComponent: () => import('./auth/login/login.component').then((c) => c.LoginComponent)
             },
             { 
                 path: 'recuperacao-senha', component: RecuperacaoSenhaComponent
@@ -31,7 +31,7 @@ export const APP_ROUTES: Routes = [
     },
     {
         path: '', 
-        component: PagesComponent,
+        component: LayoutPrivateComponent,
         children: [
             {
                 path: 'home', component: HomeComponent
