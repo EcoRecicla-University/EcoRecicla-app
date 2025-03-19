@@ -43,7 +43,9 @@ Clone este projeto
 https://github.com/EcoRecicla-University/EcoRecicla-app.git
 Defina as variáveis de ambiente do projeto de acordo com o exemplo
 Exemplo em src/environments/environment.example.ts
+
 Dentro do repositório clonado do projeto, abra um terminal/cmd e siga as seguintes instruções:
+
 1️⃣ Instale as dependências do projeto
 
 npm install
