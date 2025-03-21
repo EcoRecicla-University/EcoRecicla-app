@@ -1,27 +1,62 @@
 <div class="flex justify-center items-center pt-5">
-    <div class="flex items-center flex-col bg-[#06467a] w-full max-w-lg h-auto rounded-3xl mx-2">
+    <div class="flex items-center flex-col bg-[#06467ab1] w-full max-w-lg h-auto rounded-3xl mx-2">
         <div class="pt-5">
             <span class="text-3xl text-white font-semibold">Login</span>
         </div>
         <div class="p-5 px-10 w-full">
-            <form action="" class="flex flex-col" (ngSubmit)="login()">
+            <form action="" class="flex flex-col" [formGroup]="formularioLogin">
                 
-
-                <span class="text-white text-sm">Digite seu email</span>
+                <span class="text-white text-sm">
+                    Digite seu email
+                </span>
                 <mat-form-field class="w-full">
                     <mat-label>Email</mat-label>
-                    <input matInput type="text" class="bg-white rounded-2xl">
+                    <input 
+                        matInput 
+                        type="text" 
+                        formControlName="email" 
+                        class="bg-white rounded-2xl">
+                    @if (formularioLogin.get('email')?.hasError('required')) {
+                        <mat-error>
+                            O campo email é <strong>obrigatório</strong>.
+                        </mat-error>
+                    }
+                    @if (formularioLogin.get('email')?.hasError('email') && !formularioLogin.get('email')?.hasError('required')) {
+                        <mat-error>
+                            Insira um endereço de email válido.
+                        </mat-error>
+                    }
                 </mat-form-field>
 
-                <span class="text-white text-sm">Digite sua senha</span>
+                <span class="text-white text-sm">
+                    Digite sua senha
+                </span>
                 <mat-form-field class="w-full">
                     <mat-label>Senha</mat-label>
-                    <input matInput type="password" class="bg-white rounded-2xl">
+                    <input 
+                        matInput
+                        type="password" 
+                        formControlName="senha"
+                        class="bg-white rounded-2xl">
+
+                    @if (formularioLogin.get('senha')?.hasError('required')) {
+                        <mat-error>O campo senha é <strong>obrigatório</strong>.</mat-error>
+                    }
+                    
                 </mat-form-field>
                 
-                <div class="flex flex-col gap-2 pb-5">
-                    <button class="bg-blue-500 text-white rounded-3xl h-10 hover:bg-blue-600 cursor-pointer" [routerLink]="'/auth-redirect'">Entrar</button>
-                    <button class="bg-green-900 text-white rounded-3xl h-10 hover:bg-green-950 cursor-pointer" [routerLink]="'/recuperacao-senha'">Esqueci minha senha</button>
+                <div class="flex flex-col gap-2 pb-5 pt-2">
+
+                    <button class="bg-blue-500 text-white rounded-3xl h-10 hover:bg-blue-600 cursor-pointer disabled:bg-gray-600" 
+                        [routerLink]="'/auth-redirect'" 
+                        [disabled]="formularioLogin.invalid">
+                        Entrar
+                    </button>
+
+                    <button class="bg-green-900 text-white rounded-3xl h-10 hover:bg-green-950 cursor-pointer" 
+                        [routerLink]="'/recuperacao-senha'">
+                        Esqueci minha senha
+                    </button>
                 </div>
                 
             </form>

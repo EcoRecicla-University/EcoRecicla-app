@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { RouterLink } from "@angular/router";
@@ -12,4 +12,9 @@ import { RouterLink } from "@angular/router";
 
 export class RecuperacaoSenhaComponent {
 
+    constructor(){}
+
+    formularioRecuperacaoSenha = new FormGroup({
+            email: new FormControl('', [Validators.required, Validators.email]),
+        });
 }
