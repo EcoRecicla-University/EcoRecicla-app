@@ -5,6 +5,6 @@ import { Component } from "@angular/core";
     templateUrl: './cadastro.component.html',
     imports: []
 })
-export class CadastroComponent {
+export class PagesCadastroComponent {
     
 }

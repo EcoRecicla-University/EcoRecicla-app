@@ -4,8 +4,10 @@ import { LayoutAuthComponent } from "./layout/auth/auth.component";
 import { RecuperacaoSenhaComponent } from "./auth/recuperacao-senha/recuperacao-senha.component";
 import { RotaComponent } from "./pages/rota/rota.component";
 import { HomeComponent } from "./pages/home/home.component";
-import { CadastroComponent } from "./pages/cadastro/cadastro.component";
 import { LayoutPrivateComponent } from "./layout/private/private.component";
+import { PagesClienteComponent } from "./pages/cliente/cliente.component";
+import { PagesEstoqueComponent } from "./pages/estoque/estoque.component";
+import { PagesCadastroComponent } from "./pages/cadastro/cadastro.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -40,7 +42,13 @@ export const APP_ROUTES: Routes = [
                 path: 'rota', component: RotaComponent
             },
             {
-                path: 'cadastro', component: CadastroComponent
+                path: 'cliente', component: PagesClienteComponent
+            },
+            {
+                path: 'estoque', component: PagesEstoqueComponent
+            },
+            {
+                path: 'cadastro', component: PagesCadastroComponent
             }
         ]
     }

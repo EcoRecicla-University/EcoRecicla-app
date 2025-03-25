@@ -1,7 +1,7 @@
 <div class="w-full bg-[#f1f1f1] h-screen">
     <ul class="flex flex-col pt-3 gap-1">
         <li *ngFor="let item of itemsidebar" class="text-[#06467a] w-full max-w-96">
-            <a [routerLink]="item.url" #link="routerLinkActive" routerLinkActive="text-green-600" class="flex pl-4 gap-1.5 ml-3 mr-3 py-2 rounded-lg text-base max-h-12 hover:bg-[#06467a1c]">
+            <a [routerLink]="item.url" #link="routerLinkActive" routerLinkActive="text-green-600" class="flex pl-4 gap-1.5 ml-3 mr-3 py-2 rounded-lg text-base max-h-12 hover:bg-[#06467a1c] duration-300">
                 <mat-icon [ngClass]="link.isActive?'text-green-600':'text-blue-950'" [fontIcon]="item.icon" class=""></mat-icon>
                 {{ item.label }}
             </a>

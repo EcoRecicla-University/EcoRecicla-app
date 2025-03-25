@@ -33,7 +33,17 @@ export class LayoutPrivateSidebarComponent {
             url: '/rota'
         },
         {
-            icon: 'person_add',
+            icon: 'person',
+            label: 'Cliente',
+            url: '/cliente'
+        },
+        {
+            icon: 'inventory_2',
+            label: 'Estoque',
+            url: '/estoque'
+        },
+        {
+            icon: 'group_add',
             label: 'Cadastro',
             url: '/cadastro'
         }
