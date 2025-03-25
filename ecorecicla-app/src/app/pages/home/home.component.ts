@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
+import {MatIconModule} from '@angular/material/icon';
 
 @Component ({
     selector: 'app-home',
     templateUrl: 'home.component.html',
-    imports: []
+    imports: [MatIconModule]
 })
 export class HomeComponent {
     constructor(){}
