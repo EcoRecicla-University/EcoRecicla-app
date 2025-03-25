@@ -1,10 +1,10 @@
-<div class="w-full bg-[#06467a54] h-screen">
-    <ul class="">
-        <li *ngFor="let item of itemsidebar" class="text-white">
-            <a [routerLink]="item.url" #link="routerLinkActive" routerLinkActive="text-green-600" class="flex w-full gap-2">
-                <mat-icon [ngClass]="link.isActive?'text-green-600':'text-white'" [fontIcon]="item.icon" class=""></mat-icon>
+<div class="w-full bg-[#f1f1f1] h-screen">
+    <ul class="flex flex-col pt-3 gap-1">
+        <li *ngFor="let item of itemsidebar" class="text-[#06467a] w-full max-w-96">
+            <a [routerLink]="item.url" #link="routerLinkActive" routerLinkActive="text-green-600" class="flex pl-4 gap-1.5 ml-3 mr-3 py-2 rounded-lg text-base max-h-12 hover:bg-[#06467a1c]">
+                <mat-icon [ngClass]="link.isActive?'text-green-600':'text-blue-950'" [fontIcon]="item.icon" class=""></mat-icon>
                 {{ item.label }}
             </a>
         </li>
     </ul>
-</div>
+</div>                                  
