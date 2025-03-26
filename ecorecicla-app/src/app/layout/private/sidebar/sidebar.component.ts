@@ -46,6 +46,11 @@ export class LayoutPrivateSidebarComponent {
             icon: 'group_add',
             label: 'Cadastro',
             url: '/cadastro'
+        },
+        {
+            icon: 'local_shipping',
+            label: 'Veiculos',
+            url: '/veiculos'
         }
     ]
 }

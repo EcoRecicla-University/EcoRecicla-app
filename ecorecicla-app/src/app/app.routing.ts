@@ -8,6 +8,7 @@ import { LayoutPrivateComponent } from "./layout/private/private.component";
 import { PagesClienteComponent } from "./pages/cliente/cliente.component";
 import { PagesEstoqueComponent } from "./pages/estoque/estoque.component";
 import { PagesCadastroComponent } from "./pages/cadastro/cadastro.component";
+import { PagesVeiculosComponent } from "./pages/veiculos/veiculos.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -49,6 +50,9 @@ export const APP_ROUTES: Routes = [
             },
             {
                 path: 'cadastro', component: PagesCadastroComponent
+            },
+            {
+                path: 'veiculos', component: PagesVeiculosComponent
             }
         ]
     }
