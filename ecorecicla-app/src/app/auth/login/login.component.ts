@@ -16,7 +16,7 @@ import { LoginPayload } from "../../core/models/auth/login.model";
         ReactiveFormsModule
     ]
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent {
 
     constructor(
         private _loginService: LoginService,
@@ -43,20 +43,6 @@ export class LoginComponent implements OnInit{
 
     }
 
-    valorBD: any;
-    
-    ngOnInit(): void {
-        // this._loginService.getDados().subscribe(
-        //     (data) => {
-        //       this.valorBD = data;  // Recebe os dados do backend
-        //       console.log('Dados do backend: ', this.valorBD);
-        //     },
-        //     (error) => {
-        //       console.error('Erro ao buscar dados:', error);
-        //     }
-        // );
-
-    }
     
     onSubmit(){
 
