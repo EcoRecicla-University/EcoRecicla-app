@@ -4,7 +4,7 @@
             <span class="text-3xl text-[#06467a] font-semibold">Recuperar senha</span>
         </div>
         <div class="p- px-10 w-full">
-            <form action="" [formGroup]="formularioRecuperacaoSenha" class="flex flex-col">
+            <form action="" [formGroup]="formularioRecuperacaoSenha" class="flex flex-col" (ngSubmit)="onRecuperar()">
                 
 
                 <span class="text-white text-sm">Digite seu email</span>
@@ -23,6 +23,12 @@
                     }
                 </mat-form-field>
                 
+                @if (EmailRecSuccess == true) {
+                    <div class="bg-green-200 text-green-800 border border-green-800 p-4 rounded-md">
+                        {{ EmailRecMessage }}
+                    </div>
+                }
+
                 <div class="flex flex-col gap-2 pb-5 pt-2">
 
                     <button class="bg-blue-500 text-white rounded-3xl h-10 hover:bg-blue-600 cursor-pointer disabled:bg-gray-600" 
