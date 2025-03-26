@@ -13,17 +13,8 @@ export class LoginService {
     
     private apiUrl = 'http://localhost:8080/api/login';
     
-    // getLogin(login: LoginPayload): Observable<LoginResponse> {
-    //     return of(<LoginResponse>
-    //         {
-    //             success: true,
-    //             message: 'Usuário ou senha inválida'
-    //         }
-    //     )
-    // }
-
-    getDados(): Observable<string> {
-        return this.http.get<string>(`${this.apiUrl}/`);  // Fazendo GET para a rota / do backend
+    getLogin(login: LoginPayload): Observable<LoginResponse> {
+        return this.http.post<any>(this.apiUrl, login)
     }
 
 

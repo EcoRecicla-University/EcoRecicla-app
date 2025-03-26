@@ -40,35 +40,54 @@ export class LoginComponent implements OnInit{
             password: this.formularioLogin.get('password').value
         }
 
-        // this._loginService.getLogin(payload)
-        // .subscribe((response) => {
-        //     if(response.success == true){
-
-        //         this.loginSuccess = response.success
-        //         this._router.navigate(['/auth-redirect'])
-
-        //     } else {
-
-        //         this.loginSuccess = response.success
-        //         this.loginErrorMessage = response.message
-
-        //     }
-        // })
 
     }
 
     valorBD: any;
     
     ngOnInit(): void {
-        this._loginService.getDados().subscribe(
-            (data) => {
-              this.valorBD = data;  // Recebe os dados do backend
-              console.log('Dados do backend: ', this.valorBD);
-            },
-            (error) => {
-              console.error('Erro ao buscar dados:', error);
-            }
-        );
+        // this._loginService.getDados().subscribe(
+        //     (data) => {
+        //       this.valorBD = data;  // Recebe os dados do backend
+        //       console.log('Dados do backend: ', this.valorBD);
+        //     },
+        //     (error) => {
+        //       console.error('Erro ao buscar dados:', error);
+        //     }
+        // );
+
     }
     
+    onSubmit(){
+
+        const login: LoginPayload = {
+            
+            email: this.formularioLogin.get('email')?.value,
+            password: this.formularioLogin.get('password')?.value
+        }
+
+        this._loginService.getLogin(login)
+        .subscribe((res) => {
+
+            if(res.success == true){
+
+                this.loginSuccess = res.success
+                this._router.navigate(['/auth-redirect'])
+
+            } else {
+
+                this.loginSuccess = res.success
+                this.loginErrorMessage = res.message
+
+            }
+        },
+        (error) => {
+            this.loginSuccess = error.error.success
+            this.loginErrorMessage = error.error.message
+        }
+        )
+
+        
+    }
+
 }
