@@ -74,6 +74,8 @@ export class LoginComponent implements OnInit{
                 this.loginSuccess = res.success
                 this._router.navigate(['/auth-redirect'])
 
+                localStorage.setItem('tokenId', res.token)
+
             } else {
 
                 this.loginSuccess = res.success
