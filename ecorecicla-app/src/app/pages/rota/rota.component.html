@@ -1,1 +1,71 @@
-<h1>Rota</h1>
+<div class="pt-10 px-10">
+    <h1 class="text-4xl font-light">Rota</h1>
+    <h2 class="text-gray-400 pt-5">Cadastro de rota</h2>
+    <div class="w-hull pt-3">
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+    </div>
+    <form action="" method="" class="flex flex-col max-w-4xl">
+        <div>
+
+            <div class="flex flex-col w-full pt-7">
+                <label>Cliente</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-select placeholder="Selecione um cliente cadastrado">
+                        <mat-option value="1">Cliente 1</mat-option>
+                        <mat-option value="2">Cliente 2</mat-option>
+                        <mat-option value="3">Cliente 3</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 pt-1">
+                <div class="flex flex-col">
+                    <label>Endereço</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput placeholder="Digite o endereço de coleta" class="w-full">
+                    </mat-form-field>
+                </div>
+    
+                <div class="flex flex-col max-w-20">
+                    <label>Nº</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput class="w-full">
+                    </mat-form-field>
+                </div>
+                
+            </div>
+    
+            <div class="grid grid-cols-2 gap-4">
+                <div class="flex flex-col w-full">
+                    <label>CEP</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput placeholder="Digite o CEP da coleta" class="w-full">
+                    </mat-form-field>
+                </div>
+    
+                
+            </div>
+            
+
+            <div class="grid grid-cols-2 gap-4">
+    
+                <div class="flex flex-col pt-1">
+                    <label>Veículo</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-select placeholder="Selecione um veículo cadastrado">
+                            <mat-option value="1">Veiculo 01</mat-option>
+                            <mat-option value="2">Veiculo 02</mat-option>
+                            <mat-option value="3">Veiculo 03</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                
+            </div>
+
+
+        </div>
+
+
+        <button type="" class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer">Gravar</button>
+    </form>
+</div>
