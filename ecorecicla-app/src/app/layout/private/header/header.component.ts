@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 
 @Component ({
-    selector: 'app-header-component',
+    selector: 'app-layout-private-header',
     templateUrl: 'header.component.html',
+    imports: []
 })
-
-export class HeaderComponent {
+export class LayoutPrivateHeaderComponent {
     
 }

@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
     constructor() {}
 
     ngOnInit(): void {
-        console.log('ola')
+        
     }
 
 }

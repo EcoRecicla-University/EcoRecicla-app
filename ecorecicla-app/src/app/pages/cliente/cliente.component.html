@@ -1,0 +1,64 @@
+<div class="pt-10 px-10">
+    <h1 class="text-4xl font-light">Cadastro de cliente</h1>
+    <h2 class="text-gray-400 pt-5">Cadastro</h2>
+    <div class="w-hull pt-3">
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+    </div>
+    <form action="" method="" class="grid grid-cols-1 lg:grid-cols-2 max-w-5xl">
+        <div>
+            <div class="flex flex-col pt-7">
+                <label>Nome do Cliente</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="Digite o nome do cliente" class="w-full">
+                </mat-form-field>
+            </div>
+    
+            <div class="flex flex-col pt-1">
+                <label>Email do cliente</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="Digite o email do cliente" class="w-full">
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col pt-1">
+                <label>CPF/CNPJ</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="Digite o CPF ou CNPJ do cliente" class="w-full">
+                </mat-form-field>
+            </div>
+            
+            <div class="flex flex-col pt-1">
+                <label>Telefone</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="(xx) x xxxx-xxxx" class="w-full">
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col pt-1">
+                <label>Ponto de Coleta</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="Digite o endereço do ponto de coleta" class="w-full">
+                </mat-form-field>
+            </div>
+
+    
+        </div>
+
+        <div class="pl-10 pt-10">
+            <div class="flex-col p-4 bg-gray-200 rounded-lg">
+                <h1 class="pl-2">
+                    Tipo do cliente
+                </h1>
+                <div>
+                    <mat-radio-group aria-label="Select an option" class="flex flex-col">
+                        <mat-radio-button value="V">Cliente de Venda</mat-radio-button>
+                        <mat-radio-button value="C">Cliente de Compra</mat-radio-button>
+                        <mat-radio-button value="A">Ambos</mat-radio-button>
+                      </mat-radio-group>
+                </div>
+            </div>
+        </div>
+
+        <button type="" class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer">Gravar</button>
+    </form>
+</div>
