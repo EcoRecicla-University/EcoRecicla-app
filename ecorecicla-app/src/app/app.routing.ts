@@ -2,13 +2,13 @@ import { Routes } from "@angular/router";
 
 import { LayoutAuthComponent } from "./layout/auth/auth.component";
 import { RecuperacaoSenhaComponent } from "./auth/recuperacao-senha/recuperacao-senha.component";
-import { RotaComponent } from "./pages/rota/rota.component";
+import { RotaComponent } from "./pages/rota/cadastro/rota.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { LayoutPrivateComponent } from "./layout/private/private.component";
-import { PagesClienteComponent } from "./pages/cliente/cliente.component";
-import { PagesEstoqueComponent } from "./pages/estoque/estoque.component";
-import { PagesCadastroComponent } from "./pages/cadastro/cadastro.component";
-import { PagesVeiculosComponent } from "./pages/veiculos/veiculos.component";
+import { PagesClienteComponent } from "./pages/cliente/cadastro/cliente.component";
+import { PagesEstoqueComponent } from "./pages/estoque/cadastro/estoque.component";
+import { PagesCadastroComponent } from "./pages/cadastro/cadastro/cadastro.component";
+import { PagesVeiculosComponent } from "./pages/veiculos/cadastro/veiculos.component";
 
 
 export const APP_ROUTES: Routes = [

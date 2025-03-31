@@ -1,25 +1,28 @@
-import { NgClass, NgForOf, NgStyle } from "@angular/common";
+import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { MatIconModule } from '@angular/material/icon';
-import { MatTreeModule } from '@angular/material/tree';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { SidebarComponentesModel } from "../../../core/models/private/sidebar-componentes.model";
 
 type SidebarNavigationItem = {
     icon: string;
     label: string;
-    url: string;
+    url?: string;
+    children?: SidebarComponentesModel[]
 }
 
 @Component ({
     selector: 'app-layout-private-sidebar',
     templateUrl: 'sidebar.component.html',
     imports: [
+        NgIf,
         NgClass,
         NgForOf, 
         RouterLink, 
         MatIconModule, 
         RouterLinkActive, 
-        MatTreeModule]
+        MatExpansionModule]
 })
 
 export class LayoutPrivateSidebarComponent {
@@ -32,32 +35,86 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'home',
             label: 'Home',
-            url: '/home'
+            children: [
+                {
+                    label: 'Pagina inicial',
+                    url: '/home'
+                },
+                {
+                    label: 'Relatório Geral',
+                    url: '/relatorios'
+                }
+            ]
         },
         {
             icon: 'route',
             label: 'Rota',
-            url: '/rota'
+            children: [
+                {
+                    label: 'Cadastro',
+                    url: '/rota'
+                },
+                {
+                    label: 'Listagem',
+                    url: '/ListagemRota'
+                }
+            ]
         },
         {
             icon: 'person',
             label: 'Cliente',
-            url: '/cliente'
+            children: [
+                {
+                    label: 'Cadastro',
+                    url: '/cliente'
+                },
+                {
+                    label: 'Listagem',
+                    url: '/ListagemCliente'
+                }
+            ]
         },
         {
             icon: 'inventory_2',
             label: 'Estoque',
-            url: '/estoque'
+            children: [
+                {
+                    label: 'Cadastro',
+                    url: '/estoque'
+                },
+                {
+                    label: 'Listagem',
+                    url: '/ListagemEstoque'
+                }
+            ]
         },
         {
             icon: 'group_add',
             label: 'Cadastro',
-            url: '/cadastro'
+            children: [
+                {
+                    label: 'Cadastro',
+                    url: '/cadastro'
+                },
+                {
+                    label: 'Listagem',
+                    url: '/ListagemCadastro'
+                }
+            ]
         },
         {
             icon: 'local_shipping',
             label: 'Veiculos',
-            url: '/veiculos'
+            children: [
+                {
+                    label: 'Cadastro',
+                    url: '/veiculos'
+                },
+                {
+                    label: 'Listagem',
+                    url: '/ListagemVeiculos'
+                }
+            ]
         }
     ]
 }
