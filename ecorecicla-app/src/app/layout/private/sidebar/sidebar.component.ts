@@ -1,6 +1,6 @@
 import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
 import { Component } from "@angular/core";
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { MatIconModule } from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SidebarComponentesModel } from "../../../core/models/private/sidebar-componentes.model";
@@ -27,7 +27,7 @@ type SidebarNavigationItem = {
 
 export class LayoutPrivateSidebarComponent {
 
-    constructor() {
+    constructor(private router: Router, private activatedRoute: ActivatedRoute) {
 
     }
 
@@ -117,4 +117,8 @@ export class LayoutPrivateSidebarComponent {
             ]
         }
     ]
+
+    isActive(url: string): boolean {
+        return this.router.url === url;
+      }
 }

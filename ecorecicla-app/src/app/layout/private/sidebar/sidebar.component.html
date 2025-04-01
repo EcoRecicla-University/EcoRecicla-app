@@ -19,7 +19,7 @@
                             class="block p-2 hover:bg-gray-200 rounded">
                                 <span 
                                 [routerLinkActive]="child.url"
-                                [ngClass]=""
+                                [ngClass]="{ 'text-green-600': isActive(child.url) }"
                                 >
                                     {{ child.label }}
                                 </span>
