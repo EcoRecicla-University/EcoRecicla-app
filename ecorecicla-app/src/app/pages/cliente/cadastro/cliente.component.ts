@@ -4,13 +4,13 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component ({
-    selector: 'app-pages-cliente',
+    selector: 'app-pages-cliente-cadastro',
     templateUrl: './cliente.component.html',
     imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, MatCheckboxModule, MatRadioModule]
 })
-export class PagesClienteComponent {
+export class PagesClienteCadastroComponent {
     
 }

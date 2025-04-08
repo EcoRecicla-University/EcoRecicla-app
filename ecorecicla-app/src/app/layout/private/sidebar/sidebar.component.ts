@@ -66,11 +66,11 @@ export class LayoutPrivateSidebarComponent {
             children: [
                 {
                     label: 'Cadastro',
-                    url: '/cliente'
+                    url: '/cliente/cadastroCliente'
                 },
                 {
                     label: 'Listagem',
-                    url: '/ListagemCliente'
+                    url: '/cliente/listagemClientes'
                 }
             ]
         },

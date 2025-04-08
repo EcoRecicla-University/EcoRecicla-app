@@ -5,10 +5,11 @@ import { RecuperacaoSenhaComponent } from "./auth/recuperacao-senha/recuperacao-
 import { RotaComponent } from "./pages/rota/cadastro/rota.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { LayoutPrivateComponent } from "./layout/private/private.component";
-import { PagesClienteComponent } from "./pages/cliente/cadastro/cliente.component";
+import { PagesClienteCadastroComponent } from "./pages/cliente/cadastro/cliente.component";
 import { PagesEstoqueComponent } from "./pages/estoque/cadastro/estoque.component";
 import { PagesCadastroComponent } from "./pages/cadastro/cadastro/cadastro.component";
 import { PagesVeiculosComponent } from "./pages/veiculos/cadastro/veiculos.component";
+import { PagesClientesListagemComponent } from "./pages/cliente/listagem/listagem.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -43,7 +44,17 @@ export const APP_ROUTES: Routes = [
                 path: 'rota', component: RotaComponent
             },
             {
-                path: 'cliente', component: PagesClienteComponent
+                path: 'cliente',
+                children: [
+                    {
+                        path: 'cadastroCliente',
+                        component: PagesClienteCadastroComponent
+                    },
+                    {
+                        path: 'listagemClientes',
+                        component: PagesClientesListagemComponent
+                    }
+                ]
             },
             {
                 path: 'estoque', component: PagesEstoqueComponent
