@@ -7,7 +7,11 @@ import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { PrivateService } from "../../../core/services/private.service";
 import { DadosClientesModel } from "../../../core/models/private/listaClientes.model";
-import { NgForOf } from "@angular/common";
+import { NgForOf, NgIf } from "@angular/common";
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+
 
 type listaClientes = {
     id: number;
@@ -19,11 +23,25 @@ type listaClientes = {
 @Component ({
     selector: 'app-pages-cliente-listagem',
     templateUrl: './listagem.component.html',
-    imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, MatCheckboxModule, MatRadioModule, NgForOf]
+    imports: [
+        MatFormFieldModule, 
+        MatInputModule, 
+        MatIconModule, 
+        MatSelectModule, 
+        MatCheckboxModule, 
+        MatRadioModule, 
+        NgForOf,
+        NgIf,
+        MatSidenavModule,
+        MatButtonModule,
+        MatMenuModule
+    ]
 })
 export class PagesClientesListagemComponent implements OnInit{
     
     DadosListaClientes:DadosClientesModel[] = []
+
+    clienteSelecionado?: DadosClientesModel;
 
     constructor(private _service: PrivateService){ }
 
@@ -35,5 +53,9 @@ export class PagesClientesListagemComponent implements OnInit{
         })
     }
 
+    abrirDrawer(cliente: DadosClientesModel, drawer: any) {
+        this.clienteSelecionado = cliente;
+        drawer.open();
+    }
 
 }
