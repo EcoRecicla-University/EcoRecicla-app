@@ -115,7 +115,21 @@ export class LayoutPrivateSidebarComponent {
                     url: '/ListagemVeiculos'
                 }
             ]
-        }
+        },
+        {
+            icon: 'pallet',
+            label: 'Coletas',
+            children: [
+                {
+                    label: 'Cadastro',
+                    url: '/veiculos'
+                },
+                {
+                    label: 'Listagem',
+                    url: '/ListagemVeiculos'
+                }
+            ]
+        },
     ]
 
     isActive(url: string): boolean {
