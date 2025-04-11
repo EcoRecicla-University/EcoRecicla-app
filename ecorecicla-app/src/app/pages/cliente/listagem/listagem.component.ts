@@ -1,16 +1,17 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
-import { PrivateService } from "../../../core/services/private.service";
+import { ClientesService } from "../../../core/services/clientes.service";
 import { DadosClientesModel } from "../../../core/models/private/listaClientes.model";
 import { NgForOf, NgIf } from "@angular/common";
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterLink, RouterOutlet } from "@angular/router";
 
 
 type listaClientes = {
@@ -34,7 +35,9 @@ type listaClientes = {
         NgIf,
         MatSidenavModule,
         MatButtonModule,
-        MatMenuModule
+        MatMenuModule,
+        RouterLink,
+        RouterOutlet
     ]
 })
 export class PagesClientesListagemComponent implements OnInit{
@@ -43,7 +46,9 @@ export class PagesClientesListagemComponent implements OnInit{
 
     clienteSelecionado?: DadosClientesModel;
 
-    constructor(private _service: PrivateService){ }
+    @ViewChild('drawer', {static: true}) drawer: MatDrawer
+
+    constructor(private _service: ClientesService){ }
 
     ngOnInit(): void {
         this._service.getClientes()

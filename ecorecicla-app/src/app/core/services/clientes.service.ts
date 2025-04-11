@@ -6,11 +6,24 @@ import { DadosClientesModel } from "../models/private/listaClientes.model";
 @Injectable({
     providedIn: 'root'
 })
-export class PrivateService {
+export class ClientesService {
 
     private apiUrl = 'http://localhost:8080/api/';
 
     constructor(private http: HttpClient) { }
+
+    getCliente(id: string): Observable<DadosClientesModel>{
+        return of(<DadosClientesModel>{
+            id: 1,
+            name: 'Osvaldo Cruz',
+            dataCadastro: '12/01/2025',
+            tipoCliente: 'Coleta',
+            numeroPedidos: '2',
+            pontosColeta: 'Rua Jalavi Nunes, 505',
+            telefone: '4199312-3142',
+            cpf: '123141231231'
+        })
+    }
 
     getClientes(): Observable<DadosClientesModel[]>{
         return of(<DadosClientesModel[]>[

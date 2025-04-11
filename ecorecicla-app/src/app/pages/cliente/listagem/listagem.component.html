@@ -1,6 +1,7 @@
 <mat-drawer-container class="h-full">
 
     <mat-drawer #drawer class="" mode="over" position="end">
+        <router-outlet></router-outlet>
         <div *ngIf="clienteSelecionado">
             <div class="flex justify-center pt-5">
                 <h1 class="text-4xl font-light">Detalhe do Cliente</h1>
@@ -61,7 +62,7 @@
 
             <div *ngFor="let cliente of DadosListaClientes" class="hover:bg-gray-100">
                 
-                <div class="block p-3" (click)="abrirDrawer(cliente, drawer)">
+                <a class="block p-3" [routerLink]="[cliente.id]">
                     <div class="grid grid-cols-[5%_45%_25%_25%] text-sm">
                         <div class="flex justify-center">
                             <span class="">
@@ -87,7 +88,7 @@
                             </span>
                         </div>
                     </div>
-                </div>
+                </a>
                     
             </div>
             

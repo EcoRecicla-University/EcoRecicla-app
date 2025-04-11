@@ -10,6 +10,7 @@ import { PagesEstoqueComponent } from "./pages/estoque/cadastro/estoque.componen
 import { PagesCadastroComponent } from "./pages/cadastro/cadastro/cadastro.component";
 import { PagesVeiculosComponent } from "./pages/veiculos/cadastro/veiculos.component";
 import { PagesClientesListagemComponent } from "./pages/cliente/listagem/listagem.component";
+import { PagesClienteDetalheComponent } from "./pages/cliente/detalhe/detalhe.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -44,16 +45,22 @@ export const APP_ROUTES: Routes = [
                 path: 'rota', component: RotaComponent
             },
             {
-                path: 'cliente',
+                path: 'clientes',
                 children: [
                     {
-                        path: 'cadastroCliente',
-                        component: PagesClienteCadastroComponent
+                        path: '',
+                        component: PagesClientesListagemComponent,
+                        children: [
+                            {
+                                path: ':id',
+                                component: PagesClienteDetalheComponent
+                            }
+                        ]
                     },
                     {
-                        path: 'listagemClientes',
-                        component: PagesClientesListagemComponent
-                    }
+                        path: 'novo',
+                        component: PagesClienteCadastroComponent
+                    },
                 ]
             },
             {
