@@ -33,17 +33,8 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'home',
             label: 'Home',
-            type: 'GRUPO',
-            children: [
-                {
-                    label: 'Pagina inicial',
-                    url: '/home'
-                },
-                {
-                    label: 'Relatório Geral',
-                    url: '/relatorios'
-                }
-            ]
+            type: 'ITEM',
+            url: '/home'
         },
         {
             label: 'Clientes',
@@ -64,21 +55,6 @@ export class LayoutPrivateSidebarComponent {
                     label: 'Listagem',
                     url: '/ListagemRota'
                 }
-            ]
-        },
-        {
-            icon: 'person',
-            label: 'Cliente',
-            type: 'GRUPO',
-            children: [
-                {
-                    label: 'Listagem',
-                    url: '/clientes'
-                },
-                {
-                    label: 'Cadastro',
-                    url: '/clientes/novo'
-                },
             ]
         },
         {

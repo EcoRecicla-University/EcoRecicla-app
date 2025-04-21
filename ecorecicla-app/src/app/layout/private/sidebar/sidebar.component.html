@@ -5,13 +5,16 @@
                 *ngIf="item.type === 'ITEM'"
                 [routerLink]="item.url" 
                 class="block p-2 hover:bg-gray-200 rounded">
-                <mat-icon 
-                    [fontIcon]="item.icon" 
-                    class="mr-2"></mat-icon>
-                <span 
-                    [routerLinkActive]="'text-green-600'">
-                    {{ item.label }}
-                </span>
+                <div class="flex items-center ml-5 text-black">
+                    <mat-icon 
+                        [routerLinkActive]="'text-green-600'"
+                        [fontIcon]="item.icon" 
+                        class="mr-2"></mat-icon>
+                    <span 
+                        [routerLinkActive]="'text-green-600'">
+                        {{ item.label }}
+                    </span>
+                </div>
             </a>
             <mat-expansion-panel class="!shadow-none !bg-[#f1f1f1] flex justify-end" *ngIf="item.type === 'GRUPO'">
                 <mat-expansion-panel-header>
