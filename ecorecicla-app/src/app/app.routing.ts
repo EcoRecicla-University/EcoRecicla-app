@@ -5,7 +5,7 @@ import { RecuperacaoSenhaComponent } from "./auth/recuperacao-senha/recuperacao-
 import { RotaComponent } from "./pages/rota/cadastro/rota.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { LayoutPrivateComponent } from "./layout/private/private.component";
-import { PagesClienteCadastroComponent } from "./pages/cliente/cadastro/cliente.component";
+import { PagesClienteCadastroComponent } from "./pages/cliente/cadastro/cadastro.component";
 import { PagesEstoqueComponent } from "./pages/estoque/cadastro/estoque.component";
 import { PagesCadastroComponent } from "./pages/cadastro/cadastro/cadastro.component";
 import { PagesVeiculosComponent } from "./pages/veiculos/cadastro/veiculos.component";

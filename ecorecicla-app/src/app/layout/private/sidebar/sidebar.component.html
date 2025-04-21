@@ -5,13 +5,11 @@
                 *ngIf="item.type === 'ITEM'"
                 [routerLink]="item.url" 
                 class="block p-2 hover:bg-gray-200 rounded">
-                <div class="flex items-center ml-5 text-black">
-                    <mat-icon 
-                        [routerLinkActive]="'text-green-600'"
+                <div [routerLinkActive]="'text-green-600'" class="flex items-center ml-5 text-black">
+                    <mat-icon
                         [fontIcon]="item.icon" 
                         class="mr-2"></mat-icon>
-                    <span 
-                        [routerLinkActive]="'text-green-600'">
+                    <span>
                         {{ item.label }}
                     </span>
                 </div>

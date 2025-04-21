@@ -12,7 +12,7 @@ import { ClientesService } from "../../../core/services/clientes.service";
 
 @Component ({
     selector: 'app-pages-cliente-cadastro',
-    templateUrl: './cliente.component.html',
+    templateUrl: './cadastro.component.html',
     imports: [
         NgIf,
         MatFormFieldModule,
