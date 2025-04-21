@@ -6,9 +6,8 @@ import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { ClientesService } from "../../../core/services/clientes.service";
-import { DadosClientesModel } from "../../../core/models/private/listaClientes.model";
-import { NgForOf, NgIf } from "@angular/common";
-import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
+import { DadosClientesModel, TipoClienteEnum } from "../../../core/models/private/listaClientes.model";
+import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink, RouterOutlet } from "@angular/router";
@@ -32,12 +31,10 @@ type listaClientes = {
         MatCheckboxModule, 
         MatRadioModule, 
         NgForOf,
-        NgIf,
-        MatSidenavModule,
         MatButtonModule,
         MatMenuModule,
         RouterLink,
-        RouterOutlet
+        DatePipe
     ]
 })
 export class PagesClientesListagemComponent implements OnInit{
@@ -46,7 +43,7 @@ export class PagesClientesListagemComponent implements OnInit{
 
     clienteSelecionado?: DadosClientesModel;
 
-    @ViewChild('drawer', {static: true}) drawer: MatDrawer
+    TipoClienteEnum = TipoClienteEnum;
 
     constructor(private _service: ClientesService){ }
 

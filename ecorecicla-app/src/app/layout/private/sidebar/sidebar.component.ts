@@ -1,6 +1,6 @@
-import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
+import { NgForOf, NgIf } from "@angular/common";
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 import { MatIconModule } from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SidebarComponentesModel } from "../../../core/models/private/sidebar-componentes.model";
@@ -9,6 +9,7 @@ type SidebarNavigationItem = {
     icon: string;
     label: string;
     url?: string;
+    type: 'GRUPO' | 'ITEM';
     children?: SidebarComponentesModel[]
 }
 
@@ -17,7 +18,6 @@ type SidebarNavigationItem = {
     templateUrl: 'sidebar.component.html',
     imports: [
         NgIf,
-        NgClass,
         NgForOf, 
         RouterLink, 
         MatIconModule, 
@@ -27,14 +27,13 @@ type SidebarNavigationItem = {
 
 export class LayoutPrivateSidebarComponent {
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-
-    }
+    constructor() {}
 
     itemsidebar:SidebarNavigationItem[] = [
         {
             icon: 'home',
             label: 'Home',
+            type: 'GRUPO',
             children: [
                 {
                     label: 'Pagina inicial',
@@ -47,8 +46,15 @@ export class LayoutPrivateSidebarComponent {
             ]
         },
         {
+            label: 'Clientes',
+            icon: 'person',
+            url: '/clientes',
+            type: 'ITEM',
+        },
+        {
             icon: 'route',
             label: 'Rota',
+            type: 'GRUPO',
             children: [
                 {
                     label: 'Cadastro',
@@ -63,6 +69,7 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'person',
             label: 'Cliente',
+            type: 'GRUPO',
             children: [
                 {
                     label: 'Listagem',
@@ -77,6 +84,7 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'inventory_2',
             label: 'Estoque',
+            type: 'GRUPO',
             children: [
                 {
                     label: 'Cadastro',
@@ -91,6 +99,7 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'group_add',
             label: 'Cadastro',
+            type: 'GRUPO',
             children: [
                 {
                     label: 'Cadastro',
@@ -105,6 +114,7 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'local_shipping',
             label: 'Veiculos',
+            type: 'GRUPO',
             children: [
                 {
                     label: 'Cadastro',
@@ -119,6 +129,7 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'pallet',
             label: 'Coletas',
+            type: 'GRUPO',
             children: [
                 {
                     label: 'Cadastro',
@@ -131,8 +142,4 @@ export class LayoutPrivateSidebarComponent {
             ]
         },
     ]
-
-    isActive(url: string): boolean {
-        return this.router.url === url;
-      }
 }

@@ -49,17 +49,19 @@ export const APP_ROUTES: Routes = [
                 children: [
                     {
                         path: '',
-                        component: PagesClientesListagemComponent,
-                        children: [
-                            {
-                                path: ':id',
-                                component: PagesClienteDetalheComponent
-                            }
-                        ]
+                        component: PagesClientesListagemComponent
                     },
                     {
                         path: 'novo',
                         component: PagesClienteCadastroComponent
+                    },
+                    {
+                        path: ':id/editar',
+                        component: PagesClienteCadastroComponent
+                    },
+                    {
+                        path: ':id',
+                        component: PagesClienteDetalheComponent
                     },
                 ]
             },

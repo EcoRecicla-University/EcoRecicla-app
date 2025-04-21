@@ -1,1 +1,29 @@
 <button [routerLink]="['..']">X</button>
+<div *ngIf="clienteSelecionado">
+    <div class="flex justify-center pt-5">
+        <h1 class="text-4xl font-light">Detalhe do Cliente</h1>
+    </div>
+    <div class="flex justify-end">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="'editar'">
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Excluir</span>
+            </button>
+        </mat-menu>
+    </div>
+    <p><strong>ID:</strong> {{ clienteSelecionado.ID_Cliente }}</p>
+    <p><strong>Nome:</strong> {{ clienteSelecionado.Nome }}</p>
+    <p><strong>Data de Cadastro:</strong> {{ clienteSelecionado.Data_Cadastro }}</p>
+    <p><strong>Tipo de Cliente:</strong> {{ clienteSelecionado.Tipo_Cliente }}</p>
+    <p><strong>Número de Pedidos:</strong> {{ clienteSelecionado.Numero_Pedidos }}</p>
+    <p><strong>Ponto de Coleta:</strong> {{ clienteSelecionado.Pontos_Coleta }}</p>
+    <p><strong>Telefone:</strong> {{ clienteSelecionado.Telefone }}</p>
+    <p><strong>CPF:</strong> {{ clienteSelecionado.CPF }}</p>
+</div>
