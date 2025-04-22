@@ -2,6 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { DadosClientesModel } from "../models/private/listaClientes.model";
+import { CadastroClienteModel } from "../models/private/cadastroCliente.model";
+import { EditarClienteModel } from "../models/private/editarCliente.model";
 
 @Injectable({
     providedIn: 'root'
@@ -17,53 +19,17 @@ export class ClientesService {
         return this.http.get<DadosClientesModel>(apiUrl, {})
     }
 
-    // getCliente(id: string): Observable<DadosClientesModel>{
-        // 
-        // return of(<DadosClientesModel>{
-        //     id: 1,
-        //     name: 'Osvaldo Cruz',
-        //     dataCadastro: '12/01/2025',
-        //     tipoCliente: 'Coleta',
-        //     numeroPedidos: '2',
-        //     pontosColeta: 'Rua Jalavi Nunes, 505',
-        //     telefone: '4199312-3142',
-        //     cpf: '123141231231'
-        // })
-    // }
-
     getClientes(): Observable<DadosClientesModel[]>{
         return this.http.get<DadosClientesModel[]>(this.apiUrl, {})
-        // return of(<DadosClientesModel[]>[
-        //     {
-        //         id: 1,
-        //         name: 'Osvaldo Cruz',
-        //         dataCadastro: '12/01/2025',
-        //         tipoCliente: 'Coleta',
-        //         numeroPedidos: '2',
-        //         pontosColeta: 'Rua Jalavi Nunes, 505',
-        //         telefone: '4199312-3142',
-        //         cpf: '123141231231'
-        //     },
-        //     {
-        //         id: 2,
-        //         name: 'Juscreison Alessandro',
-        //         dataCadastro: '01/01/2024',
-        //         tipoCliente: 'Venda',
-        //         numeroPedidos: '50',
-        //         pontosColeta: 'Rua Mundo Novo, 4055',
-        //         telefone: '4199312-3142',
-        //         cpf: '000000000'
-        //     },
-        //     {
-        //         id: 3,
-        //         name: 'Wylder Shuasneger',
-        //         dataCadastro: '25/10/2012',
-        //         tipoCliente: 'Ambos',
-        //         numeroPedidos: '90',
-        //         pontosColeta: 'Rua Bomba Pet, 4005',
-        //         telefone: '4195734-6546',
-        //         cpf: '99999999999'
-        //     }
-        // ])
+    }
+
+    criarNovoCliente(dados: CadastroClienteModel): Observable<CadastroClienteModel> {
+        const apiUrl = `${this.apiUrl}`;
+        return this.http.post<CadastroClienteModel>(apiUrl, dados);
+    }
+
+    editarCliente(id: string, dados: EditarClienteModel): Observable<EditarClienteModel> {
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.put<EditarClienteModel>(apiUrl, dados)
     }
 }

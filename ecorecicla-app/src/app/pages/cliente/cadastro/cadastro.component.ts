@@ -6,9 +6,11 @@ import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatRadioModule } from '@angular/material/radio';
 import { ActivatedRoute, RouterLink } from "@angular/router";
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { NgIf } from "@angular/common";
 import { ClientesService } from "../../../core/services/clientes.service";
+import { CadastroClienteModel } from "../../../core/models/private/cadastroCliente.model";
+import { EditarClienteModel } from "../../../core/models/private/editarCliente.model";
 
 @Component ({
     selector: 'app-pages-cliente-cadastro',
@@ -29,9 +31,15 @@ export class PagesClienteCadastroComponent implements OnInit {
     
     public isEdicao = false;
 
+    public idSelecionado = null
+
     public form = new FormGroup({
-        nome: new FormControl(''),
-        tipoCliente: new FormControl(null)
+        nome: new FormControl('', Validators.required),
+        cpf: new FormControl(''),
+        cnpj: new FormControl(''),
+        telefone: new FormControl('', Validators.required),
+        pontoDeColeta: new FormControl('', Validators.required),
+        tipoCliente: new FormControl(null, Validators.required)
     })
 
     constructor(
@@ -43,12 +51,15 @@ export class PagesClienteCadastroComponent implements OnInit {
         const id = this._activatedRoute.snapshot.params['id'];
         if (id) {
             this.isEdicao = true;
+            this.idSelecionado = id
             this.service.getCliente(id)
             .subscribe(cliente => {
-                console.log(cliente);
-
                 this.form.patchValue({
                     nome: cliente.Nome,
+                    cpf: cliente.CPF,
+                    cnpj: cliente.CNPJ,
+                    telefone: cliente.Telefone,
+                    pontoDeColeta: cliente.Pontos_Coleta,
                     tipoCliente: cliente.Tipo_Cliente
                 })
             })
@@ -59,13 +70,32 @@ export class PagesClienteCadastroComponent implements OnInit {
     }
 
     salvar() {
-        const dadosDoFormulario = this.form.value;
-        console.log(dadosDoFormulario)
+        const dadosDoFormulario: CadastroClienteModel = {
+            Nome: this.form.value.nome ?? '',
+            CPF: this.form.value.cpf || undefined,
+            CNPJ: this.form.value.cnpj || undefined,
+            Telefone: this.form.value.telefone ?? '',
+            Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
+            Tipo_Cliente: this.form.value.tipoCliente ?? ''
+        }
 
-        if (this.isEdicao) {
-            console.log('CHAMAR UPDATE')
+        if (this.isEdicao && this.idSelecionado) {
+            const dadosEditaveis: EditarClienteModel = {
+                Id: this.idSelecionado,
+                Nome: this.form.value.nome ?? '',
+                CPF: this.form.value.cpf || undefined,
+                CNPJ: this.form.value.cnpj || undefined,
+                Telefone: this.form.value.telefone ?? '',
+                Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
+                Tipo_Cliente: this.form.value.tipoCliente ?? ''
+            };
+        
+            this.service.editarCliente(this.idSelecionado, dadosEditaveis)
+            .subscribe();
+
         } else {
-            console.log('CHAMAR INSERT')
+            this.service.criarNovoCliente(dadosDoFormulario)
+            .subscribe()
         }
     }
 }

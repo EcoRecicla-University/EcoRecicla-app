@@ -28,16 +28,12 @@ export class PagesClienteDetalheComponent implements OnInit, OnDestroy{
     ngOnInit(): void {
         this.activeRoute.params
         .subscribe((params) => {
-            console.log(params)
             const id = params['id'];
             this.service.getCliente(id)
             .subscribe((cliente) => {
-                console.log(cliente)
                 this.clienteSelecionado = cliente;
             })
         })
-
-        console.log('ta aqui')
     }
 
     ngOnDestroy(): void {

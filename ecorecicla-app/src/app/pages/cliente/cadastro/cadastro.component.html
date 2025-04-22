@@ -22,23 +22,30 @@
             </div>
 
             <div class="flex flex-col pt-1">
-                <label>CPF/CNPJ</label>
+                <label>CPF</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite o CPF ou CNPJ do cliente" class="w-full">
+                    <input matInput placeholder="Digite o CPF ou CNPJ do cliente" class="w-full" [formControlName]="'cpf'">
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col pt-1">
+                <label>CNPJ</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="Digite o CPF ou CNPJ do cliente" class="w-full" [formControlName]="'cnpj'">
                 </mat-form-field>
             </div>
             
             <div class="flex flex-col pt-1">
                 <label>Telefone</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="(xx) x xxxx-xxxx" class="w-full">
+                    <input matInput placeholder="(xx) x xxxx-xxxx" class="w-full" [formControlName]="'telefone'">
                 </mat-form-field>
             </div>
 
             <div class="flex flex-col pt-1">
                 <label>Ponto de Coleta</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite o endereço do ponto de coleta" class="w-full">
+                    <input matInput placeholder="Digite o endereço do ponto de coleta" class="w-full" [formControlName]="'pontoDeColeta'">
                 </mat-form-field>
             </div>
 
