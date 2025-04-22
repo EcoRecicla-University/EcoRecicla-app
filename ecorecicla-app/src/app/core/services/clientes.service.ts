@@ -32,4 +32,9 @@ export class ClientesService {
         const apiUrl = `${this.apiUrl}/${id}`;
         return this.http.put<EditarClienteModel>(apiUrl, dados)
     }
+
+    deletarCliente(id: string):Observable<void>{
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.delete<void>(apiUrl, {})
+    }
 }

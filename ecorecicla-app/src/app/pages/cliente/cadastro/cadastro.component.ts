@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
 import { MatRadioModule } from '@angular/material/radio';
-import { ActivatedRoute, RouterLink } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { NgIf } from "@angular/common";
 import { ClientesService } from "../../../core/services/clientes.service";
@@ -43,8 +44,10 @@ export class PagesClienteCadastroComponent implements OnInit {
     })
 
     constructor(
+        private router: Router,
         private _activatedRoute: ActivatedRoute,
         private service: ClientesService,
+        private snackbar: MatSnackBar
     ) { }
 
     ngOnInit(): void {
@@ -91,11 +94,21 @@ export class PagesClienteCadastroComponent implements OnInit {
             };
         
             this.service.editarCliente(this.idSelecionado, dadosEditaveis)
-            .subscribe();
+            .subscribe(() => {
+                this.snackbar.open('Cliente editado com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            });
 
         } else {
             this.service.criarNovoCliente(dadosDoFormulario)
-            .subscribe()
+            .subscribe(() => {
+                this.snackbar.open('Cliente criado com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            })
         }
     }
 }
