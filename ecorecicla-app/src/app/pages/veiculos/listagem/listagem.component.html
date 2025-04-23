@@ -9,7 +9,7 @@
         </button>
     </div>
     <h2 class="text-gray-400 pt-5">Exibindo 
-        <!-- {{ DadosListaClientes.length }}  -->
+        {{ DadosListaVeiculos.length }} 
         resultados</h2>
     <div class="w-hull pt-3">
         <div class="bg-gray-400 w-[90%] h-[1px]"></div>
@@ -36,31 +36,31 @@
             
         </div>
 
-        <div class="hover:bg-gray-100">
+        <div *ngFor="let veiculo of DadosListaVeiculos" class="hover:bg-gray-100">
             
             <a class="block p-3">
                 <div class="grid grid-cols-[5%_45%_25%_25%] text-sm">
                     <div class="flex justify-center">
                         <span class="">
-                            <!-- {{ cliente.ID_Cliente }} -->
+                            {{ veiculo.ID_Veiculo }}
                         </span>
                     </div>
         
                     <div class="flex justify-start">
                         <span class="ml-3">
-                            <!-- {{ cliente.Nome }} -->
+                            {{ veiculo.Modelo }}
                         </span>
                     </div>
         
                     <div class="flex justify-center">
                         <span class="">
-
+                            {{ veiculo.Placa }}
                         </span>
                     </div>
         
                     <div class="flex justify-center">
                         <span class="">
-
+                            {{ veiculo.Capacidade_em_Kg }}
                         </span>
                     </div>
                 </div>

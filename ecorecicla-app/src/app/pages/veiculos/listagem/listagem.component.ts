@@ -1,7 +1,9 @@
 import { NgForOf } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { RouterLink } from "@angular/router";
+import { VeiculosService } from "../../../core/services/veiculos.service";
+import { ListaVeiculosModel } from "../../../core/models/private/listaVeiculos.model";
 
 @Component ({
     selector: 'app-pages-veiculos-listagem',
@@ -12,6 +14,17 @@ import { RouterLink } from "@angular/router";
         RouterLink
     ]
 })
-export class PagesVeiculosListagemComponent{
+export class PagesVeiculosListagemComponent implements OnInit{
 
+    DadosListaVeiculos:ListaVeiculosModel[] = []
+
+    constructor(private _service: VeiculosService) {}
+
+    ngOnInit(): void {
+        this._service.getVeiculos()
+        .subscribe((listaVeiculos) => {
+
+            this.DadosListaVeiculos = listaVeiculos
+        })
+    }
 }

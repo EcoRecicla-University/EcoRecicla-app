@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { CadastroVeiculosModel } from "../models/private/veiculos.model";
+import { CadastroVeiculosModel } from "../models/private/cadastroVeiculos.model";
+import { ListaVeiculosModel } from "../models/private/listaVeiculos.model";
 
 @Injectable({
     providedIn: 'root'
@@ -17,9 +18,9 @@ export class VeiculosService {
     //     return this.http.get<DadosClientesModel>(apiUrl, {})
     // }
 
-    // getClientes(): Observable<DadosClientesModel[]>{
-    //     return this.http.get<DadosClientesModel[]>(this.apiUrl, {})
-    // }
+    getVeiculos(): Observable<ListaVeiculosModel[]>{
+        return this.http.get<ListaVeiculosModel[]>(this.apiUrl, {})
+    }
 
     criarNovoVeiculo(dados: CadastroVeiculosModel): Observable<CadastroVeiculosModel> {
         const apiUrl = `${this.apiUrl}`;
