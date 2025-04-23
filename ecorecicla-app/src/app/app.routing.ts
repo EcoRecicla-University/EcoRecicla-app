@@ -8,9 +8,10 @@ import { LayoutPrivateComponent } from "./layout/private/private.component";
 import { PagesClienteCadastroComponent } from "./pages/cliente/cadastro/cadastro.component";
 import { PagesEstoqueComponent } from "./pages/estoque/cadastro/estoque.component";
 import { PagesCadastroComponent } from "./pages/cadastro/cadastro/cadastro.component";
-import { PagesVeiculosComponent } from "./pages/veiculos/cadastro/veiculos.component";
+import { PagesVeiculosCadastroComponent } from "./pages/veiculos/cadastro/cadastro.component";
 import { PagesClientesListagemComponent } from "./pages/cliente/listagem/listagem.component";
 import { PagesClienteDetalheComponent } from "./pages/cliente/detalhe/detalhe.component";
+import { PagesVeiculosListagemComponent } from "./pages/veiculos/listagem/listagem.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -72,7 +73,17 @@ export const APP_ROUTES: Routes = [
                 path: 'cadastro', component: PagesCadastroComponent
             },
             {
-                path: 'veiculos', component: PagesVeiculosComponent
+                path: 'veiculos', 
+                children: [
+                    {
+                        path: '', 
+                        component: PagesVeiculosListagemComponent
+                    },
+                    {
+                        path: 'novo',
+                        component: PagesVeiculosCadastroComponent
+                    },
+                ]
             }
         ]
     }

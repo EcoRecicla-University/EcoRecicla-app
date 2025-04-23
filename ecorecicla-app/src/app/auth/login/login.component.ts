@@ -24,8 +24,8 @@ export class LoginComponent {
     ) { }
 
     formularioLogin = new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required])
+        email: new FormControl('eric@gmail.com', [Validators.required, Validators.email]),
+        password: new FormControl('91008', [Validators.required])
     });
 
     loginSuccess:boolean = null

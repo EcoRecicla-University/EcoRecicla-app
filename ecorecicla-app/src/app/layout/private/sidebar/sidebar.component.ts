@@ -59,7 +59,7 @@ export class LayoutPrivateSidebarComponent {
         },
         {
             icon: 'inventory_2',
-            label: 'Estoque',
+            label: 'Movto Est',
             type: 'GRUPO',
             children: [
                 {
@@ -90,17 +90,8 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'local_shipping',
             label: 'Veiculos',
-            type: 'GRUPO',
-            children: [
-                {
-                    label: 'Cadastro',
-                    url: '/veiculos'
-                },
-                {
-                    label: 'Listagem',
-                    url: '/ListagemVeiculos'
-                }
-            ]
+            type: 'ITEM',
+            url: '/veiculos'
         },
         {
             icon: 'pallet',
