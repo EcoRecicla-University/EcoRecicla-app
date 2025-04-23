@@ -12,6 +12,7 @@ import { NgIf } from "@angular/common";
 import { ClientesService } from "../../../core/services/clientes.service";
 import { CadastroClienteModel } from "../../../core/models/private/cadastroCliente.model";
 import { EditarClienteModel } from "../../../core/models/private/editarCliente.model";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component ({
     selector: 'app-pages-cliente-cadastro',
@@ -25,7 +26,8 @@ import { EditarClienteModel } from "../../../core/models/private/editarCliente.m
         MatCheckboxModule,
         MatRadioModule,
         RouterLink,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatButtonModule
     ]
 })
 export class PagesClienteCadastroComponent implements OnInit {
