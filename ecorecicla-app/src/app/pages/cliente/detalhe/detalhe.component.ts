@@ -6,7 +6,7 @@ import { DatePipe, NgIf } from "@angular/common";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { DadosClientesModel, TipoClienteEnum } from "../../../core/models/private/listaClientes.model";
+import { DadosClientesModel, TipoClienteEnum } from "../../../core/models/private/clientes/listaClientes.model";
 import { MatButtonModule } from "@angular/material/button";
 
 @Component ({

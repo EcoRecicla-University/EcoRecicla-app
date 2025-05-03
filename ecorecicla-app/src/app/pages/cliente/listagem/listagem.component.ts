@@ -6,7 +6,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { ClientesService } from "../../../core/services/clientes.service";
-import { DadosClientesModel, TipoClienteEnum } from "../../../core/models/private/listaClientes.model";
+import { DadosClientesModel, TipoClienteEnum } from "../../../core/models/private/clientes/listaClientes.model";
 import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -53,11 +53,6 @@ export class PagesClientesListagemComponent implements OnInit{
 
             this.DadosListaClientes = listaClientes
         })
-    }
-
-    abrirDrawer(cliente: DadosClientesModel, drawer: any) {
-        this.clienteSelecionado = cliente;
-        drawer.open();
     }
 
 }

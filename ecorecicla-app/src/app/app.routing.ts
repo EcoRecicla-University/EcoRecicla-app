@@ -13,8 +13,8 @@ import { PagesClienteDetalheComponent } from "./pages/cliente/detalhe/detalhe.co
 import { PagesVeiculosListagemComponent } from "./pages/veiculos/listagem/listagem.component";
 import { PagesFuncionariosFuncionariosCadastroComponent } from "./pages/funcionario/funcionarios/cadastro/cadastro.component";
 import { PagesFuncionariosMotoristasCadastroComponent } from "./pages/funcionario/motoristas/cadastro/cadastro.component";
-import { PagesFuncionariosFuncionariosListaComponent } from "./pages/funcionario/funcionarios/lista/lista.component";
-import { PagesFuncionariosMotoristasListaComponent } from "./pages/funcionario/motoristas/lista/lista.component";
+import { PagesFuncionariosFuncionariosListagemComponent } from "./pages/funcionario/funcionarios/listagem/listagem.component";
+import { PagesFuncionariosMotoristasListagemComponent } from "./pages/funcionario/motoristas/listagem/listagem.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -80,7 +80,7 @@ export const APP_ROUTES: Routes = [
                         children: [
                             {
                                 path: '',
-                                component: PagesFuncionariosFuncionariosListaComponent
+                                component: PagesFuncionariosFuncionariosListagemComponent
                             },
                             {
                                 path: 'novo',
@@ -93,7 +93,7 @@ export const APP_ROUTES: Routes = [
                         children: [
                             {
                                 path: '',
-                                component: PagesFuncionariosMotoristasListaComponent
+                                component: PagesFuncionariosMotoristasListagemComponent
                             },
                             {
                                 path: 'novo',

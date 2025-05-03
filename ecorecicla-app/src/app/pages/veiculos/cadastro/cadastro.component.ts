@@ -7,7 +7,7 @@ import { VeiculosService } from "../../../core/services/veiculos.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CadastroVeiculosModel } from "../../../core/models/private/cadastroVeiculos.model";
+import { CadastroVeiculosModel } from "../../../core/models/private/veiculos/cadastroVeiculos.model";
 
 @Component ({
     selector: 'app-pages-veiculos',

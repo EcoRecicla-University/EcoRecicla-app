@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { RouterLink } from "@angular/router";
 import { VeiculosService } from "../../../core/services/veiculos.service";
-import { ListaVeiculosModel } from "../../../core/models/private/listaVeiculos.model";
+import { ListaVeiculosModel } from "../../../core/models/private/veiculos/listaVeiculos.model";
 
 @Component ({
     selector: 'app-pages-veiculos-listagem',
