@@ -13,6 +13,6 @@ import { provideNativeDateAdapter } from "@angular/material/core";
     providers: [provideNativeDateAdapter()],
     imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, MatSelectModule]
 })
-export class PagesCadastroComponent {
+export class PagesFuncionariosFuncionariosCadastroComponent {
     readonly startDate = new Date(1990, 0, 1);
 }
