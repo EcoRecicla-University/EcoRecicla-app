@@ -1,6 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ListagemFuncionarioModel } from "../../models/private/funcionarios/funcionarios/listaFuncionario.molde";
+import { CadastroFuncionarioModel } from "../../models/private/funcionarios/funcionarios/cadastroFuncionario.model";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -14,4 +16,9 @@ export class FuncionarioService {
     getFuncionarios(){
         return this.http.get<ListagemFuncionarioModel[]>(this.apiUrl, {})
     }
+
+    criarNovoFuncionario(dados: CadastroFuncionarioModel): Observable<CadastroFuncionarioModel> {
+            const apiUrl = `${this.apiUrl}`;
+            return this.http.post<CadastroFuncionarioModel>(apiUrl, dados);
+        }
 }

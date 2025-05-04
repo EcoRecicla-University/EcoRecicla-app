@@ -14,10 +14,10 @@
             </div>
     
             <div class="flex flex-col pt-1">
-                <label>Data de Nasc.</label>
+                <label>Data de Nascimento</label>
                 <mat-form-field appearance="outline" class="w-full">
                     <input matInput [matDatepicker]="pickerData" placeholder="dd/mm/aaaa" [formControlName]="'dataNascimento'">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerData"></mat-datepicker-toggle>
                     <mat-datepicker #pickerData></mat-datepicker>
                 </mat-form-field>
             </div>
