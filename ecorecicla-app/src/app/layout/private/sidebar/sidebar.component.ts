@@ -3,7 +3,7 @@ import { Component } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { MatIconModule } from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { SidebarComponentesModel } from "../../../core/models/private/sidebar-componentes.model";
+import { SidebarComponentesModel } from "../../../core/models/private/Veiculos/sidebar-componentes.model";
 
 type SidebarNavigationItem = {
     icon: string;

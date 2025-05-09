@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { CadastroVeiculosModel } from "../models/private/cadastroVeiculos.model";
-import { ListaVeiculosModel } from "../models/private/listaVeiculos.model";
+import { CadastroVeiculosModel } from "../models/private/Veiculos/cadastroVeiculos.model";
+import { ListaVeiculosModel } from "../models/private/Veiculos/listaVeiculos.model";
 
 @Injectable({
     providedIn: 'root'
