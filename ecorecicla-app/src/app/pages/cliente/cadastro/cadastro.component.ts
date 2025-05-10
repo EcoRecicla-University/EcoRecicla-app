@@ -33,17 +33,16 @@ import { MatButtonModule } from "@angular/material/button";
 export class PagesClienteCadastroComponent implements OnInit {
     
     public isEdicao = false;
-
-    public idSelecionado = null
+    public idSelecionado = null;
 
     public form = new FormGroup({
-        nome: new FormControl('', Validators.required),
-        cpf: new FormControl(''),
-        cnpj: new FormControl(''),
-        telefone: new FormControl('', Validators.required),
+        nome: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]*$/)]),
+        cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
+        cnpj: new FormControl('', [Validators.required, Validators.maxLength(14), Validators.pattern(/^\d+$/)]),
+        telefone: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
         pontoDeColeta: new FormControl('', Validators.required),
         tipoCliente: new FormControl(null, Validators.required)
-    })
+    });
 
     constructor(
         private router: Router,
@@ -56,9 +55,8 @@ export class PagesClienteCadastroComponent implements OnInit {
         const id = this._activatedRoute.snapshot.params['id'];
         if (id) {
             this.isEdicao = true;
-            this.idSelecionado = id
-            this.service.getCliente(id)
-            .subscribe(cliente => {
+            this.idSelecionado = id;
+            this.service.getCliente(id).subscribe(cliente => {
                 this.form.patchValue({
                     nome: cliente.Nome,
                     cpf: cliente.CPF,
@@ -71,7 +69,6 @@ export class PagesClienteCadastroComponent implements OnInit {
         } else {
             this.isEdicao = false;
         }
-
     }
 
     salvar() {
@@ -111,6 +108,22 @@ export class PagesClienteCadastroComponent implements OnInit {
                     relativeTo: this._activatedRoute
                 })
             })
+        }
+    }
+    
+    // Permitir apenas letras
+    permitirApenasLetras(event: KeyboardEvent) {
+        const regex = /^[a-zA-ZÀ-ÿ\s]*$/;
+        if (!regex.test(event.key)) {
+            event.preventDefault();
+        }
+    }
+
+    // Permitir apenas números
+    permitirApenasNumeros(event: KeyboardEvent) {
+        const regex = /^[0-9]*$/;
+        if (!regex.test(event.key)) {
+            event.preventDefault();
         }
     }
 }
