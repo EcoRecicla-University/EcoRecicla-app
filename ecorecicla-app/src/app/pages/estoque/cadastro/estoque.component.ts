@@ -32,10 +32,10 @@ export class PagesEstoqueComponent implements OnInit{
 
     ngOnInit(): void {
         this.service.getChaveColeta()
-        .subscribe((idsColeta) => {
-            idsColeta = this.idsColeta
+        .subscribe((coletas) => {
+            coletas = this.idsColeta
+            console.log(this.idsColeta)
         })
-        console.log(this.idsColeta)
     }
 
     public form = new FormGroup({
