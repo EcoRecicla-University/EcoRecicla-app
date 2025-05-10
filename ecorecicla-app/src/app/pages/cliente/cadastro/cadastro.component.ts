@@ -10,8 +10,8 @@ import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { NgIf } from "@angular/common";
 import { ClientesService } from "../../../core/services/clientes.service";
-import { CadastroClienteModel } from "../../../core/models/private/cadastroCliente.model";
-import { EditarClienteModel } from "../../../core/models/private/editarCliente.model";
+import { CadastroClienteModel } from "../../../core/models/private/clientes/cadastroCliente.model";
+import { EditarClienteModel } from "../../../core/models/private/clientes/editarCliente.model";
 import { MatButtonModule } from "@angular/material/button";
 
 @Component ({

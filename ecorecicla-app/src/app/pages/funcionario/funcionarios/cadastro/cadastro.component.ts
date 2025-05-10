@@ -3,44 +3,52 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
-import { VeiculosService } from "../../../core/services/veiculos.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { ActivatedRoute, Router } from "@angular/router";
+import { MatSelectModule } from "@angular/material/select";
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from "@angular/material/core";
+import { FuncionarioService } from "../../../../core/services/funcionarios/funcionario.service";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CadastroVeiculosModel } from "../../../core/models/private/veiculos/cadastroVeiculos.model";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { CadastroFuncionarioModel } from "../../../../core/models/private/funcionarios/funcionarios/cadastroFuncionario.model";
+import { DatePipe } from "@angular/common";
 
 @Component ({
-    selector: 'app-pages-veiculos',
+    selector: 'app-pages-cadastro',
     templateUrl: './cadastro.component.html',
+    providers: [provideNativeDateAdapter(), DatePipe],
     imports: [
         MatFormFieldModule, 
         MatInputModule, 
-        MatIconModule,
+        MatDatepickerModule, 
+        MatSelectModule,
         ReactiveFormsModule
     ]
 })
+export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit{
 
-    
-export class PagesVeiculosCadastroComponent implements OnInit {
+    readonly startDate = new Date(1990, 0, 1);
 
     public isEdicao = false;
 
     public idSelecionado = null
 
     public form = new FormGroup({
-        placa: new FormControl('', Validators.required),
-        modeloVeiculo: new FormControl('', Validators.required),
-        quilometragem: new FormControl('', Validators.required),
-        renavam: new FormControl('', Validators.required),
-        capacidade: new FormControl('', Validators.required),
-        // idMotorist: new FormControl('', Validators.required)
+        nome: new FormControl('', Validators.required),
+        dataNascimento: new FormControl('', Validators.required),
+        telefone: new FormControl('', Validators.required),
+        cpf: new FormControl('', Validators.required),
+        rg: new FormControl('', Validators.required),
+        dataContratacao: new FormControl(null, Validators.required),
+        estadoCivil: new FormControl(null, Validators.required)
     })
 
     constructor(
+        private service: FuncionarioService,
         private router: Router,
         private _activatedRoute: ActivatedRoute,
-        private service: VeiculosService,
-        private snackbar: MatSnackBar
+        private snackbar: MatSnackBar,
+        private datePipe: DatePipe
     ) { }
 
     ngOnInit(): void {
@@ -66,16 +74,23 @@ export class PagesVeiculosCadastroComponent implements OnInit {
     }
 
     salvar() {
-        const dadosDoFormulario: CadastroVeiculosModel = {
-            Placa: this.form.value.placa ?? '',
-            Modelo: this.form.value.modeloVeiculo || undefined,
-            Quilometragem: this.form.value.quilometragem || undefined,
-            Renavam: this.form.value.renavam ?? '',
-            Capacidade_em_Kg: this.form.value.capacidade ?? '',
-            // ID_Motorista: this.form.value.idMotorist ?? ''
+
+        const dataNascimentoFormatada = this.datePipe.transform(this.form.value.dataNascimento, 'yyyy-MM-dd') ?? '';
+        const dataContratacaoFormatada = this.datePipe.transform(this.form.value.dataContratacao, 'yyyy-MM-dd') ?? '';
+
+        const dadosDoFormulario: CadastroFuncionarioModel = {
+            Nome: this.form.value.nome ?? '',
+            CPF: this.form.value.cpf ?? '',
+            RG: this.form.value.rg ?? '',
+            Telefone: this.form.value.telefone ?? '',
+            Data_Nascimento: dataNascimentoFormatada,
+            Data_Contratacao: dataContratacaoFormatada,
+            Estado_Civil: this.form.value.estadoCivil ?? ''
         }
 
-        if (this.isEdicao) {
+
+
+        if (this.isEdicao && this.idSelecionado) {
             // const dadosEditaveis: EditarClienteModel = {
             //     Id: this.idSelecionado,
             //     Nome: this.form.value.nome ?? '',
@@ -95,12 +110,12 @@ export class PagesVeiculosCadastroComponent implements OnInit {
             // });
 
         } else {
-            this.service.criarNovoVeiculo(dadosDoFormulario)
+            this.service.criarNovoFuncionario(dadosDoFormulario)
             .subscribe(() => {
-                this.snackbar.open('Veiculo criado com sucesso', 'Ok')
-                // this.router.navigate(['..'], {
-                //     relativeTo: this._activatedRoute
-                // })
+                this.snackbar.open('Funcionário criado com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
             })
         }
     }
