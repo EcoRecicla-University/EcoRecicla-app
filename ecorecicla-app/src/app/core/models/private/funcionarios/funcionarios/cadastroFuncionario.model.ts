@@ -6,4 +6,5 @@ export interface CadastroFuncionarioModel {
     RG: string;
     Data_Contratacao: string;
     Estado_Civil: string;
+    Email: string;
 }

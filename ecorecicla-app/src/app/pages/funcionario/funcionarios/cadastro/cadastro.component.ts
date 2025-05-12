@@ -40,7 +40,8 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit{
         cpf: new FormControl('', Validators.required),
         rg: new FormControl('', Validators.required),
         dataContratacao: new FormControl(null, Validators.required),
-        estadoCivil: new FormControl(null, Validators.required)
+        estadoCivil: new FormControl(null, Validators.required),
+        email: new FormControl('', Validators.required)
     })
 
     constructor(
@@ -85,7 +86,8 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit{
             Telefone: this.form.value.telefone ?? '',
             Data_Nascimento: dataNascimentoFormatada,
             Data_Contratacao: dataContratacaoFormatada,
-            Estado_Civil: this.form.value.estadoCivil ?? ''
+            Estado_Civil: this.form.value.estadoCivil ?? '',
+            Email: this.form.value.email ?? ''
         }
 
 
