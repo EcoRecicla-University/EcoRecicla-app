@@ -15,6 +15,7 @@ import { PagesFuncionariosFuncionariosCadastroComponent } from "./pages/funciona
 import { PagesFuncionariosMotoristasCadastroComponent } from "./pages/funcionario/motoristas/cadastro/cadastro.component";
 import { PagesFuncionariosFuncionariosListagemComponent } from "./pages/funcionario/funcionarios/listagem/listagem.component";
 import { PagesFuncionariosMotoristasListagemComponent } from "./pages/funcionario/motoristas/listagem/listagem.component";
+import { PagesFuncionariosFuncionariosDetalheComponent } from "./pages/funcionario/funcionarios/detalhe/detalhe.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -25,21 +26,21 @@ export const APP_ROUTES: Routes = [
     {
         path: '', redirectTo: 'home', pathMatch: 'full'
     },
-    { 
+    {
         path: '',
         component: LayoutAuthComponent,
         children: [
-            { 
+            {
                 path: 'login',
                 loadComponent: () => import('./auth/login/login.component').then((c) => c.LoginComponent)
             },
-            { 
+            {
                 path: 'recuperacao-senha', component: RecuperacaoSenhaComponent
             }
         ]
     },
     {
-        path: '', 
+        path: '',
         component: LayoutPrivateComponent,
         children: [
             {
@@ -85,7 +86,15 @@ export const APP_ROUTES: Routes = [
                             {
                                 path: 'novo',
                                 component: PagesFuncionariosFuncionariosCadastroComponent
-                            }
+                            },
+                            {
+                                path: ':id',
+                                component: PagesFuncionariosFuncionariosDetalheComponent
+                            },
+                            {
+                                path: ':id/editar',
+                                component: PagesFuncionariosFuncionariosCadastroComponent
+                            },
                         ]
                     },
                     {
@@ -104,10 +113,10 @@ export const APP_ROUTES: Routes = [
                 ]
             },
             {
-                path: 'veiculos', 
+                path: 'veiculos',
                 children: [
                     {
-                        path: '', 
+                        path: '',
                         component: PagesVeiculosListagemComponent
                     },
                     {

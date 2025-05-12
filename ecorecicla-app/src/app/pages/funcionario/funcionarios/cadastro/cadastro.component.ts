@@ -13,6 +13,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { CadastroFuncionarioModel } from "../../../../core/models/private/funcionarios/funcionarios/cadastroFuncionario.model";
 import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
+import { EditarFuncionarioModel } from "../../../../core/models/private/funcionarios/funcionarios/editarFuncionarioModel";
 
 @Component ({
     selector: 'app-pages-cadastro',
@@ -58,24 +59,26 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit{
     ) { }
 
     ngOnInit(): void {
-        // const id = this._activatedRoute.snapshot.params['id'];
-        // if (id) {
-        //     this.isEdicao = true;
-        //     this.idSelecionado = id
-        //     this.service.getCliente(id)
-        //     .subscribe(cliente => {
-        //         this.form.patchValue({
-        //             nome: cliente.Nome,
-        //             cpf: cliente.CPF,
-        //             cnpj: cliente.CNPJ,
-        //             telefone: cliente.Telefone,
-        //             pontoDeColeta: cliente.Pontos_Coleta,
-        //             tipoCliente: cliente.Tipo_Cliente
-        //         })
-        //     })
-        // } else {
-        //     this.isEdicao = false;
-        // }
+        const id = this._activatedRoute.snapshot.params['id'];
+        if (id) {
+            this.isEdicao = true;
+            this.idSelecionado = id
+            this.service.getFuncionario(id)
+            .subscribe(funcionario => {
+                this.form.patchValue({
+                    nome: funcionario.Nome,
+                    cpf: funcionario.CPF,
+                    rg: funcionario.RG,
+                    telefone: funcionario.Telefone,
+                    email: funcionario.Email,
+                    dataContratacao: funcionario.Data_Contratacao,
+                    dataNascimento: funcionario.Data_Nascimento,
+                    estadoCivil: funcionario.Estado_Civil
+                })
+            })
+        } else {
+            this.isEdicao = false;
+        }
 
     }
 
@@ -98,23 +101,25 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit{
 
 
         if (this.isEdicao && this.idSelecionado) {
-            // const dadosEditaveis: EditarClienteModel = {
-            //     Id: this.idSelecionado,
-            //     Nome: this.form.value.nome ?? '',
-            //     CPF: this.form.value.cpf || undefined,
-            //     CNPJ: this.form.value.cnpj || undefined,
-            //     Telefone: this.form.value.telefone ?? '',
-            //     Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
-            //     Tipo_Cliente: this.form.value.tipoCliente ?? ''
-            // };
+            const dadosEditaveis: EditarFuncionarioModel = {
+                ID_Funci: this.idSelecionado,
+                Nome: this.form.value.nome ?? '',
+                CPF: this.form.value.cpf ?? '',
+                RG: this.form.value.rg ?? '',
+                Telefone: this.form.value.telefone ?? '',
+                Email: this.form.value.email ?? '',
+                Estado_Civil: this.form.value.estadoCivil ?? '',
+                Data_Contratacao: this.form.value.dataContratacao ?? '',
+                Data_Nascimento: this.form.value.dataNascimento ?? ''
+            };
         
-            // this.service.editarCliente(this.idSelecionado, dadosEditaveis)
-            // .subscribe(() => {
-            //     this.snackbar.open('Cliente editado com sucesso', 'Ok')
-            //     this.router.navigate(['..'], {
-            //         relativeTo: this._activatedRoute
-            //     })
-            // });
+            this.service.editarFuncionario(this.idSelecionado, dadosEditaveis)
+            .subscribe(() => {
+                this.snackbar.open('Cliente editado com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            });
 
         } else {
             this.service.criarNovoFuncionario(dadosDoFormulario)
