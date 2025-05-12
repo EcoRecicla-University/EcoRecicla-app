@@ -1,6 +1,23 @@
 <div class="pt-10 px-10">
-    <h1 class="text-4xl font-light">Cadastro</h1>
-    <h2 class="text-gray-400 pt-5">Cadastro de motorista</h2>
+    <div class="flex gap-2">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        <h1 class="text-4xl font-light">
+            <span *ngIf="isEdicao">
+                Edição de Cliente
+            </span>
+            <span *ngIf="!isEdicao">
+                Cadastro de cliente
+            </span>
+        </h1>
+    </div>
+    <h2 class="text-gray-400 pt-5" *ngIf="!isEdicao">
+        Cadastro
+    </h2>
+    <h2 class="text-gray-400 pt-5" *ngIf="isEdicao">
+        Editar cadastro de cliente
+    </h2>
     <div class="w-hull pt-3">
         <div class="bg-gray-400 w-[90%] h-[1px]"></div>
     </div>

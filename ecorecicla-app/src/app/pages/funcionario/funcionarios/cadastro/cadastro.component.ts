@@ -8,10 +8,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { FuncionarioService } from "../../../../core/services/funcionarios/funcionario.service";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CadastroFuncionarioModel } from "../../../../core/models/private/funcionarios/funcionarios/cadastroFuncionario.model";
-import { DatePipe } from "@angular/common";
+import { DatePipe, NgForOf, NgIf } from "@angular/common";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component ({
     selector: 'app-pages-cadastro',
@@ -22,7 +23,11 @@ import { DatePipe } from "@angular/common";
         MatInputModule, 
         MatDatepickerModule, 
         MatSelectModule,
-        ReactiveFormsModule
+        MatIconModule,
+        MatButtonModule,
+        RouterLink,
+        ReactiveFormsModule,
+        NgIf
     ]
 })
 export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit{

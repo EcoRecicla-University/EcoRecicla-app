@@ -7,11 +7,13 @@ import { MatSelectModule } from "@angular/material/select";
 import { FuncionarioService } from "../../../../core/services/funcionarios/funcionario.service";
 import { MotoristaService } from "../../../../core/services/funcionarios/motorista.service";
 import { ListagemFuncionarioModel } from "../../../../core/models/private/funcionarios/funcionarios/listaFuncionario.molde";
-import { DatePipe, NgForOf } from "@angular/common";
+import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { CadastroMotoristaModel } from "../../../../core/models/private/funcionarios/motoristas/cadastroMotorista.model";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component ({
     selector: 'app-pages-funcionario-motorista-cadastro',
@@ -22,8 +24,12 @@ import { ActivatedRoute, Router } from "@angular/router";
         MatInputModule, 
         MatDatepickerModule, 
         MatSelectModule,
+        MatIconModule,
+        MatButtonModule,
+        RouterLink,
         NgForOf,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgIf
     ]
 })
 export class PagesFuncionariosMotoristasCadastroComponent implements OnInit{
