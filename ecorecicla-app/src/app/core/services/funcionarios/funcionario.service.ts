@@ -32,4 +32,9 @@ export class FuncionarioService {
         const apiUrl = `${this.apiUrl}/${id}`;
         return this.http.put<EditarFuncionarioModel>(apiUrl, dados)
     }
+
+    deletarFuncionario(id: string):Observable<void>{
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.delete<void>(apiUrl, {})
+    }
 }

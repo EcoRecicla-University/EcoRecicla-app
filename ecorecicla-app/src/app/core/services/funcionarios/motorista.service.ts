@@ -3,6 +3,7 @@ import { ListagemMotoristaModel } from "../../models/private/funcionarios/motori
 import { HttpClient } from "@angular/common/http";
 import { CadastroMotoristaModel } from "../../models/private/funcionarios/motoristas/cadastroMotorista.model";
 import { Observable } from "rxjs";
+import { EditarMotoristaModel } from "../../models/private/funcionarios/motoristas/editarMotorista.model";
 
 @Injectable({
     providedIn: 'root'
@@ -22,5 +23,10 @@ export class MotoristaService {
     criarNovoMotorista(dados: CadastroMotoristaModel): Observable<CadastroMotoristaModel>{
         const apiUrl = `${this.apiUrl}`;
         return this.http.post<CadastroMotoristaModel>(apiUrl, dados);
+    }
+
+    getMotorista(id: string): Observable<EditarMotoristaModel> {
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.get<EditarMotoristaModel>(apiUrl, {})
     }
 }

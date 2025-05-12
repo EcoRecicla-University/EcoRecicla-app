@@ -49,17 +49,17 @@ export class PagesFuncionariosFuncionariosDetalheComponent implements OnInit, On
 
     }
 
-    deletarCliente() {
-    //   const podeExcluir = confirm('Tem certeza que deseja excluir este cliente?')
+    deletarFuncionario() {
+      const podeExcluir = confirm('Tem certeza que deseja excluir este funcionário?')
 
-    //   if (podeExcluir) {
-    //     this.service.deletarCliente(this.idSelecionado)
-    //     .subscribe(() => {
-    //         this.snackbar.open('Cliente excluido com sucesso', 'Ok')
-    //         this.router.navigate(['..'], {
-    //             relativeTo: this.activeRoute
-    //         })
-    //     })
-    //   }
+      if (podeExcluir) {
+        this.service.deletarFuncionario(this.idSelecionado)
+        .subscribe(() => {
+            this.snackbar.open('Funcionário excluido com sucesso', 'Ok')
+            this.router.navigate(['..'], {
+                relativeTo: this.activeRoute
+            })
+        })
+      }
     }
 }
