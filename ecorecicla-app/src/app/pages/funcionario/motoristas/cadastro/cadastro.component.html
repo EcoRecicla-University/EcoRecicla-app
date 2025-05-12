@@ -10,10 +10,7 @@
                 <label>Funcionário</label>
                 <mat-form-field appearance="outline" class="w-full">
                     <mat-select placeholder="Selecione um funcionário">
-                        <mat-option value="Solteiro">Solteiro(a)</mat-option>
-                        <mat-option value="Casado">Casado(a)</mat-option>
-                        <mat-option value="Divorciado">Divorciado(a)</mat-option>
-                        <mat-option value="Viuvo">Viúvo(a)</mat-option>
+                        <mat-option *ngFor="let funcionario of allFuncionarios" [value]="funcionario.ID_Funci">{{ funcionario.Nome }}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
