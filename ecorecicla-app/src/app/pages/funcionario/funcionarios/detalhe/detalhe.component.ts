@@ -8,7 +8,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { FuncionarioService } from "../../../../core/services/funcionarios/funcionario.service";
 import { EditarFuncionarioModel } from "../../../../core/models/private/funcionarios/funcionarios/editarFuncionarioModel";
 
-@Component ({
+@Component({
     selector: 'app-pages-funcionarios-funcionarios-detalhe',
     templateUrl: './detalhe.component.html',
     imports: [
@@ -20,7 +20,7 @@ import { EditarFuncionarioModel } from "../../../../core/models/private/funciona
         DatePipe
     ]
 })
-export class PagesFuncionariosFuncionariosDetalheComponent implements OnInit, OnDestroy{
+export class PagesFuncionariosFuncionariosDetalheComponent implements OnInit, OnDestroy {
 
     funcionarioSelecionado: EditarFuncionarioModel;
 
@@ -31,18 +31,18 @@ export class PagesFuncionariosFuncionariosDetalheComponent implements OnInit, On
         private activeRoute: ActivatedRoute,
         private service: FuncionarioService,
         private snackbar: MatSnackBar
-    ){}
+    ) { }
 
     ngOnInit(): void {
         this.activeRoute.params
-        .subscribe((params) => {
-            const id = params['id'];
-            this.idSelecionado = id;
-            this.service.getFuncionario(id)
-            .subscribe((funcionario) => {
-                this.funcionarioSelecionado = funcionario;
+            .subscribe((params) => {
+                const id = params['id'];
+                this.idSelecionado = id;
+                this.service.getFuncionario(id)
+                    .subscribe((funcionario) => {
+                        this.funcionarioSelecionado = funcionario;
+                    })
             })
-        })
     }
 
     ngOnDestroy(): void {
@@ -50,16 +50,19 @@ export class PagesFuncionariosFuncionariosDetalheComponent implements OnInit, On
     }
 
     deletarFuncionario() {
-      const podeExcluir = confirm('Tem certeza que deseja excluir este funcionário?')
+        const podeExcluir = confirm('Tem certeza que deseja excluir este funcionário?')
 
-      if (podeExcluir) {
-        this.service.deletarFuncionario(this.idSelecionado)
-        .subscribe(() => {
-            this.snackbar.open('Funcionário excluido com sucesso', 'Ok')
-            this.router.navigate(['..'], {
-                relativeTo: this.activeRoute
-            })
-        })
-      }
+        if (podeExcluir) {
+            this.service.deletarFuncionario(this.idSelecionado)
+                .subscribe(() => {
+                    this.snackbar.open('Funcionário excluido com sucesso', 'Ok')
+                    this.router.navigate(['..'], {
+                        relativeTo: this.activeRoute
+                    })
+                },
+                (error) => {
+                    this.snackbar.open(error.error.error, 'Ok')
+                })
+        }
     }
 }

@@ -26,7 +26,8 @@ import { MotoristaService } from "../../../../core/services/funcionarios/motoris
         NgForOf,
         MatButtonModule,
         MatMenuModule,
-        RouterLink
+        RouterLink,
+        DatePipe
     ]
 })
 export class PagesFuncionariosMotoristasListagemComponent  implements OnInit{
