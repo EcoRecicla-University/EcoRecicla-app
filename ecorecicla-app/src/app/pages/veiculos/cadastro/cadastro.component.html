@@ -9,50 +9,80 @@
             <div class="flex flex-col pt-7">
                 <label>Placa do veiculo</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite a placa do veiculo" class="w-full" [formControlName]="'placa'">
-                </mat-form-field>
-            </div>
-    
-            <div class="flex flex-col pt-1">
-                <label>Modelo do veiculo</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite o Modelo do veiculo" class="w-full" [formControlName]="'modeloVeiculo'">
-                </mat-form-field>
-            </div>
-    
-            <div class="flex flex-col w-full">
-                <label>Quilometragem do veiculo</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite a quilometragem" type="number" min="0" class="w-full" [formControlName]="'quilometragem'">
+                    <input
+                        matInput
+                        placeholder="Digite a placa do veiculo"
+                        class="w-full"
+                        [formControlName]="'placa'"
+                        maxlength="7"
+                        pattern="[A-Za-z0-9]{1,7}"
+                    >
                 </mat-form-field>
             </div>
 
-            <!-- <div class="flex flex-col pt-1">
-                <label>Motorista</label>
+            <div class="flex flex-col pt-1">
+                <label>Modelo do veiculo</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Selecione um motorista" class="w-full" [formControlName]="'idMotorista'">
+                    <input
+                        matInput
+                        placeholder="Digite o Modelo do veiculo"
+                        class="w-full"
+                        [formControlName]="'modeloVeiculo'"
+                    >
                 </mat-form-field>
-            </div> -->
+            </div>
+
+            <div class="flex flex-col w-full">
+                <label>Quilometragem do veiculo</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input
+                        matInput
+                        placeholder="Digite a quilometragem"
+                        type="number"
+                        min="0"
+                        class="w-full"
+                        [formControlName]="'quilometragem'"
+                    >
+                </mat-form-field>
+            </div>
 
             <div class="grid grid-cols-2 gap-4">
                 <div class="flex flex-col">
                     <label>Código RENAVAM</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput placeholder="Digite o RENAVAM" class="w-1/2" [formControlName]="'renavam'">
+                        <input
+                            matInput
+                            placeholder="Digite o RENAVAM"
+                            type="text"
+                            maxlength="11"
+                            pattern="[0-9]{1,11}"
+                            class="w-full"
+                            [formControlName]="'renavam'"
+                        >
                     </mat-form-field>
                 </div>
-        
+
                 <div class="flex flex-col w-full">
                     <label>Capacidade Max. (KG)</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput placeholder="Digite o peso em kg" type="number" min="0" class="w-full" [formControlName]="'capacidade'">
+                        <input
+                            matInput
+                            placeholder="Digite o peso em kg"
+                            type="number"
+                            min="0"
+                            class="w-full"
+                            [formControlName]="'capacidade'"
+                        >
                     </mat-form-field>
                 </div>
             </div>
-
         </div>
 
-
-        <button type="" class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer">Gravar</button>
+        <button
+            type="submit"
+            class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer"
+        >
+            Gravar
+        </button>
     </form>
 </div>
