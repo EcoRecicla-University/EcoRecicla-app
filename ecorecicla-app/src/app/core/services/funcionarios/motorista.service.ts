@@ -29,4 +29,9 @@ export class MotoristaService {
         const apiUrl = `${this.apiUrl}/${id}`;
         return this.http.get<EditarMotoristaModel>(apiUrl, {})
     }
+
+    editarMotorista(id: string, dados: EditarMotoristaModel): Observable<EditarMotoristaModel> {
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.put<EditarMotoristaModel>(apiUrl, dados)
+    }
 }

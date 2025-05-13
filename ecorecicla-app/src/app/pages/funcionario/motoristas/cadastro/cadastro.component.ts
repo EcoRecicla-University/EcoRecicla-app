@@ -14,6 +14,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
+import { EditarMotoristaModel } from "../../../../core/models/private/funcionarios/motoristas/editarMotorista.model";
 
 @Component ({
     selector: 'app-pages-funcionario-motorista-cadastro',
@@ -64,24 +65,22 @@ export class PagesFuncionariosMotoristasCadastroComponent implements OnInit{
             this.allFuncionarios = funcionarios
         })
 
-        // const id = this._activatedRoute.snapshot.params['id'];
-        // if (id) {
-        //     this.isEdicao = true;
-        //     this.idSelecionado = id
-        //     this.service.getCliente(id)
-        //     .subscribe(cliente => {
-        //         this.form.patchValue({
-        //             nome: cliente.Nome,
-        //             cpf: cliente.CPF,
-        //             cnpj: cliente.CNPJ,
-        //             telefone: cliente.Telefone,
-        //             pontoDeColeta: cliente.Pontos_Coleta,
-        //             tipoCliente: cliente.Tipo_Cliente
-        //         })
-        //     })
-        // } else {
-        //     this.isEdicao = false;
-        // }
+        const id = this._activatedRoute.snapshot.params['id'];
+        if (id) {
+            this.isEdicao = true;
+            this.idSelecionado = id
+            this.service.getMotorista(id)
+            .subscribe(motorista => {
+                this.form.patchValue({
+                    idFuncionario: motorista.ID_Funci,
+                    dataValidadeCarteira: motorista.Validade,
+                    numeroRegistro: motorista.Numero_Registro,
+                    categoria: motorista.Categoria
+                })
+            })
+        } else {
+            this.isEdicao = false;
+        }
     }
 
     salvar() {
@@ -98,28 +97,27 @@ export class PagesFuncionariosMotoristasCadastroComponent implements OnInit{
 
 
         if (this.isEdicao && this.idSelecionado) {
-            // const dadosEditaveis: EditarClienteModel = {
-            //     Id: this.idSelecionado,
-            //     Nome: this.form.value.nome ?? '',
-            //     CPF: this.form.value.cpf || undefined,
-            //     CNPJ: this.form.value.cnpj || undefined,
-            //     Telefone: this.form.value.telefone ?? '',
-            //     Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
-            //     Tipo_Cliente: this.form.value.tipoCliente ?? ''
-            // };
+            const dadosEditaveis: EditarMotoristaModel = {
+                ID_Motorista: this.idSelecionado,
+                ID_Funci: this.form.value.idFuncionario ?? '',
+                Categoria: this.form.value.categoria ?? '',
+                Numero_Registro: this.form.value.numeroRegistro ?? '',
+                Validade: this.form.value.dataValidadeCarteira ?? '',
+                Nome: null
+            };
         
-            // this.service.editarCliente(this.idSelecionado, dadosEditaveis)
-            // .subscribe(() => {
-            //     this.snackbar.open('Cliente editado com sucesso', 'Ok')
-            //     this.router.navigate(['..'], {
-            //         relativeTo: this._activatedRoute
-            //     })
-            // });
+            this.service.editarMotorista(this.idSelecionado, dadosEditaveis)
+            .subscribe(() => {
+                this.snackbar.open('Motorista editado com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            });
 
         } else {
             this.service.criarNovoMotorista(dadosDoFormulario)
             .subscribe(() => {
-                this.snackbar.open('Funcionário criado com sucesso', 'Ok')
+                this.snackbar.open('Motorista criado com sucesso', 'Ok')
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })

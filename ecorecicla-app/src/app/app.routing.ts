@@ -113,6 +113,10 @@ export const APP_ROUTES: Routes = [
                                 path: ':id',
                                 component: PagesFuncionariosMotoristasDetalheComponent
                             },
+                            {
+                                path: ':id/editar',
+                                component: PagesFuncionariosMotoristasCadastroComponent
+                            },
                         ]
                     }
                 ]
