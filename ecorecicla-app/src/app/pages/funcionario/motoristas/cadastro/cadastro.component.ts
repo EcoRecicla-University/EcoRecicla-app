@@ -94,8 +94,6 @@ export class PagesFuncionariosMotoristasCadastroComponent implements OnInit{
             Validade: dataValidadeFormatada
         }
 
-
-
         if (this.isEdicao && this.idSelecionado) {
             const dadosEditaveis: EditarMotoristaModel = {
                 ID_Motorista: this.idSelecionado,

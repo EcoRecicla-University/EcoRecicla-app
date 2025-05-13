@@ -34,4 +34,9 @@ export class MotoristaService {
         const apiUrl = `${this.apiUrl}/${id}`;
         return this.http.put<EditarMotoristaModel>(apiUrl, dados)
     }
+
+     deletarMotorista(id: string):Observable<void>{
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.delete<void>(apiUrl, {})
+    }
 }

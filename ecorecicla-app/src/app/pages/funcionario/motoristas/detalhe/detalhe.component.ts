@@ -52,16 +52,16 @@ export class PagesFuncionariosMotoristasDetalheComponent implements OnInit, OnDe
     }
 
     deletarFuncionario() {
-        // const podeExcluir = confirm('Tem certeza que deseja excluir este funcionário?')
+        const podeExcluir = confirm('Tem certeza que deseja excluir este motorista?')
 
-        // if (podeExcluir) {
-        //     this.service.deletarFuncionario(this.idSelecionado)
-        //         .subscribe(() => {
-        //             this.snackbar.open('Funcionário excluido com sucesso', 'Ok')
-        //             this.router.navigate(['..'], {
-        //                 relativeTo: this.activeRoute
-        //             })
-        //         })
-        // }
+        if (podeExcluir) {
+            this.service.deletarMotorista(this.idSelecionado)
+                .subscribe(() => {
+                    this.snackbar.open('Motorista excluido com sucesso', 'Ok')
+                    this.router.navigate(['..'], {
+                        relativeTo: this.activeRoute
+                    })
+                })
+        }
     }
 }
