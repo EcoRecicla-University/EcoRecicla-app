@@ -39,7 +39,7 @@ export class MovimenService {
 //         return this.http.delete<void>(apiUrl, {})
 //     }
 
-       getChaveColeta():Observable<ChaveColetaModel[]>{
-            return this.http.get<ChaveColetaModel[]>(this.apiUrl, {})
-       }
+    //    getChaveColeta():Observable<ChaveColetaModel[]>{
+    //         return this.http.get<ChaveColetaModel[]>(this.apiUrl, {})
+    //    }
 }

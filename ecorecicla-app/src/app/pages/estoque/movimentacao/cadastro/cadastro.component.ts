@@ -31,11 +31,11 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
     ) {}
 
     ngOnInit(): void {
-        this.service.getChaveColeta()
-        .subscribe((coletas) => {
-            coletas = this.idsColeta
-            console.log(this.idsColeta)
-        })
+        // this.service.getChaveColeta()
+        // .subscribe((coletas) => {
+        //     coletas = this.idsColeta
+        //     console.log(this.idsColeta)
+        // })
     }
 
     public form = new FormGroup({
