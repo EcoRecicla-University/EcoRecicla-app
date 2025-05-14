@@ -1,6 +1,7 @@
 export enum TipoClienteEnum {
     C = 'Coleta',
-    V = 'Venda'
+    V = 'Venda',
+    A = 'Ambos'
 }
 
 export interface DadosClientesModel {

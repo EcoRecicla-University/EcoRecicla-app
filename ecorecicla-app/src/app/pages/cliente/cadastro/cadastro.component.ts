@@ -62,7 +62,6 @@ export class PagesClienteCadastroComponent implements OnInit {
                     cpf: cliente.CPF,
                     cnpj: cliente.CNPJ,
                     telefone: cliente.Telefone,
-                    pontoDeColeta: cliente.Pontos_Coleta,
                     tipoCliente: cliente.Tipo_Cliente
                 })
             })
@@ -77,7 +76,6 @@ export class PagesClienteCadastroComponent implements OnInit {
             CPF: this.form.value.cpf || undefined,
             CNPJ: this.form.value.cnpj || undefined,
             Telefone: this.form.value.telefone ?? '',
-            Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
             Tipo_Cliente: this.form.value.tipoCliente ?? ''
         }
 
@@ -88,7 +86,6 @@ export class PagesClienteCadastroComponent implements OnInit {
                 CPF: this.form.value.cpf || undefined,
                 CNPJ: this.form.value.cnpj || undefined,
                 Telefone: this.form.value.telefone ?? '',
-                Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
                 Tipo_Cliente: this.form.value.tipoCliente ?? ''
             };
         

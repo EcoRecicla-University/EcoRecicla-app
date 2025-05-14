@@ -5,6 +5,5 @@ export interface CadastroClienteModel {
     Telefone: string;
     CPF?: string;
     CNPJ?: string;
-    Pontos_Coleta: string;
     Tipo_Cliente: TipoClienteEnum;
 }
