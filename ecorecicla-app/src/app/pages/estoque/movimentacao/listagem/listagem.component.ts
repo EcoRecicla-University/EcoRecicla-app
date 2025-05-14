@@ -5,8 +5,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
-import { MovimenService } from "../../../core/services/movimen.service";
-import { DadosMovimenModel} from "../../../core/models/private/Movimen/listaMovimen.model";
+import { MovimenService } from "../../../../core/services/movimen.service";
+import { DadosMovimenModel} from "../../../../core/models/private/Movimen/listaMovimen.model";
 import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -46,16 +46,11 @@ export class PagesMovimenListagemComponent implements OnInit{
     constructor(private _service: MovimenService){ }
 
     ngOnInit(): void {
-        this._service.getMovimen()
-        .subscribe((listaMovimen) => {
+        this._service.getMovimentacoes()
+        .subscribe((movimentacoes) => {
 
-            this.DadosListaMovimen = listaMovimen
+            this.DadosListaMovimen = movimentacoes
         })
-    }
-
-    abrirDrawer(movimen: DadosMovimenModel, drawer: any) {
-        this.movimenSelecionado = movimen;
-        drawer.open();
     }
 
 }

@@ -3,7 +3,8 @@ import { Component } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { MatIconModule } from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { SidebarComponentesModel } from "../../../core/models/private/Veiculos/sidebar-componentes.model";
+import { SidebarComponentesModel } from "../../../core/models/private/veiculos/sidebar-componentes.model";
+
 
 type SidebarNavigationItem = {
     icon: string;
@@ -59,16 +60,16 @@ export class LayoutPrivateSidebarComponent {
         },
         {
             icon: 'inventory_2',
-            label: 'Movto Est',
+            label: 'Estoque',
             type: 'GRUPO',
             children: [
                 {
-                    label: 'Cadastro',
-                    url: '/estoque'
+                    label: 'Movimentos',
+                    url: '/movimentos'
                 },
                 {
-                    label: 'Listagem',
-                    url: '/ListagemEstoque'
+                    label: 'Estoque',
+                    url: '/estoque'
                 }
             ]
         },

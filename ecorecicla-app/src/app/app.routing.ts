@@ -6,7 +6,7 @@ import { RotaComponent } from "./pages/rota/cadastro/rota.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { LayoutPrivateComponent } from "./layout/private/private.component";
 import { PagesClienteCadastroComponent } from "./pages/cliente/cadastro/cadastro.component";
-import { PagesEstoqueComponent } from "./pages/estoque/cadastro/estoque.component";
+import { PagesEstoqueMovimentacaoCadastroComponent } from "./pages/estoque/movimentacao/cadastro/cadastro.component";
 import { PagesVeiculosCadastroComponent } from "./pages/veiculos/cadastro/cadastro.component";
 import { PagesClientesListagemComponent } from "./pages/cliente/listagem/listagem.component";
 import { PagesClienteDetalheComponent } from "./pages/cliente/detalhe/detalhe.component";
@@ -17,6 +17,8 @@ import { PagesFuncionariosFuncionariosListagemComponent } from "./pages/funciona
 import { PagesFuncionariosMotoristasListagemComponent } from "./pages/funcionario/motoristas/listagem/listagem.component";
 import { PagesFuncionariosFuncionariosDetalheComponent } from "./pages/funcionario/funcionarios/detalhe/detalhe.component";
 import { PagesFuncionariosMotoristasDetalheComponent } from "./pages/funcionario/motoristas/detalhe/detalhe.component";
+import { PagesMovimenListagemComponent } from "./pages/estoque/movimentacao/listagem/listagem.component";
+import { PagesEstoqueEstoqueListagemComponent } from "./pages/estoque/estoque/listagem/listagem.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -72,7 +74,31 @@ export const APP_ROUTES: Routes = [
                 ]
             },
             {
-                path: 'estoque', component: PagesEstoqueComponent
+                path: '', 
+                children: [
+                    {
+                        path: 'movimentos',
+                        children: [
+                            {
+                                path: '',
+                                component: PagesMovimenListagemComponent
+                            },
+                            {
+                                path:'novo',
+                                component: PagesEstoqueMovimentacaoCadastroComponent
+                            }
+                        ]
+                    },
+                    {
+                        path: 'estoque',
+                        children: [
+                            {
+                                path: '',
+                                component: PagesEstoqueEstoqueListagemComponent
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 path: '',

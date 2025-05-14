@@ -15,19 +15,19 @@ export class MovimenService {
 
     constructor(private http: HttpClient) { }
 
-    getMovimenById(id: string): Observable<DadosMovimenModel>{
-    const apiUrl = `${this.apiUrl}/${id}`;
-    return this.http.get<DadosMovimenModel>(apiUrl, {})
-    }
+    // getMovimenById(id: string): Observable<DadosMovimenModel>{
+    // const apiUrl = `${this.apiUrl}/${id}`;
+    // return this.http.get<DadosMovimenModel>(apiUrl, {})
+    // }
 
-    getMovimen(): Observable<DadosMovimenModel[]>{
+    getMovimentacoes(): Observable<DadosMovimenModel[]>{
         return this.http.get<DadosMovimenModel[]>(this.apiUrl, {})
     }
 
-    criarNovaMovimen(dados: CadastroMovimenModel): Observable<CadastroMovimenModel> {
-        const apiUrl = `${this.apiUrl}`;
-        return this.http.post<CadastroMovimenModel>(apiUrl, dados);
-    }
+    // criarNovaMovimen(dados: CadastroMovimenModel): Observable<CadastroMovimenModel> {
+    //     const apiUrl = `${this.apiUrl}`;
+    //     return this.http.post<CadastroMovimenModel>(apiUrl, dados);
+    // }
 
 //     editarMovimen(id: string, dados: EditarMovimenModel): Observable<EditarMovimenModel> {
 //         const apiUrl = `${this.apiUrl}/${id}`;

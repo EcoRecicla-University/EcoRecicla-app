@@ -5,17 +5,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from "@angular/forms";
-import { CadastroMovimenModel } from "../../../core/models/private/Movimen/cadastroMovimen.model";
+import { CadastroMovimenModel } from "../../../../core/models/private/Movimen/cadastroMovimen.model";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MovimenService } from "../../../core/services/movimen.service";
+import { MovimenService } from "../../../../core/services/movimen.service";
 
 @Component ({
     selector: 'app-pages-estoque',
-    templateUrl: './estoque.component.html',
+    templateUrl: './cadastro.component.html',
     imports: [MatFormFieldModule, MatInputModule, MatIconModule, MatSelectModule, MatCheckboxModule, ReactiveFormsModule],
 })
-export class PagesEstoqueComponent implements OnInit{
+export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
     
     public isEdicao = false;
 
@@ -69,13 +69,13 @@ export class PagesEstoqueComponent implements OnInit{
                 // });
     
             } else {
-                this.service.criarNovaMovimen(dadosDoFormulario)
-                .subscribe(() => {
-                    this.snackbar.open('Movimentação criado com sucesso', 'Ok')
-                    this.router.navigate(['..'], {
-                        relativeTo: this._activatedRoute
-                    })
-                })
+                // this.service.criarNovaMovimen(dadosDoFormulario)
+                // .subscribe(() => {
+                //     this.snackbar.open('Movimentação criado com sucesso', 'Ok')
+                //     this.router.navigate(['..'], {
+                //         relativeTo: this._activatedRoute
+                //     })
+                // })
             }
         }
 }
