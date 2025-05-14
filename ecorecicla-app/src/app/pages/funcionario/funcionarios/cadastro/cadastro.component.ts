@@ -131,4 +131,20 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit{
             })
         }
     }
+
+
+permitirApenasLetras(event: KeyboardEvent) {
+        const regex = /^[a-zA-ZÀ-ÿ\s]*$/;
+        if (!regex.test(event.key)) {
+            event.preventDefault();
+        }
+    }
+
+
+    permitirApenasNumeros(event: KeyboardEvent) {
+        const regex = /^[0-9]*$/;
+        if (!regex.test(event.key)) {
+            event.preventDefault();
+        }
+    }
 }
