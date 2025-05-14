@@ -26,7 +26,6 @@ import { MotoristaService } from "../../../core/services/funcionarios/motorista.
         MatIconModule,
         MatButtonModule,
         RouterLink,
-        NgForOf,
         ReactiveFormsModule,
         NgIf
     ]
@@ -108,9 +107,9 @@ export class PagesVeiculosCadastroComponent implements OnInit {
             this.service.criarNovoVeiculo(dadosDoFormulario)
             .subscribe(() => {
                 this.snackbar.open('Veiculo criado com sucesso', 'Ok')
-                // this.router.navigate(['..'], {
-                //     relativeTo: this._activatedRoute
-                // })
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
             })
         }
     }
