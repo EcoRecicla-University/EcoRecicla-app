@@ -15,14 +15,14 @@ export class MovimenService {
 
     constructor(private http: HttpClient) { }
 
-    // getMovimenById(id: string): Observable<DadosMovimenModel>{
-    //     const apiUrl = `${this.apiUrl}/${id}`;
-    //     return this.http.get<DadosMovimenModel>(apiUrl, {})
-    // }
+    getMovimenById(id: string): Observable<DadosMovimenModel>{
+    const apiUrl = `${this.apiUrl}/${id}`;
+    return this.http.get<DadosMovimenModel>(apiUrl, {})
+    }
 
-    // getMovimen(): Observable<DadosMovimenModel[]>{
-    //     return this.http.get<DadosMovimenModel[]>(this.apiUrl, {})
-    // }
+    getMovimen(): Observable<DadosMovimenModel[]>{
+        return this.http.get<DadosMovimenModel[]>(this.apiUrl, {})
+    }
 
     criarNovaMovimen(dados: CadastroMovimenModel): Observable<CadastroMovimenModel> {
         const apiUrl = `${this.apiUrl}`;
