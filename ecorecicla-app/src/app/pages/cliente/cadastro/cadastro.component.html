@@ -26,35 +26,48 @@
             <div class="flex flex-col pt-7">
                 <label>Nome do Cliente</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite o nome do cliente" class="w-full" [formControlName]="'nome'">
+                    <input matInput 
+                           placeholder="Digite o nome do cliente" 
+                           class="w-full"
+                           maxlength="40" 
+                           [formControlName]="'nome'"
+                           (keypress)="permitirApenasLetras($event)">
                 </mat-form-field>
             </div>
-
+            
             <div class="flex flex-col pt-1">
                 <label>CPF</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite o CPF ou CNPJ do cliente" class="w-full" [formControlName]="'cpf'">
+                    <input matInput 
+                           placeholder="Digite o CPF" 
+                           class="w-full" 
+                           maxlength="11"
+                           [formControlName]="'cpf'"
+                           (keypress)="permitirApenasNumeros($event)">
                 </mat-form-field>
             </div>
-
+            
             <div class="flex flex-col pt-1">
                 <label>CNPJ</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite o CPF ou CNPJ do cliente" class="w-full" [formControlName]="'cnpj'">
+                    <input matInput 
+                           placeholder="Digite o CNPJ" 
+                           class="w-full" 
+                           maxlength="14"
+                           [formControlName]="'cnpj'"
+                           (keypress)="permitirApenasNumeros($event)">
                 </mat-form-field>
             </div>
             
             <div class="flex flex-col pt-1">
                 <label>Telefone</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="(xx) x xxxx-xxxx" class="w-full" [formControlName]="'telefone'">
-                </mat-form-field>
-            </div>
-
-            <div class="flex flex-col pt-1">
-                <label>Ponto de Coleta</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite o endereço do ponto de coleta" class="w-full" [formControlName]="'pontoDeColeta'">
+                    <input matInput 
+                           placeholder="(xx) x xxxx-xxxx" 
+                           class="w-full" 
+                           maxlength="11"
+                           [formControlName]="'telefone'"
+                           (keypress)="permitirApenasNumeros($event)">
                 </mat-form-field>
             </div>
 

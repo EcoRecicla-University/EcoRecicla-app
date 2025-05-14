@@ -1,0 +1,82 @@
+<div class="pt-10 px-10">
+    <div class="flex gap-2">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        <h1 class="text-4xl font-light">
+            <span *ngIf="isEdicao">
+                Edição de Cliente
+            </span>
+            <span *ngIf="!isEdicao">
+                Cadastro de cliente
+            </span>
+        </h1>
+    </div>
+    <h2 class="text-gray-400 pt-5" *ngIf="!isEdicao">
+        Cadastro
+    </h2>
+    <h2 class="text-gray-400 pt-5" *ngIf="isEdicao">
+        Editar cadastro de cliente
+    </h2>
+    <div class="w-hull pt-3">
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="salvar()" class="flex flex-col max-w-4xl">
+        <div>
+            <div class="flex flex-col pt-7">
+                <label>Funcionário</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-select placeholder="Selecione um funcionário" [formControlName]="'idFuncionario'">
+                        <mat-option *ngFor="let funcionario of allFuncionarios" [value]="funcionario.ID_Funci">{{ funcionario.Nome }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+    
+            <div class="grid grid-cols-2 gap-4">
+                
+                <div class="flex flex-col pt-1">
+                    <label>Data de Validade da carteira</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" [formControlName]="'dataValidadeCarteira'">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex flex-col pt-1">
+                    <label>Número de Registro</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput placeholder="Digite o número de registro" class="w-full" [formControlName]="'numeroRegistro'">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+    
+                <div class="flex flex-col pt-1">
+                    <label>Categoria da carteira</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-select placeholder="Selecione a categoria" [formControlName]="'categoria'">
+                            <mat-option value="A">A</mat-option>
+                            <mat-option value="B">B</mat-option>
+                            <mat-option value="C">C</mat-option>
+                            <mat-option value="D">D</mat-option>
+                            <mat-option value="E">E</mat-option>
+                            <mat-option value="AB">AB</mat-option>
+                            <mat-option value="AC">AC</mat-option>
+                            <mat-option value="AD">AD</mat-option>
+                            <mat-option value="AE">AE</mat-option>
+                            <mat-option value="ACC">ACC</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                
+            </div>
+
+
+        </div>
+
+
+        <button type="" class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer">Gravar</button>
+    </form>
+</div>

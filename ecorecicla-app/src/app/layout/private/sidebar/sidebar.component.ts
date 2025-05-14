@@ -78,12 +78,12 @@ export class LayoutPrivateSidebarComponent {
             type: 'GRUPO',
             children: [
                 {
-                    label: 'Cadastro',
-                    url: '/cadastro'
+                    label: 'Funcionarios',
+                    url: '/funcionarios'
                 },
                 {
-                    label: 'Listagem',
-                    url: '/ListagemCadastro'
+                    label: 'Motoristas',
+                    url: '/motoristas'
                 }
             ]
         },

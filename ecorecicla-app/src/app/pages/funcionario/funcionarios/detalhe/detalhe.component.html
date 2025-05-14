@@ -1,0 +1,106 @@
+<div *ngIf="funcionarioSelecionado" class="p-10 max-w-5xl">
+    <div class="flex items-center pt-5">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1 class="text-3xl font-light leading-none ml-2 mt-1">Dados do Funcionário</h1>
+    </div>
+    <hr class="my-4 border-gray-400 w-full" />
+    <div class="flex items-center justify-start">
+        <div class="pl-2 flex items-center gap-2">
+            <small class="text-gray-600">ID do usuário:</small>
+            <strong>
+                {{ funcionarioSelecionado.ID_Funci }}
+            </strong>
+            <span class="flex mx-2">|</span>
+            <small class="text-gray-600">Contratado em:</small>
+            <span>
+                {{ funcionarioSelecionado.Data_Contratacao | date: 'dd/MM/yyyy' }}
+            </span>
+        </div>
+        <div class="ml-auto flex gap-2">
+            <button mat-button [routerLink]="'editar'">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+            </button>
+            <button mat-button (click)="deletarFuncionario()">
+                <mat-icon>delete</mat-icon>
+                <span>Excluir</span>
+            </button>
+        </div>
+    </div>
+    <div class="flex flex-col gap-4 mt-4">
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Nome
+                </small>
+                <div>
+                    {{ funcionarioSelecionado.Nome }}
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Telefone
+                </small>
+                <div>
+                    {{ funcionarioSelecionado.Telefone }}
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Nome
+                </small>
+                <div>
+                    {{ funcionarioSelecionado.Data_Nascimento | date: 'dd/MM/yyyy' }}
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Telefone
+                </small>
+                <div>
+                    {{ funcionarioSelecionado.Estado_Civil }}
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    CPF
+                </small>
+                <div *ngIf="funcionarioSelecionado.CPF">
+                    {{ funcionarioSelecionado.CPF }}
+                </div>
+                <div *ngIf="!funcionarioSelecionado.CPF" class="italic text-gray-800">
+                    Não informado
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    CNPJ
+                </small>
+                <div *ngIf="funcionarioSelecionado.RG">
+                    {{ funcionarioSelecionado.RG }}
+                </div>
+                <div *ngIf="!funcionarioSelecionado.RG" class="italic text-gray-800">
+                    Não informado
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-full">
+                <small class="text-gray-600">
+                    Ponto de coleta
+                </small>
+                <div>
+                    {{ funcionarioSelecionado.Email }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

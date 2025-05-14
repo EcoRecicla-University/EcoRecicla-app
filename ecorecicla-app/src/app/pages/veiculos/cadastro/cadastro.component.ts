@@ -5,9 +5,15 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { VeiculosService } from "../../../core/services/veiculos.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { CadastroVeiculosModel } from "../../../core/models/private/Veiculos/cadastroVeiculos.model";
+import { CadastroVeiculosModel } from "../../../core/models/private/veiculos/cadastroVeiculos.model";
+import { NgForOf, NgIf } from "@angular/common";
+import { MatButtonModule } from "@angular/material/button";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatSelectModule } from "@angular/material/select";
+import { ListagemMotoristaModel } from "../../../core/models/private/funcionarios/motoristas/listaMotorista.model";
+import { MotoristaService } from "../../../core/services/funcionarios/motorista.service";
 
 @Component ({
     selector: 'app-pages-veiculos',
@@ -15,8 +21,13 @@ import { CadastroVeiculosModel } from "../../../core/models/private/Veiculos/cad
     imports: [
         MatFormFieldModule, 
         MatInputModule, 
+        MatDatepickerModule, 
+        MatSelectModule,
         MatIconModule,
-        ReactiveFormsModule
+        MatButtonModule,
+        RouterLink,
+        ReactiveFormsModule,
+        NgIf
     ]
 })
 
@@ -32,8 +43,7 @@ export class PagesVeiculosCadastroComponent implements OnInit {
         modeloVeiculo: new FormControl('', Validators.required),
         quilometragem: new FormControl('', Validators.required),
         renavam: new FormControl('', Validators.required),
-        capacidade: new FormControl('', Validators.required),
-        // idMotorist: new FormControl('', Validators.required)
+        capacidade: new FormControl('', Validators.required)
     })
 
     constructor(
@@ -71,8 +81,7 @@ export class PagesVeiculosCadastroComponent implements OnInit {
             Modelo: this.form.value.modeloVeiculo || undefined,
             Quilometragem: this.form.value.quilometragem || undefined,
             Renavam: this.form.value.renavam ?? '',
-            Capacidade_em_Kg: this.form.value.capacidade ?? '',
-            // ID_Motorista: this.form.value.idMotorist ?? ''
+            Capacidade_em_Kg: this.form.value.capacidade ?? ''
         }
 
         if (this.isEdicao) {
@@ -98,9 +107,9 @@ export class PagesVeiculosCadastroComponent implements OnInit {
             this.service.criarNovoVeiculo(dadosDoFormulario)
             .subscribe(() => {
                 this.snackbar.open('Veiculo criado com sucesso', 'Ok')
-                // this.router.navigate(['..'], {
-                //     relativeTo: this._activatedRoute
-                // })
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
             })
         }
     }

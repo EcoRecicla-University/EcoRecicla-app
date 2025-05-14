@@ -4,5 +4,4 @@ export interface CadastroVeiculosModel {
     Quilometragem: string;
     Renavam: string;
     Capacidade_em_Kg: string;
-    // ID_Motorista: string;
 }

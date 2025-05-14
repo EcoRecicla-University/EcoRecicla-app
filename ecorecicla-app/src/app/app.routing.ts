@@ -7,11 +7,16 @@ import { HomeComponent } from "./pages/home/home.component";
 import { LayoutPrivateComponent } from "./layout/private/private.component";
 import { PagesClienteCadastroComponent } from "./pages/cliente/cadastro/cadastro.component";
 import { PagesEstoqueComponent } from "./pages/estoque/cadastro/estoque.component";
-import { PagesCadastroComponent } from "./pages/cadastro/cadastro/cadastro.component";
 import { PagesVeiculosCadastroComponent } from "./pages/veiculos/cadastro/cadastro.component";
 import { PagesClientesListagemComponent } from "./pages/cliente/listagem/listagem.component";
 import { PagesClienteDetalheComponent } from "./pages/cliente/detalhe/detalhe.component";
 import { PagesVeiculosListagemComponent } from "./pages/veiculos/listagem/listagem.component";
+import { PagesFuncionariosFuncionariosCadastroComponent } from "./pages/funcionario/funcionarios/cadastro/cadastro.component";
+import { PagesFuncionariosMotoristasCadastroComponent } from "./pages/funcionario/motoristas/cadastro/cadastro.component";
+import { PagesFuncionariosFuncionariosListagemComponent } from "./pages/funcionario/funcionarios/listagem/listagem.component";
+import { PagesFuncionariosMotoristasListagemComponent } from "./pages/funcionario/motoristas/listagem/listagem.component";
+import { PagesFuncionariosFuncionariosDetalheComponent } from "./pages/funcionario/funcionarios/detalhe/detalhe.component";
+import { PagesFuncionariosMotoristasDetalheComponent } from "./pages/funcionario/motoristas/detalhe/detalhe.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -22,21 +27,21 @@ export const APP_ROUTES: Routes = [
     {
         path: '', redirectTo: 'home', pathMatch: 'full'
     },
-    { 
+    {
         path: '',
         component: LayoutAuthComponent,
         children: [
-            { 
+            {
                 path: 'login',
                 loadComponent: () => import('./auth/login/login.component').then((c) => c.LoginComponent)
             },
-            { 
+            {
                 path: 'recuperacao-senha', component: RecuperacaoSenhaComponent
             }
         ]
     },
     {
-        path: '', 
+        path: '',
         component: LayoutPrivateComponent,
         children: [
             {
@@ -70,13 +75,57 @@ export const APP_ROUTES: Routes = [
                 path: 'estoque', component: PagesEstoqueComponent
             },
             {
-                path: 'cadastro', component: PagesCadastroComponent
-            },
-            {
-                path: 'veiculos', 
+                path: '',
                 children: [
                     {
-                        path: '', 
+                        path: 'funcionarios',
+                        children: [
+                            {
+                                path: '',
+                                component: PagesFuncionariosFuncionariosListagemComponent
+                            },
+                            {
+                                path: 'novo',
+                                component: PagesFuncionariosFuncionariosCadastroComponent
+                            },
+                            {
+                                path: ':id',
+                                component: PagesFuncionariosFuncionariosDetalheComponent
+                            },
+                            {
+                                path: ':id/editar',
+                                component: PagesFuncionariosFuncionariosCadastroComponent
+                            },
+                        ]
+                    },
+                    {
+                        path: 'motoristas',
+                        children: [
+                            {
+                                path: '',
+                                component: PagesFuncionariosMotoristasListagemComponent
+                            },
+                            {
+                                path: 'novo',
+                                component: PagesFuncionariosMotoristasCadastroComponent
+                            },
+                            {
+                                path: ':id',
+                                component: PagesFuncionariosMotoristasDetalheComponent
+                            },
+                            {
+                                path: ':id/editar',
+                                component: PagesFuncionariosMotoristasCadastroComponent
+                            },
+                        ]
+                    }
+                ]
+            },
+            {
+                path: 'veiculos',
+                children: [
+                    {
+                        path: '',
                         component: PagesVeiculosListagemComponent
                     },
                     {

@@ -10,8 +10,8 @@ import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { NgIf } from "@angular/common";
 import { ClientesService } from "../../../core/services/clientes.service";
-import { CadastroClienteModel } from "../../../core/models/private/Clientes/cadastroCliente.model";
-import { EditarClienteModel } from "../../../core/models/private/Clientes/editarCliente.model";
+import { CadastroClienteModel } from "../../../core/models/private/clientes/cadastroCliente.model";
+import { EditarClienteModel } from "../../../core/models/private/clientes/editarCliente.model";
 import { MatButtonModule } from "@angular/material/button";
 
 @Component ({
@@ -33,17 +33,16 @@ import { MatButtonModule } from "@angular/material/button";
 export class PagesClienteCadastroComponent implements OnInit {
     
     public isEdicao = false;
-
-    public idSelecionado = null
+    public idSelecionado = null;
 
     public form = new FormGroup({
-        nome: new FormControl('', Validators.required),
-        cpf: new FormControl(''),
-        cnpj: new FormControl(''),
-        telefone: new FormControl('', Validators.required),
+        nome: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]*$/)]),
+        cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
+        cnpj: new FormControl('', [Validators.required, Validators.maxLength(14), Validators.pattern(/^\d+$/)]),
+        telefone: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
         pontoDeColeta: new FormControl('', Validators.required),
         tipoCliente: new FormControl(null, Validators.required)
-    })
+    });
 
     constructor(
         private router: Router,
@@ -56,22 +55,19 @@ export class PagesClienteCadastroComponent implements OnInit {
         const id = this._activatedRoute.snapshot.params['id'];
         if (id) {
             this.isEdicao = true;
-            this.idSelecionado = id
-            this.service.getCliente(id)
-            .subscribe(cliente => {
+            this.idSelecionado = id;
+            this.service.getCliente(id).subscribe(cliente => {
                 this.form.patchValue({
                     nome: cliente.Nome,
                     cpf: cliente.CPF,
                     cnpj: cliente.CNPJ,
                     telefone: cliente.Telefone,
-                    pontoDeColeta: cliente.Pontos_Coleta,
                     tipoCliente: cliente.Tipo_Cliente
                 })
             })
         } else {
             this.isEdicao = false;
         }
-
     }
 
     salvar() {
@@ -80,7 +76,6 @@ export class PagesClienteCadastroComponent implements OnInit {
             CPF: this.form.value.cpf || undefined,
             CNPJ: this.form.value.cnpj || undefined,
             Telefone: this.form.value.telefone ?? '',
-            Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
             Tipo_Cliente: this.form.value.tipoCliente ?? ''
         }
 
@@ -91,7 +86,6 @@ export class PagesClienteCadastroComponent implements OnInit {
                 CPF: this.form.value.cpf || undefined,
                 CNPJ: this.form.value.cnpj || undefined,
                 Telefone: this.form.value.telefone ?? '',
-                Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
                 Tipo_Cliente: this.form.value.tipoCliente ?? ''
             };
         
@@ -111,6 +105,22 @@ export class PagesClienteCadastroComponent implements OnInit {
                     relativeTo: this._activatedRoute
                 })
             })
+        }
+    }
+    
+    // Permitir apenas letras
+    permitirApenasLetras(event: KeyboardEvent) {
+        const regex = /^[a-zA-ZÀ-ÿ\s]*$/;
+        if (!regex.test(event.key)) {
+            event.preventDefault();
+        }
+    }
+
+    // Permitir apenas números
+    permitirApenasNumeros(event: KeyboardEvent) {
+        const regex = /^[0-9]*$/;
+        if (!regex.test(event.key)) {
+            event.preventDefault();
         }
     }
 }
