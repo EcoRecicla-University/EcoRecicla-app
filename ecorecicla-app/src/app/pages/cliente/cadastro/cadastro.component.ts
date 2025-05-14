@@ -104,7 +104,10 @@ export class PagesClienteCadastroComponent implements OnInit {
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
-            })
+            },
+                (error) => {
+                    this.snackbar.open(error.error.error, 'Ok')
+                })
         }
     }
     
