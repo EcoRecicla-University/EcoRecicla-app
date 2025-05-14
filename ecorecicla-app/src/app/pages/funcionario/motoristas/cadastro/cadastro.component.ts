@@ -119,7 +119,18 @@ export class PagesFuncionariosMotoristasCadastroComponent implements OnInit{
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
+            },
+            (error) => {
+                this.snackbar.open(error.error.error, 'Ok')
             })
+        }
+    }
+
+    // Permitir apenas números
+    permitirApenasNumeros(event: KeyboardEvent) {
+        const regex = /^[0-9]*$/;
+        if (!regex.test(event.key)) {
+            event.preventDefault();
         }
     }
 }
