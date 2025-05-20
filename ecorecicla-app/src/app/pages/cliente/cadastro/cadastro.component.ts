@@ -68,6 +68,8 @@ export class PagesClienteCadastroComponent implements OnInit {
         } else {
             this.isEdicao = false;
         }
+
+        console.log('teste')
     }
 
     salvar() {
@@ -126,4 +128,5 @@ export class PagesClienteCadastroComponent implements OnInit {
             event.preventDefault();
         }
     }
+
 }
