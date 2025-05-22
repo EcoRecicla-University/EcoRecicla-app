@@ -97,17 +97,8 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'pallet',
             label: 'Coletas',
-            type: 'GRUPO',
-            children: [
-                {
-                    label: 'Cadastro',
-                    url: '/veiculos'
-                },
-                {
-                    label: 'Listagem',
-                    url: '/ListagemVeiculos'
-                }
-            ]
+            type: 'ITEM',
+            url: '/coleta'
         },
     ]
 }

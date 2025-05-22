@@ -1,0 +1,98 @@
+<div class="pt-10 px-10">
+    <div class="flex gap-2">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        <h1 class="text-4xl font-light">
+            <span *ngIf="isEdicao">
+                Edição de Cliente
+            </span>
+            <span *ngIf="!isEdicao">
+                Cadastro de cliente
+            </span>
+        </h1>
+    </div>
+    <h2 class="text-gray-400 pt-5" *ngIf="!isEdicao">
+        Cadastro
+    </h2>
+    <h2 class="text-gray-400 pt-5" *ngIf="isEdicao">
+        Editar cadastro de cliente
+    </h2>
+    <div class="w-hull pt-3">
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+    </div>
+    <form [formGroup]="form" class="grid grid-cols-1 max-w-5xl" (ngSubmit)="salvar()">
+        <div>
+
+            <div class="flex flex-col pt-1">
+                <label>Cliente</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-select placeholder="Selecione a categoria" [formControlName]="'clienteId'">
+                        <mat-option value="1">Cliente 1</mat-option>
+                        <mat-option value="2">Cliente 2</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col pt-1">
+                <label>Endereço Cliente</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input 
+                    matInput 
+                    placeholder="Endereço cliente" 
+                    class="w-full"
+                    [formControlName]="'endCliente'">
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col pt-1">
+                <label>Data da coleta</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" [formControlName]="'dataColeta'">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col pt-1">
+                <label>Quantidade</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput 
+                        placeholder="Digite a quantidade" 
+                        class="w-full"
+                        [formControlName]="'quantidade'">
+                </mat-form-field>
+            </div>
+            
+            <div class="flex flex-col pt-1">
+                <label>Status Coleta</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-select placeholder="Selecione um status para essa coleta" [formControlName]="'statusColeta'">
+                        <mat-option value="1">Cancelada</mat-option>
+                        <mat-option value="2">Concluida</mat-option>
+                        <mat-option value="3">Em andamento</mat-option>
+                        <mat-option value="4">Aberta</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col pt-1">
+                <label>Rota</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-select placeholder="Selecione uma rota" [formControlName]="'idRota'">
+                        <mat-option value="1">Rota 01</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            
+
+    
+        </div>
+
+        <button
+            type="submit"
+            class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer">
+            {{ isEdicao ? 'Salvar alterações' : 'Gravar' }}
+        </button>
+    </form>
+</div>

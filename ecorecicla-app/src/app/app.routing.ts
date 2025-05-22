@@ -19,6 +19,8 @@ import { PagesFuncionariosFuncionariosDetalheComponent } from "./pages/funcionar
 import { PagesFuncionariosMotoristasDetalheComponent } from "./pages/funcionario/motoristas/detalhe/detalhe.component";
 import { PagesMovimenListagemComponent } from "./pages/estoque/movimentacao/listagem/listagem.component";
 import { PagesEstoqueEstoqueListagemComponent } from "./pages/estoque/estoque/listagem/listagem.component";
+import { PagesColetaListagemComponent } from "./pages/coleta/listagem/listagem.component";
+import { PagesColetaCadastroComponent } from "./pages/coleta/cadastro/cadastro.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -157,6 +159,19 @@ export const APP_ROUTES: Routes = [
                     {
                         path: 'novo',
                         component: PagesVeiculosCadastroComponent
+                    },
+                ]
+            },
+            {
+                path: 'coleta',
+                children: [
+                    {
+                        path: '',
+                        component: PagesColetaListagemComponent
+                    },
+                    {
+                        path: 'novo',
+                        component: PagesColetaCadastroComponent
                     },
                 ]
             }
