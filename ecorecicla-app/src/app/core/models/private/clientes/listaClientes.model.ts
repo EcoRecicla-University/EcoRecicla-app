@@ -14,4 +14,11 @@ export interface DadosClientesModel {
     Numero_Pedidos: string;
     Tipo_Cliente: TipoClienteEnum;
     Data_Cadastro: string;
+    Endereco: {
+        CEP: string;
+        Logradouro: string;
+        Cidade: string;
+        Estado: string;
+        Numero: string;
+    }
 }

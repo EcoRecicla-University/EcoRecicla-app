@@ -13,6 +13,8 @@ import { ClientesService } from "../../../core/services/clientes.service";
 import { CadastroClienteModel } from "../../../core/models/private/clientes/cadastroCliente.model";
 import { EditarClienteModel } from "../../../core/models/private/clientes/editarCliente.model";
 import { MatButtonModule } from "@angular/material/button";
+import { EnderecoService } from "../../../core/services/endereco.service";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component ({
     selector: 'app-pages-cliente-cadastro',
@@ -27,7 +29,8 @@ import { MatButtonModule } from "@angular/material/button";
         MatRadioModule,
         RouterLink,
         ReactiveFormsModule,
-        MatButtonModule
+        MatButtonModule,
+        MatProgressBarModule
     ]
 })
 export class PagesClienteCadastroComponent implements OnInit {
@@ -35,23 +38,31 @@ export class PagesClienteCadastroComponent implements OnInit {
     public isEdicao = false;
     public idSelecionado = null;
 
+    public isLoadingCep = false
+
     public form = new FormGroup({
         nome: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-ZÀ-ÿ\s]*$/)]),
         cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
         cnpj: new FormControl('', [Validators.required, Validators.maxLength(14), Validators.pattern(/^\d+$/)]),
         telefone: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
         pontoDeColeta: new FormControl('', Validators.required),
-        tipoCliente: new FormControl(null, Validators.required)
+        tipoCliente: new FormControl(null, Validators.required),
+        endereco: new FormGroup({
+            cep: new FormControl('', [Validators.required, Validators.maxLength(8), Validators.minLength(8)]),
+            logradouro: new FormControl('', [Validators.required, Validators.maxLength(200)])
+        })
     });
 
     constructor(
         private router: Router,
         private _activatedRoute: ActivatedRoute,
         private service: ClientesService,
-        private snackbar: MatSnackBar
+        private snackbar: MatSnackBar,
+        private enderecoService: EnderecoService
     ) { }
 
     ngOnInit(): void {
+        this._desabilitarFormularioEndereco()
         const id = this._activatedRoute.snapshot.params['id'];
         if (id) {
             this.isEdicao = true;
@@ -62,8 +73,14 @@ export class PagesClienteCadastroComponent implements OnInit {
                     cpf: cliente.CPF,
                     cnpj: cliente.CNPJ,
                     telefone: cliente.Telefone,
-                    tipoCliente: cliente.Tipo_Cliente
+                    tipoCliente: cliente.Tipo_Cliente,
                 })
+                if(cliente.Endereco){
+                    this.form.get('endereco').patchValue({
+                        cep: cliente.Endereco.CEP,
+                        logradouro: cliente.Endereco.Logradouro
+                    })
+                }
             })
         } else {
             this.isEdicao = false;
@@ -73,12 +90,21 @@ export class PagesClienteCadastroComponent implements OnInit {
     }
 
     salvar() {
+        const endereco = this.form.get('endereco').getRawValue()
+
         const dadosDoFormulario: CadastroClienteModel = {
             Nome: this.form.value.nome ?? '',
             CPF: this.form.value.cpf || undefined,
             CNPJ: this.form.value.cnpj || undefined,
             Telefone: this.form.value.telefone ?? '',
-            Tipo_Cliente: this.form.value.tipoCliente ?? ''
+            Tipo_Cliente: this.form.value.tipoCliente ?? '',
+            Endereco: {
+                CEP: endereco.cep,
+                Logradouro: endereco.logradouro,
+                Cidade: 'Curitiba',
+                Estado: 'Parana',
+                Numero: '800'
+            }
         }
 
         if (this.isEdicao && this.idSelecionado) {
@@ -113,6 +139,25 @@ export class PagesClienteCadastroComponent implements OnInit {
         }
     }
     
+    buscarEnderecoPorCep(){
+        const cep = this.form.get('endereco').get('cep').value
+        
+        this.form.get('endereco').get('cep').disable()
+        this.isLoadingCep = true
+        this.enderecoService.getEnderecoPorCep(cep)
+        .subscribe((endereco) => {
+            this.isLoadingCep = false
+            this.form.get('endereco').get('cep').enable()
+            
+            this.form.get('endereco').patchValue({
+                cep,
+                logradouro: endereco.logradouro
+            })
+
+        })
+
+    }
+
     // Permitir apenas letras
     permitirApenasLetras(event: KeyboardEvent) {
         const regex = /^[a-zA-ZÀ-ÿ\s]*$/;
@@ -129,4 +174,7 @@ export class PagesClienteCadastroComponent implements OnInit {
         }
     }
 
+    private _desabilitarFormularioEndereco(){
+        this.form.get('endereco').get('logradouro').disable()
+    }
 }
