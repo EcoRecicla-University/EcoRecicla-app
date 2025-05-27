@@ -1,0 +1,121 @@
+<div class="pt-10 px-10">
+    <div class="flex gap-2">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        <h1 class="text-4xl font-light">
+            <span *ngIf="isEdicao">
+                Edição de centro de triagem
+            </span>
+            <span *ngIf="!isEdicao">
+                Cadastro de centro de triagem
+            </span>
+        </h1>
+    </div>
+    <h2 class="text-gray-400 pt-5" *ngIf="!isEdicao">
+        Cadastro
+    </h2>
+    <h2 class="text-gray-400 pt-5" *ngIf="isEdicao">
+        Editar cadastro de centro de triagem
+    </h2>
+    <form [formGroup]="form" class="flex flex-col max-w-4xl" (ngSubmit)="salvar()">
+        <div>
+            <div class="flex flex-col pt-7">
+                <label>Nome do centro de triagem</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput 
+                       placeholder="Digite nome do centro de triagem" 
+                       class="w-full" 
+                       [formControlName]="'nomeCentro'">
+                   
+                </mat-form-field>
+            </div>
+            
+            <div class="flex flex-col w-full">
+                <label>Capacidade Armazenamento</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="Digite o peso em kg" type="number" min="0" class="w-full" [formControlName]="'capacidade'">
+                </mat-form-field>
+            </div>
+
+            <div [formGroupName]="'endereco'">
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col pt-1">
+                        <label>CEP</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput 
+                                placeholder="Digite o CEP"
+                                [formControlName]="'cep'">
+                            <button
+                                matSuffix
+                                mat-icon-button
+                                type="button"
+                                (click)="buscarEnderecoPorCep()"
+                                [disabled]="form.get('endereco').get('cep').invalid || isLoadingCep">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                            <mat-hint>Digite apenas números</mat-hint>
+                        </mat-form-field>
+                        <mat-progress-bar mode="indeterminate" *ngIf="isLoadingCep"></mat-progress-bar>
+                    </div>
+
+                    <div class="flex flex-col pt-2">
+                        <label>Logradouro</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput 
+                                placeholder="Logradouro"
+                                [formControlName]="'logradouro'">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col pt-1">
+                        <label>Cidade</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput 
+                                placeholder="Cidade"
+                                [formControlName]="'localidade'">
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="flex flex-col pt-1">
+                        <label>Bairro</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput 
+                                placeholder="Bairro"
+                                [formControlName]="'bairro'">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col pt-1">
+                        <label>Estado</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput 
+                                placeholder="Estado"
+                                [formControlName]="'estado'">
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="flex flex-col pt-1">
+                        <label>Número</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput 
+                                placeholder="Número"
+                                [formControlName]="'numero'">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <button type="" class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer">Gravar</button>
+    </form>
+</div>

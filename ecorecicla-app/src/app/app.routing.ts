@@ -21,6 +21,8 @@ import { PagesMovimenListagemComponent } from "./pages/estoque/movimentacao/list
 import { PagesEstoqueEstoqueListagemComponent } from "./pages/estoque/estoque/listagem/listagem.component";
 import { PagesColetaListagemComponent } from "./pages/coleta/listagem/listagem.component";
 import { PagesColetaCadastroComponent } from "./pages/coleta/cadastro/cadastro.component";
+import { PagesTriagemCadastroComponent } from "./pages/triagem/cadastro/cadastro.component";
+import { PagesTriagemListagemComponent } from "./pages/triagem/listagem/listagem.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -172,6 +174,19 @@ export const APP_ROUTES: Routes = [
                     {
                         path: 'novo',
                         component: PagesColetaCadastroComponent
+                    },
+                ]
+            },
+            {
+                path: 'triagem',
+                children: [
+                    {
+                        path: '',
+                        component: PagesTriagemListagemComponent
+                    },
+                    {
+                        path: 'novo',
+                        component: PagesTriagemCadastroComponent
                     },
                 ]
             }

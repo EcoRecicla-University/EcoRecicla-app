@@ -100,5 +100,11 @@ export class LayoutPrivateSidebarComponent {
             type: 'ITEM',
             url: '/coleta'
         },
+        {
+            icon: 'control_camera',
+            label: 'Triagem',
+            type: 'ITEM',
+            url: '/triagem'
+        },
     ]
 }
