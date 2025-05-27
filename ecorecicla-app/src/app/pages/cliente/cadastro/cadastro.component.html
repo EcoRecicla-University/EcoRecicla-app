@@ -1,0 +1,85 @@
+<div class="pt-10 px-10">
+    <div class="flex gap-2">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        <h1 class="text-4xl font-light">
+            <span *ngIf="isEdicao">
+                Edição de Cliente
+            </span>
+            <span *ngIf="!isEdicao">
+                Cadastro de cliente
+            </span>
+        </h1>
+    </div>
+    <h2 class="text-gray-400 pt-5" *ngIf="!isEdicao">
+        Cadastro
+    </h2>
+    <h2 class="text-gray-400 pt-5" *ngIf="isEdicao">
+        Editar cadastro de cliente
+    </h2>
+    <div class="w-hull pt-3">
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+    </div>
+    <form [formGroup]="form" class="grid grid-cols-1 lg:grid-cols-2 max-w-5xl" (ngSubmit)="salvar()">
+        <div>
+            <div class="flex flex-col pt-7">
+                <label>Nome do Cliente</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="Digite o nome do cliente" class="w-full" [formControlName]="'nome'">
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col pt-1">
+                <label>CPF</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="Digite o CPF ou CNPJ do cliente" class="w-full" [formControlName]="'cpf'">
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col pt-1">
+                <label>CNPJ</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="Digite o CPF ou CNPJ do cliente" class="w-full" [formControlName]="'cnpj'">
+                </mat-form-field>
+            </div>
+            
+            <div class="flex flex-col pt-1">
+                <label>Telefone</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="(xx) x xxxx-xxxx" class="w-full" [formControlName]="'telefone'">
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col pt-1">
+                <label>Ponto de Coleta</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput placeholder="Digite o endereço do ponto de coleta" class="w-full" [formControlName]="'pontoDeColeta'">
+                </mat-form-field>
+            </div>
+
+    
+        </div>
+
+        <div class="pl-10 pt-10">
+            <div class="flex-col p-4 bg-gray-200 rounded-lg">
+                <h1 class="pl-2">
+                    Tipo do cliente
+                </h1>
+                <div>
+                    <mat-radio-group aria-label="Select an option" class="flex flex-col" [formControlName]="'tipoCliente'">
+                        <mat-radio-button value="V">Cliente de Venda</mat-radio-button>
+                        <mat-radio-button value="C">Cliente de Compra</mat-radio-button>
+                        <mat-radio-button value="A">Ambos</mat-radio-button>
+                      </mat-radio-group>
+                </div>
+            </div>
+        </div>
+
+        <button
+            type="submit"
+            class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer">
+            {{ isEdicao ? 'Salvar alterações' : 'Gravar' }}
+        </button>
+    </form>
+</div>

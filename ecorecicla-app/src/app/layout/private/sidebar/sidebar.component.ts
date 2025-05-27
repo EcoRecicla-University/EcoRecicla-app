@@ -1,4 +1,4 @@
-import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
+import { NgForOf, NgIf } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { MatIconModule } from '@angular/material/icon';
@@ -9,6 +9,7 @@ type SidebarNavigationItem = {
     icon: string;
     label: string;
     url?: string;
+    type: 'GRUPO' | 'ITEM';
     children?: SidebarComponentesModel[]
 }
 
@@ -17,7 +18,6 @@ type SidebarNavigationItem = {
     templateUrl: 'sidebar.component.html',
     imports: [
         NgIf,
-        NgClass,
         NgForOf, 
         RouterLink, 
         MatIconModule, 
@@ -27,28 +27,25 @@ type SidebarNavigationItem = {
 
 export class LayoutPrivateSidebarComponent {
 
-    constructor() {
-
-    }
+    constructor() {}
 
     itemsidebar:SidebarNavigationItem[] = [
         {
             icon: 'home',
             label: 'Home',
-            children: [
-                {
-                    label: 'Pagina inicial',
-                    url: '/home'
-                },
-                {
-                    label: 'Relatório Geral',
-                    url: '/relatorios'
-                }
-            ]
+            type: 'ITEM',
+            url: '/home'
+        },
+        {
+            label: 'Clientes',
+            icon: 'person',
+            url: '/clientes',
+            type: 'ITEM',
         },
         {
             icon: 'route',
             label: 'Rota',
+            type: 'GRUPO',
             children: [
                 {
                     label: 'Cadastro',
@@ -61,22 +58,9 @@ export class LayoutPrivateSidebarComponent {
             ]
         },
         {
-            icon: 'person',
-            label: 'Cliente',
-            children: [
-                {
-                    label: 'Cadastro',
-                    url: '/cliente'
-                },
-                {
-                    label: 'Listagem',
-                    url: '/ListagemCliente'
-                }
-            ]
-        },
-        {
             icon: 'inventory_2',
-            label: 'Estoque',
+            label: 'Movto Est',
+            type: 'GRUPO',
             children: [
                 {
                     label: 'Cadastro',
@@ -91,20 +75,28 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'group_add',
             label: 'Cadastro',
+            type: 'GRUPO',
             children: [
                 {
-                    label: 'Cadastro',
-                    url: '/cadastro'
+                    label: 'Funcionarios',
+                    url: '/funcionarios'
                 },
                 {
-                    label: 'Listagem',
-                    url: '/ListagemCadastro'
+                    label: 'Motoristas',
+                    url: '/motoristas'
                 }
             ]
         },
         {
             icon: 'local_shipping',
             label: 'Veiculos',
+            type: 'ITEM',
+            url: '/veiculos'
+        },
+        {
+            icon: 'pallet',
+            label: 'Coletas',
+            type: 'GRUPO',
             children: [
                 {
                     label: 'Cadastro',
@@ -115,6 +107,6 @@ export class LayoutPrivateSidebarComponent {
                     url: '/ListagemVeiculos'
                 }
             ]
-        }
+        },
     ]
 }

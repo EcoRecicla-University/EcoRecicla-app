@@ -1,29 +1,38 @@
-<div class="w-full bg-[#f1f1f1] h-[calc(100vh-91px)]">
-    <ul class="flex flex-col pt-3 gap-1">
+<div class="w-full bg-[#f1f1f1] h-full min-h-[calc(100vh-91px)]">
+    <ul class="flex flex-col pt-2 gap-1">
         <li *ngFor="let item of itemsidebar" class="text-[#06467a] w-full max-w-96">
-            <mat-expansion-panel class="!shadow-none !bg-[#f1f1f1]">
+            <a
+                *ngIf="item.type === 'ITEM'"
+                [routerLink]="item.url" 
+                class="block p-2 hover:bg-gray-200 rounded">
+                <div [routerLinkActive]="'text-green-600'" class="flex items-center ml-5 text-black">
+                    <mat-icon
+                        [fontIcon]="item.icon" 
+                        class="mr-2"></mat-icon>
+                    <span>
+                        {{ item.label }}
+                    </span>
+                </div>
+            </a>
+            <mat-expansion-panel class="!shadow-none !bg-[#f1f1f1] flex justify-end" *ngIf="item.type === 'GRUPO'">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <a [routerLink]="item.url" 
-                        #link="routerLinkActive" 
-                        routerLinkActive="text-green-600" 
-                        class="flex pl-4 gap-1.5 ml-3 mr-3 py-2 rounded-lg text-base max-h-12 hover:bg-[#06467a1c] duration-300">
-
-                        </a>
                             <mat-icon 
-                                [ngClass]="link.isActive?'text-green-600':'text-blue-950'" 
-                                [fontIcon]="item.icon" 
-                                class="mr-2"></mat-icon>
+                            [fontIcon]="item.icon" 
+                            class="mr-2"></mat-icon>
 
-                                
                             {{ item.label }}
+                            
                         </mat-panel-title>
                     </mat-expansion-panel-header>
+
                     <ul *ngIf="item.children" class="pl-6">
                         <li *ngFor="let child of item.children">
                             <a [routerLink]="child.url" 
                             class="block p-2 hover:bg-gray-200 rounded">
-                                {{ child.label }}
+                                <span [routerLinkActive]="'text-green-600'">
+                                    {{ child.label }}
+                                </span>
                             </a>
                         </li>
                     </ul>

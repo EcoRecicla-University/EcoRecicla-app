@@ -4,19 +4,19 @@
     <div class="w-hull pt-3">
         <div class="bg-gray-400 w-[90%] h-[1px]"></div>
     </div>
-    <form action="" method="" class="flex flex-col max-w-4xl">
+    <form [formGroup]="form" (ngSubmit)="salvar()" class="flex flex-col max-w-4xl">
         <div>
             <div class="flex flex-col pt-7">
                 <label>Nome</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite o nome do funcionário" class="w-full">
+                    <input matInput placeholder="Digite o nome do funcionário" class="w-full" [formControlName]="'nome'">
                 </mat-form-field>
             </div>
     
             <div class="flex flex-col pt-1">
                 <label>Data de Nasc.</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput [matDatepicker]="pickerData" placeholder="dd/mm/aaaa">
+                    <input matInput [matDatepicker]="pickerData" placeholder="dd/mm/aaaa" [formControlName]="'dataNascimento'">
                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #pickerData></mat-datepicker>
                 </mat-form-field>
@@ -25,7 +25,7 @@
             <div class="flex flex-col pt-1">
                 <label>Telefone</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="(xx) x xxxx-xxxx" class="w-full">
+                    <input matInput placeholder="(xx) x xxxx-xxxx" class="w-full" [formControlName]="'telefone'">
                 </mat-form-field>
             </div>
     
@@ -33,14 +33,14 @@
                 <div class="flex flex-col w-full">
                     <label>CPF</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput placeholder="Digite o CPF do funcionário" class="w-full">
+                        <input matInput placeholder="Digite o CPF do funcionário" class="w-full" [formControlName]="'cpf'">
                     </mat-form-field>
                 </div>
     
                 <div class="flex flex-col w-full">
                     <label>RG</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput placeholder="Digite o RG do funcionário" class="w-full">
+                        <input matInput placeholder="Digite o RG do funcionário" class="w-full" [formControlName]="'rg'">
                     </mat-form-field>
                 </div>
                 
@@ -50,7 +50,7 @@
                 <div class="flex flex-col pt-1">
                     <label>Data de Contratação</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa">
+                        <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" [formControlName]="'dataContratacao'">
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
@@ -59,7 +59,7 @@
                 <div class="flex flex-col pt-1">
                     <label>Estado Civil</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <mat-select placeholder="Selecione o estado civil">
+                        <mat-select placeholder="Selecione o estado civil" [formControlName]="'estadoCivil'">
                             <mat-option value="Solteiro">Solteiro(a)</mat-option>
                             <mat-option value="Casado">Casado(a)</mat-option>
                             <mat-option value="Divorciado">Divorciado(a)</mat-option>
