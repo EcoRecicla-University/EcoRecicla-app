@@ -66,6 +66,7 @@ export class PagesClienteCadastroComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this._desabilitarFormularioEndereco()
         const id = this._activatedRoute.snapshot.params['id'];
         if (id) {
             this.isEdicao = true;
@@ -89,7 +90,6 @@ export class PagesClienteCadastroComponent implements OnInit {
                         numero: cliente.Endereco.Numero
                     })
                 }
-                this._desabilitarFormularioEndereco()
             })
         } else {
             this.isEdicao = false;
