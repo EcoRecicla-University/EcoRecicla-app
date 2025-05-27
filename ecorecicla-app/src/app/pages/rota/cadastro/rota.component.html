@@ -19,46 +19,55 @@
 
             <div class="grid grid-cols-2 gap-4 pt-1">
                 <div class="flex flex-col">
-                    <label for="endereco">Endereço</label>
-                    <mat-form-field appearance="outline" class="w-full">
-                        <input id="endereco" matInput placeholder="Digite o endereço de coleta" class="w-full" required
-                            pattern="[A-Za-zÀ-ÿ\s]+" 
-                            title="Somente letras e espaços"
-                            oninput="this.value = this.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '')">
-                    </mat-form-field>
+                    <label for="endereco">Motorista</label>
+                   <mat-form-field appearance="outline" class="w-full">
+                    <mat-select id="motorista" placeholder="Selecione um motorista cadastrado" required>
+                        <mat-option value="1">Motorista 1</mat-option>
+                    </mat-select>
+                </mat-form-field>
                 </div>
     
-                <div class="flex flex-col max-w-20">
-                    <label for="numero">Nº</label>
-                    <mat-form-field appearance="outline" class="w-full">
-                        <input id="numero" matInput class="w-full" required 
-                            inputmode="numeric" pattern="\d+" 
-                            title="Apenas números"
-                            oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                    </mat-form-field>
+                <div class="flex flex-col">
+                    <div class="flex flex-col">
+                        <label for="veiculo">Veículo</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-select id="veiculo" placeholder="Selecione um veículo cadastrado" required>
+                                <mat-option value="1">Veiculo 01</mat-option>
+                                <mat-option value="2">Veiculo 02</mat-option>
+                                <mat-option value="3">Veiculo 03</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
+
             </div>
-    
-            <div class="grid grid-cols-2 gap-4">
-                <div class="flex flex-col w-full">
-                    <label for="cep">CEP</label>
+
+            <div class="flex flex-col">
+                <div class="flex flex-col">
+                    <label for="veiculo">Funcionarios</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input id="cep" matInput placeholder="Digite o CEP da coleta" class="w-full" required 
-                            maxlength="8" pattern="\d{8}" 
-                            title="Informe os 8 números do CEP"
-                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,8)">
+                        <mat-select id="funcionario" placeholder="Selecione um funcionario cadastrado">
+                            <mat-option value="1">Funcionario 01</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <div class="flex flex-col pt-1">
-                    <label for="veiculo">Veículo</label>
+                <div class="flex flex-col">
+                    <label for="veiculo">Centro Triagem Início</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <mat-select id="veiculo" placeholder="Selecione um veículo cadastrado" required>
-                            <mat-option value="1">Veiculo 01</mat-option>
-                            <mat-option value="2">Veiculo 02</mat-option>
-                            <mat-option value="3">Veiculo 03</mat-option>
+                        <mat-select id="CentroTriagem" placeholder="Selecione um centro de tiagem cadastrado">
+                            <mat-option value="1">Centro 01</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="veiculo">Centro Triagem Fim</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-select id="CentroTriagemFim" placeholder="Selecione um centro de tiagem cadastrado">
+                            <mat-option value="1">Centro 02</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
