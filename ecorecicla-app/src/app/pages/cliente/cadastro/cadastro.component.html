@@ -36,30 +36,6 @@
             </div>
             
             <div class="flex flex-col pt-1">
-                <label>CPF</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput 
-                           placeholder="Digite o CPF" 
-                           class="w-full" 
-                           maxlength="11"
-                           [formControlName]="'cpf'"
-                           (keypress)="permitirApenasNumeros($event)">
-                </mat-form-field>
-            </div>
-            
-            <div class="flex flex-col pt-1">
-                <label>CNPJ</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput 
-                           placeholder="Digite o CNPJ" 
-                           class="w-full" 
-                           maxlength="14"
-                           [formControlName]="'cnpj'"
-                           (keypress)="permitirApenasNumeros($event)">
-                </mat-form-field>
-            </div>
-            
-            <div class="flex flex-col pt-1">
                 <label>Telefone</label>
                 <mat-form-field appearance="outline" class="w-full">
                     <input matInput 
@@ -92,17 +68,79 @@
                 </div>
 
                 <div class="flex flex-col pt-1">
-                <label>Logradouro</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput 
-                           placeholder="Logradouro"
-                           [formControlName]="'logradouro'">
-                </mat-form-field>
-            </div>
+                    <label>Logradouro</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput 
+                            placeholder="Logradouro"
+                            [formControlName]="'logradouro'">
+                    </mat-form-field>
+                </div>
+
+                <div class="flex flex-col pt-1">
+                    <label>Bairro</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput 
+                            placeholder="Bairro"
+                            [formControlName]="'bairro'">
+                    </mat-form-field>
+                </div>
+
+                <div class="flex flex-col pt-1">
+                    <label>Cidade</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput 
+                            placeholder="Cidade"
+                            [formControlName]="'localidade'">
+                    </mat-form-field>
+                </div>
+
+                <div class="flex flex-col pt-1">
+                    <label>Estado</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput 
+                            placeholder="Estado"
+                            [formControlName]="'estado'">
+                    </mat-form-field>
+                </div>
+
+                <div class="flex flex-col pt-1">
+                    <label>Número</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput 
+                            placeholder="Número"
+                            [formControlName]="'numero'">
+                    </mat-form-field>
+                </div>
+                
             </div>
         </div>
 
-        <div class="pl-10 pt-10">
+        <div class="pl-10 pt-6">
+            
+            <div class="flex flex-col pt-1">
+                <label>CPF</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput 
+                    placeholder="Digite o CPF" 
+                    class="w-full" 
+                    maxlength="11"
+                    [formControlName]="'cpf'"
+                    (keypress)="permitirApenasNumeros($event)">
+                </mat-form-field>
+            </div>
+            
+            <div class="flex flex-col pt-1">
+                <label>CNPJ</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput 
+                    placeholder="Digite o CNPJ" 
+                    class="w-full" 
+                    maxlength="14"
+                    [formControlName]="'cnpj'"
+                    (keypress)="permitirApenasNumeros($event)">
+                </mat-form-field>
+            </div>
+            
             <div class="flex-col p-4 bg-gray-200 rounded-lg">
                 <h1 class="pl-2">
                     Tipo do cliente
@@ -118,9 +156,9 @@
         </div>
 
         <button
-            type="submit"
-            class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer">
-            {{ isEdicao ? 'Salvar alterações' : 'Gravar' }}
-        </button>
-    </form>
+        type="submit"
+        class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer">
+        {{ isEdicao ? 'Salvar alterações' : 'Gravar' }}
+    </button>
+</form>
 </div>

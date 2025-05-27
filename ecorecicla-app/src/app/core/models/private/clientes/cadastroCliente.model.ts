@@ -9,8 +9,9 @@ export interface CadastroClienteModel {
     Endereco: {
         CEP: string;
         Logradouro: string;
-        Cidade: string;
+        Localidade: string;
         Estado: string;
+        Bairro: string;
         Numero: string;
     }
 }

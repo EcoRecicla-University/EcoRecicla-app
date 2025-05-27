@@ -19,6 +19,7 @@ export interface DadosClientesModel {
         Logradouro: string;
         Cidade: string;
         Estado: string;
+        Bairro: string;
         Numero: string;
     }
 }

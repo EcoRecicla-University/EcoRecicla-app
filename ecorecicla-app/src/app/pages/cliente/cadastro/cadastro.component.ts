@@ -49,7 +49,11 @@ export class PagesClienteCadastroComponent implements OnInit {
         tipoCliente: new FormControl(null, Validators.required),
         endereco: new FormGroup({
             cep: new FormControl('', [Validators.required, Validators.maxLength(8), Validators.minLength(8)]),
-            logradouro: new FormControl('', [Validators.required, Validators.maxLength(200)])
+            logradouro: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+            localidade: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+            estado: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+            bairro: new FormControl('', [Validators.required, Validators.maxLength(200)]),
+            numero: new FormControl('', [Validators.required, Validators.maxLength(200)])
         })
     });
 
@@ -62,31 +66,34 @@ export class PagesClienteCadastroComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this._desabilitarFormularioEndereco()
         const id = this._activatedRoute.snapshot.params['id'];
         if (id) {
             this.isEdicao = true;
             this.idSelecionado = id;
             this.service.getCliente(id).subscribe(cliente => {
+
                 this.form.patchValue({
                     nome: cliente.Nome,
                     cpf: cliente.CPF,
                     cnpj: cliente.CNPJ,
                     telefone: cliente.Telefone,
-                    tipoCliente: cliente.Tipo_Cliente,
+                    tipoCliente: cliente.Tipo_Cliente
                 })
                 if(cliente.Endereco){
                     this.form.get('endereco').patchValue({
                         cep: cliente.Endereco.CEP,
-                        logradouro: cliente.Endereco.Logradouro
+                        logradouro: cliente.Endereco.Logradouro,
+                        localidade: cliente.Endereco.Cidade,
+                        estado: cliente.Endereco.Estado,
+                        bairro: cliente.Endereco.Bairro,
+                        numero: cliente.Endereco.Numero
                     })
                 }
+                this._desabilitarFormularioEndereco()
             })
         } else {
             this.isEdicao = false;
         }
-
-        console.log('teste')
     }
 
     salvar() {
@@ -101,9 +108,10 @@ export class PagesClienteCadastroComponent implements OnInit {
             Endereco: {
                 CEP: endereco.cep,
                 Logradouro: endereco.logradouro,
-                Cidade: 'Curitiba',
-                Estado: 'Parana',
-                Numero: '800'
+                Localidade: endereco.localidade,
+                Estado: endereco.estado,
+                Bairro: endereco.bairro,
+                Numero: endereco.numero
             }
         }
 
@@ -114,7 +122,15 @@ export class PagesClienteCadastroComponent implements OnInit {
                 CPF: this.form.value.cpf || undefined,
                 CNPJ: this.form.value.cnpj || undefined,
                 Telefone: this.form.value.telefone ?? '',
-                Tipo_Cliente: this.form.value.tipoCliente ?? ''
+                Tipo_Cliente: this.form.value.tipoCliente ?? '',
+                Endereco: {
+                    CEP: this.form.value.endereco.cep ?? '',
+                    Logradouro: this.form.get('endereco').get('logradouro').value,
+                    Localidade: this.form.get('endereco').get('localidade').value,
+                    Estado: this.form.get('endereco').get('estado').value,
+                    Bairro: this.form.get('endereco').get('bairro').value,
+                    Numero: this.form.value.endereco.numero ?? ''
+                }
             };
         
             this.service.editarCliente(this.idSelecionado, dadosEditaveis)
@@ -151,7 +167,11 @@ export class PagesClienteCadastroComponent implements OnInit {
             
             this.form.get('endereco').patchValue({
                 cep,
-                logradouro: endereco.logradouro
+                logradouro: endereco.logradouro,
+                localidade: endereco.localidade,
+                estado: endereco.estado,
+                bairro: endereco.bairro,
+                numero: endereco.unidade
             })
 
         })
@@ -175,6 +195,9 @@ export class PagesClienteCadastroComponent implements OnInit {
     }
 
     private _desabilitarFormularioEndereco(){
-        this.form.get('endereco').get('logradouro').disable()
+        this.form.get('endereco').get('logradouro').disable();
+        this.form.get('endereco').get('localidade').disable();
+        this.form.get('endereco').get('estado').disable();
+        this.form.get('endereco').get('bairro').disable();
     }
 }
