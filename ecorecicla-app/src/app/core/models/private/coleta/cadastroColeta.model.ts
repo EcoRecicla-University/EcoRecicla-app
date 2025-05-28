@@ -3,5 +3,4 @@ export interface CadastroColetaModel{
     Cliente_ID: string;
     Quantidade: string;
     Status_Coleta: string;
-    Rota_ID: string;
 }

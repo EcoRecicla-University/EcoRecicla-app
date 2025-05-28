@@ -1,4 +1,4 @@
-import { NgIf } from "@angular/common";
+import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
@@ -8,15 +8,20 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
-import { RouterLink } from "@angular/router";
-import { CadastroColetaModel } from "../../../core/models/private/coleta/coleta.model";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { CadastroColetaModel } from "../../../core/models/private/coleta/cadastroColeta.model";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { provideNativeDateAdapter } from "@angular/material/core";
+import { ClientesService } from "../../../core/services/clientes.service";
+import { ColetaService } from "../../../core/services/coleta.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { DadosClientesModel } from "../../../core/models/private/clientes/listaClientes.model";
 
 @Component ({
     selector: 'app-pages-coleta-cadastro',
     templateUrl: './cadastro.component.html',
     imports: [
+        NgForOf,
         NgIf,
         MatFormFieldModule,
         MatInputModule,
@@ -29,12 +34,14 @@ import { provideNativeDateAdapter } from "@angular/material/core";
         MatButtonModule,
         MatDatepickerModule
     ],
-    providers: [provideNativeDateAdapter()],
+    providers: [provideNativeDateAdapter(), DatePipe],
 })
 
 export class PagesColetaCadastroComponent implements OnInit{
 
     readonly startDate = new Date(1990, 0, 1);
+
+    allClientes: DadosClientesModel[] = []
 
     public isEdicao = false;
     public idSelecionado = null;
@@ -44,25 +51,32 @@ export class PagesColetaCadastroComponent implements OnInit{
         dataColeta: new FormControl('', [Validators.required]),
         quantidade: new FormControl('', [Validators.required]),
         statusColeta: new FormControl('', [Validators.required]),
-        idRota: new FormControl('', Validators.required),
-        endCliente: new FormControl({value: '', disabled: true})
     });
 
     constructor(
-
+        private clienteService: ClientesService,
+        private service: ColetaService,
+        private datePipe: DatePipe,
+        private snackbar: MatSnackBar,
+        private router: Router,
+        private _activatedRoute: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
-        
+        this.clienteService.getClientes()
+        .subscribe((clientes) => {
+            this.allClientes = clientes
+        })
     }
 
     salvar() {
+        const dataValidadeFormatada = this.datePipe.transform(this.form.value.dataColeta, 'yyyy-MM-dd') ?? '';
+
         const dadosDoFormulario: CadastroColetaModel = {
             Cliente_ID: this.form.value.clienteId ?? '',
-            Data_Coleta: this.form.value.dataColeta ?? '',
+            Data_Coleta: dataValidadeFormatada,
             Quantidade: this.form.value.quantidade ?? '',
             Status_Coleta: this.form.value.statusColeta ?? '',
-            Rota_ID: this.form.value.idRota ?? ''
         }
 
         if (this.isEdicao && this.idSelecionado) {
@@ -84,16 +98,16 @@ export class PagesColetaCadastroComponent implements OnInit{
             // });
 
         } else {
-            // this.service.criarNovoCliente(dadosDoFormulario)
-            // .subscribe(() => {
-            //     this.snackbar.open('Cliente criado com sucesso', 'Ok')
-            //     this.router.navigate(['..'], {
-            //         relativeTo: this._activatedRoute
-            //     })
-            // },
-            //     (error) => {
-            //         this.snackbar.open(error.error.error, 'Ok')
-            //     })
+            this.service.criarNovaColeta(dadosDoFormulario)
+            .subscribe(() => {
+                this.snackbar.open('Coleta criada com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            },
+                (error) => {
+                    this.snackbar.open(error.error.error, 'Ok')
+                })
         }
     }
 }

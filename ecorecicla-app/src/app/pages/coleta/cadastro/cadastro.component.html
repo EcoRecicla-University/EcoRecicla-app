@@ -24,58 +24,48 @@
     <form [formGroup]="form" class="grid grid-cols-1 max-w-5xl" (ngSubmit)="salvar()">
         <div>
 
-            <div class="flex flex-col pt-1">
+            <div class="flex flex-col pt-5">
                 <label>Cliente</label>
                 <mat-form-field appearance="outline" class="w-full">
                     <mat-select placeholder="Selecione a categoria" [formControlName]="'clienteId'">
-                        <mat-option value="1">Cliente 1</mat-option>
-                        <mat-option value="2">Cliente 2</mat-option>
+                        <mat-option *ngFor="let cliente of allClientes" [value]="cliente.ID_Cliente">{{ cliente.Nome }}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
 
-            <div class="flex flex-col pt-1">
-                <label>Data da coleta</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" [formControlName]="'dataColeta'">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-            </div>
-
-            <div class="flex flex-col pt-1">
-                <label>Quantidade</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput 
-                        placeholder="Digite a quantidade" 
-                        class="w-full"
-                        [formControlName]="'quantidade'">
-                </mat-form-field>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="flex flex-col pt-1">
+                    <label>Data da coleta</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" [formControlName]="'dataColeta'">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+    
+                <div class="flex flex-col pt-1">
+                    <label>Quantidade</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput 
+                            placeholder="Digite a quantidade" 
+                            class="w-full"
+                            [formControlName]="'quantidade'">
+                    </mat-form-field>
+                </div>
             </div>
             
             <div class="flex flex-col pt-1">
                 <label>Status Coleta</label>
                 <mat-form-field appearance="outline" class="w-full">
                     <mat-select placeholder="Selecione um status para essa coleta" [formControlName]="'statusColeta'">
-                        <mat-option value="1">Cancelada</mat-option>
-                        <mat-option value="2">Concluida</mat-option>
-                        <mat-option value="3">Em andamento</mat-option>
-                        <mat-option value="4">Aberta</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-            <div class="flex flex-col pt-1">
-                <label>Rota</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <mat-select placeholder="Selecione uma rota" [formControlName]="'idRota'">
-                        <mat-option value="1">Rota 01</mat-option>
+                        <mat-option value="CA">Cancelada</mat-option>
+                        <mat-option value="CO">Concluida</mat-option>
+                        <mat-option value="EA">Em andamento</mat-option>
+                        <mat-option value="AB">Aberta</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
             
-
-    
         </div>
 
         <button
