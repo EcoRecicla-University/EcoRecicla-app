@@ -1,28 +1,24 @@
-<div class="pt-10 px-10">
+ <div class="pt-10 px-10">
     <div class="flex gap-2">
         <button mat-icon-button [routerLink]="['..']">
             <mat-icon>arrow_back</mat-icon>
-          </button>
+        </button>
         <h1 class="text-4xl font-light">
-            <span *ngIf="isEdicao">
-                Edição de Cliente
-            </span>
-            <span *ngIf="!isEdicao">
-                Cadastro de cliente
-            </span>
+            <span *ngIf="isEdicao">Edição de Cliente</span>
+            <span *ngIf="!isEdicao">Cadastro de cliente</span>
         </h1>
     </div>
-    <h2 class="text-gray-400 pt-5" *ngIf="!isEdicao">
-        Cadastro
-    </h2>
-    <h2 class="text-gray-400 pt-5" *ngIf="isEdicao">
-        Editar cadastro de cliente
-    </h2>
+
+    <h2 class="text-gray-400 pt-5" *ngIf="!isEdicao">Cadastro</h2>
+    <h2 class="text-gray-400 pt-5" *ngIf="isEdicao">Editar cadastro de cliente</h2>
+
     <div class="w-hull pt-3">
         <div class="bg-gray-400 w-[90%] h-[1px]"></div>
     </div>
+
     <form [formGroup]="form" class="grid grid-cols-1 lg:grid-cols-2 max-w-5xl" (ngSubmit)="salvar()">
         <div>
+            <!-- Nome -->
             <div class="flex flex-col pt-7">
                 <label>Nome do Cliente</label>
                 <mat-form-field appearance="outline" class="w-full">
@@ -35,56 +31,59 @@
                 </mat-form-field>
             </div>
             
+            <!-- CPF -->
             <div class="flex flex-col pt-1">
                 <label>CPF</label>
                 <mat-form-field appearance="outline" class="w-full">
                     <input matInput 
                            placeholder="Digite o CPF" 
                            class="w-full" 
-                           maxlength="11"
+                           maxlength="14"
                            [formControlName]="'cpf'"
+                           (input)="formatarCPF()"
                            (keypress)="permitirApenasNumeros($event)">
                 </mat-form-field>
             </div>
             
+            <!-- CNPJ -->
             <div class="flex flex-col pt-1">
                 <label>CNPJ</label>
                 <mat-form-field appearance="outline" class="w-full">
                     <input matInput 
                            placeholder="Digite o CNPJ" 
                            class="w-full" 
-                           maxlength="14"
+                           maxlength="18"
                            [formControlName]="'cnpj'"
+                           (input)="formatarCNPJ()"
                            (keypress)="permitirApenasNumeros($event)">
                 </mat-form-field>
             </div>
             
+            <!-- Telefone -->
             <div class="flex flex-col pt-1">
                 <label>Telefone</label>
                 <mat-form-field appearance="outline" class="w-full">
                     <input matInput 
                            placeholder="(xx) x xxxx-xxxx" 
                            class="w-full" 
-                           maxlength="11"
+                           maxlength="16"
                            [formControlName]="'telefone'"
+                           (input)="formatarTelefone()"
                            (keypress)="permitirApenasNumeros($event)">
                 </mat-form-field>
             </div>
-
-    
         </div>
 
+        <!-- Tipo do Cliente -->
         <div class="pl-10 pt-10">
             <div class="flex-col p-4 bg-gray-200 rounded-lg">
-                <h1 class="pl-2">
-                    Tipo do cliente
-                </h1>
+                <h1 class="pl-2">Tipo do cliente</h1>
                 <div>
                     <mat-radio-group aria-label="Select an option" class="flex flex-col" [formControlName]="'tipoCliente'">
                         <mat-radio-button value="V">Cliente de Venda</mat-radio-button>
                         <mat-radio-button value="C">Cliente de Compra</mat-radio-button>
                         <mat-radio-button value="A">Ambos</mat-radio-button>
-                      </mat-radio-group>
+                    </mat-radio-group>
                 </div>
             </div>
         </div>

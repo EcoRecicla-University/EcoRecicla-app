@@ -121,18 +121,31 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit{
     }
 
 
-permitirApenasLetras(event: KeyboardEvent) {
-        const regex = /^[a-zA-ZÀ-ÿ\s]*$/;
-        if (!regex.test(event.key)) {
-            event.preventDefault();
-        }
-    }
-
-
     permitirApenasNumeros(event: KeyboardEvent) {
         const regex = /^[0-9]*$/;
         if (!regex.test(event.key)) {
             event.preventDefault();
         }
     }
+
+    permitirApenasLetras(event: KeyboardEvent) {
+    const regex = /^[a-zA-ZÀ-ÿ\s]*$/;
+    if (!regex.test(event.key)) {
+        event.preventDefault();
+    }
+
+
+    // Impede que pressione apenas espaço no início
+    const input = event.target as HTMLInputElement;
+    if (input.selectionStart === 0 && event.key === ' ') {
+        event.preventDefault();
+    }
+}
+
+verificarEspacoEmBranco(campo: string) {
+    const valor = this.form.get(campo)?.value;
+    if (valor && valor.trim() === '') {
+        this.form.get(campo)?.setValue('');
+    }
+}
 }
