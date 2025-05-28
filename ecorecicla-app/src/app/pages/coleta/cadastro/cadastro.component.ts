@@ -104,7 +104,8 @@ export class PagesColetaCadastroComponent implements OnInit{
                 ID_Cliente: this.form.value.clienteId ?? '',
                 Data_Coleta: this.form.value.dataColeta ?? '',
                 Status_Coleta: this.form.value.statusColeta ?? '',
-                Quantidade: this.form.value.quantidade ?? ''
+                Quantidade: this.form.value.quantidade ?? '',
+                Nome: null
             };
         
             this.service.editarColeta(this.idSelecionado, dadosEditaveis)
