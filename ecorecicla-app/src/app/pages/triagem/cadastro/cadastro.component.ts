@@ -11,6 +11,8 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSelectModule } from "@angular/material/select";
 import { EnderecoService } from "../../../core/services/endereco.service";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { TriagemService } from "../../../core/services/triagem.service";
+import { CadastroTriagemModel } from "../../../core/models/private/triagem/triagemCadastro.model";
 
 @Component ({
     selector: 'app-pages-veiculos',
@@ -33,7 +35,6 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 export class PagesTriagemCadastroComponent implements OnInit {
 
     public isEdicao = false;
-
     public idSelecionado = null;
 
     public isLoadingCep = false;
@@ -52,7 +53,11 @@ export class PagesTriagemCadastroComponent implements OnInit {
     })
 
     constructor(
-        private enderecoService: EnderecoService
+        private router: Router,
+        private enderecoService: EnderecoService,
+        private _activatedRoute: ActivatedRoute,
+        private service: TriagemService,
+        private snackbar: MatSnackBar
     ) {}
 
     ngOnInit(): void {
@@ -61,6 +66,59 @@ export class PagesTriagemCadastroComponent implements OnInit {
 
     salvar() {
 
+        const endereco = this.form.get('endereco').getRawValue()
+        
+        const dadosDoFormulario: CadastroTriagemModel = {
+            Nome_Centro: this.form.value.nomeCentro ?? '',
+            Capacidade_Armaze: this.form.value.capacidade ?? '',
+            Endereco: {
+                CEP: endereco.cep,
+                Logradouro: endereco.logradouro,
+                Localidade: endereco.localidade,
+                Estado: endereco.estado,
+                Bairro: endereco.bairro,
+                Numero: endereco.numero
+            }
+        }
+
+        if (this.isEdicao && this.idSelecionado) {
+            // const dadosEditaveis: EditarClienteModel = {
+            //     Id: this.idSelecionado,
+            //     Nome: this.form.value.nome ?? '',
+            //     CPF: this.form.value.cpf || undefined,
+            //     CNPJ: this.form.value.cnpj || undefined,
+            //     Telefone: this.form.value.telefone ?? '',
+            //     Tipo_Cliente: this.form.value.tipoCliente ?? '',
+            //     Endereco: {
+            //         CEP: this.form.value.endereco.cep ?? '',
+            //         Logradouro: this.form.get('endereco').get('logradouro').value,
+            //         Localidade: this.form.get('endereco').get('localidade').value,
+            //         Estado: this.form.get('endereco').get('estado').value,
+            //         Bairro: this.form.get('endereco').get('bairro').value,
+            //         Numero: this.form.value.endereco.numero ?? ''
+            //     }
+            // };
+        
+            // this.service.editarCliente(this.idSelecionado, dadosEditaveis)
+            // .subscribe(() => {
+            //     this.snackbar.open('Cliente editado com sucesso', 'Ok')
+            //     this.router.navigate(['..'], {
+            //         relativeTo: this._activatedRoute
+            //     })
+            // });
+
+        } else {
+            this.service.criarNovoCentroTriagem(dadosDoFormulario)
+            .subscribe(() => {
+                this.snackbar.open('Centro de triagem criado com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            },
+                (error) => {
+                    this.snackbar.open(error.error.error, 'Ok')
+                })
+        }
     }
 
     buscarEnderecoPorCep() {
