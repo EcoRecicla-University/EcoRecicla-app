@@ -16,6 +16,7 @@ import { ClientesService } from "../../../core/services/clientes.service";
 import { ColetaService } from "../../../core/services/coleta.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DadosClientesModel } from "../../../core/models/private/clientes/listaClientes.model";
+import { EditarColetaModel } from "../../../core/models/private/coleta/editarColeta.model";
 
 @Component ({
     selector: 'app-pages-coleta-cadastro',
@@ -44,13 +45,14 @@ export class PagesColetaCadastroComponent implements OnInit{
     allClientes: DadosClientesModel[] = []
 
     public isEdicao = false;
+
     public idSelecionado = null;
 
     public form = new FormGroup({
         clienteId: new FormControl('', [Validators.required]),
         dataColeta: new FormControl('', [Validators.required]),
         quantidade: new FormControl('', [Validators.required]),
-        statusColeta: new FormControl('', [Validators.required]),
+        statusColeta: new FormControl(null, [Validators.required]),
     });
 
     constructor(
@@ -67,6 +69,23 @@ export class PagesColetaCadastroComponent implements OnInit{
         .subscribe((clientes) => {
             this.allClientes = clientes
         })
+
+        const id = this._activatedRoute.snapshot.params['id'];
+        if (id) {
+            this.isEdicao = true;
+            this.idSelecionado = id
+            this.service.getColeta(id)
+            .subscribe(coleta => {
+                this.form.patchValue({
+                    clienteId: coleta.ID_Cliente,
+                    dataColeta: coleta.Data_Coleta,
+                    quantidade: coleta.Quantidade,
+                    statusColeta: coleta.Status_Coleta
+                })
+            })
+        } else {
+            this.isEdicao = false;
+        }
     }
 
     salvar() {
@@ -80,22 +99,21 @@ export class PagesColetaCadastroComponent implements OnInit{
         }
 
         if (this.isEdicao && this.idSelecionado) {
-            // const dadosEditaveis: EditarClienteModel = {
-            //     Id: this.idSelecionado,
-            //     Nome: this.form.value.nome ?? '',
-            //     CPF: this.form.value.cpf || undefined,
-            //     CNPJ: this.form.value.cnpj || undefined,
-            //     Telefone: this.form.value.telefone ?? '',
-            //     Tipo_Cliente: this.form.value.tipoCliente ?? ''
-            // };
+            const dadosEditaveis: EditarColetaModel = {
+                ID_Coleta: this.idSelecionado,
+                ID_Cliente: this.form.value.clienteId ?? '',
+                Data_Coleta: this.form.value.dataColeta ?? '',
+                Status_Coleta: this.form.value.statusColeta ?? '',
+                Quantidade: this.form.value.quantidade ?? ''
+            };
         
-            // this.service.editarCliente(this.idSelecionado, dadosEditaveis)
-            // .subscribe(() => {
-            //     this.snackbar.open('Cliente editado com sucesso', 'Ok')
-            //     this.router.navigate(['..'], {
-            //         relativeTo: this._activatedRoute
-            //     })
-            // });
+            this.service.editarColeta(this.idSelecionado, dadosEditaveis)
+            .subscribe(() => {
+                this.snackbar.open('Coleta editada com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            });
 
         } else {
             this.service.criarNovaColeta(dadosDoFormulario)

@@ -9,6 +9,9 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { RouterLink } from "@angular/router";
+import { ColetaService } from "../../../core/services/coleta.service";
+import { ListagemColetaModel, StatusColetaEnum } from "../../../core/models/private/coleta/listaColeta.model";
+import { ClientesService } from "../../../core/services/clientes.service";
 
 @Component ({
     selector: 'app-pages-coleta-listagem',
@@ -31,11 +34,18 @@ import { RouterLink } from "@angular/router";
 
 export class PagesColetaListagemComponent implements OnInit{
 
-    constructor(
+    DadosListaColeta: ListagemColetaModel[] = [];
 
+    StatusColetaEnum = StatusColetaEnum;
+
+    constructor(
+        private service: ColetaService
     ) {}
 
     ngOnInit(): void {
-        
+        this.service.getColetas()
+        .subscribe((listaColetas) => {
+            this.DadosListaColeta = listaColetas
+        })
     }
 }

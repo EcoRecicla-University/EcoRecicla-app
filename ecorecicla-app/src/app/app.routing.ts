@@ -23,6 +23,7 @@ import { PagesColetaListagemComponent } from "./pages/coleta/listagem/listagem.c
 import { PagesColetaCadastroComponent } from "./pages/coleta/cadastro/cadastro.component";
 import { PagesTriagemCadastroComponent } from "./pages/triagem/cadastro/cadastro.component";
 import { PagesTriagemListagemComponent } from "./pages/triagem/listagem/listagem.component";
+import { PagesColetaDetalheComponent } from "./pages/coleta/detalhe/detalhe.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -175,6 +176,14 @@ export const APP_ROUTES: Routes = [
                         path: 'novo',
                         component: PagesColetaCadastroComponent
                     },
+                    {
+                        path: ':id',
+                        component: PagesColetaDetalheComponent
+                    },
+                    {
+                        path: ':id/editar',
+                        component: PagesColetaCadastroComponent
+                    }
                 ]
             },
             {
