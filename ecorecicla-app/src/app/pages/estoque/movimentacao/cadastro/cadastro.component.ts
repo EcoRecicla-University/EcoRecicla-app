@@ -34,7 +34,6 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
         // this.service.getChaveColeta()
         // .subscribe((coletas) => {
         //     coletas = this.idsColeta
-        //     console.log(this.idsColeta)
         // })
     }
 

@@ -40,7 +40,6 @@ export class PagesTriagemListagemComponent implements OnInit{
         this._service.getCentrosTriagem()
         .subscribe((listaCentrosTriagem) => {
             this.DadosListaTriagem = listaCentrosTriagem
-            console.log(this.DadosListaTriagem)
         })
     }
 }
