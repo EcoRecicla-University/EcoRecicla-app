@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 
 import { LayoutAuthComponent } from "./layout/auth/auth.component";
 import { RecuperacaoSenhaComponent } from "./auth/recuperacao-senha/recuperacao-senha.component";
-import { RotaComponent } from "./pages/rota/cadastro/rota.component";
+import { PagesRotaCadastroComponent } from "./pages/rota/cadastro/cadastro.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { LayoutPrivateComponent } from "./layout/private/private.component";
 import { PagesClienteCadastroComponent } from "./pages/cliente/cadastro/cadastro.component";
@@ -24,6 +24,7 @@ import { PagesColetaCadastroComponent } from "./pages/coleta/cadastro/cadastro.c
 import { PagesTriagemCadastroComponent } from "./pages/triagem/cadastro/cadastro.component";
 import { PagesTriagemListagemComponent } from "./pages/triagem/listagem/listagem.component";
 import { PagesColetaDetalheComponent } from "./pages/coleta/detalhe/detalhe.component";
+import { PagesRotaListagemComponent } from "./pages/rota/listagem/listagem.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -55,7 +56,17 @@ export const APP_ROUTES: Routes = [
                 path: 'home', component: HomeComponent
             },
             {
-                path: 'rota', component: RotaComponent
+                path: 'rota', 
+                children: [
+                    {
+                        path: '',
+                        component: PagesRotaListagemComponent
+                    },
+                    {
+                        path: 'novo',
+                        component: PagesRotaCadastroComponent
+                    }
+                ]
             },
             {
                 path: 'clientes',

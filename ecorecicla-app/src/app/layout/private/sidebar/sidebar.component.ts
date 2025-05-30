@@ -46,17 +46,8 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'route',
             label: 'Rota',
-            type: 'GRUPO',
-            children: [
-                {
-                    label: 'Cadastro',
-                    url: '/rota'
-                },
-                {
-                    label: 'Listagem',
-                    url: '/ListagemRota'
-                }
-            ]
+            url: '/rota',
+            type: 'ITEM',
         },
         {
             icon: 'inventory_2',

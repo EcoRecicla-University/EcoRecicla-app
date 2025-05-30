@@ -7,10 +7,10 @@ import { MatSelectModule } from "@angular/material/select";
 
 @Component ({
     selector: 'app--pages-rota',
-    templateUrl: './rota.component.html',
+    templateUrl: './cadastro.component.html',
     providers: [provideNativeDateAdapter()],
     imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, MatSelectModule]
 })
-export class RotaComponent{
+export class PagesRotaCadastroComponent{
 
 }
