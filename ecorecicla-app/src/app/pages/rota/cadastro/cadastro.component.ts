@@ -42,6 +42,8 @@ export class PagesRotaCadastroComponent implements OnInit{
 
     public isEdicao = false;
 
+    coletasDisponiveis: ListagemColetaModel[] = []
+
     allColetas: ListagemColetaModel[] = []
     allMotoristas: ListagemMotoristaModel[] = []
     allVeiculos: ListaVeiculosModel[] = []
@@ -58,7 +60,7 @@ export class PagesRotaCadastroComponent implements OnInit{
     ) { }
 
     ngOnInit(): void {
-        this.coletaService.getColetas()
+        this.coletaService.getColetasHabilitadas()
         .subscribe((coletas) => {
             this.allColetas = coletas
         })
