@@ -79,7 +79,7 @@ export class PagesRotaCadastroComponent implements OnInit{
             this.allColetas = coletas
         })
 
-        this.motoristaService.getMotoristas()
+        this.motoristaService.getMotoristas(true)
         .subscribe((motoristas) => {
             this.allMotoristas = motoristas
         })

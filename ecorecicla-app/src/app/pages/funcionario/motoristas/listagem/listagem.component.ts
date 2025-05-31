@@ -37,7 +37,7 @@ export class PagesFuncionariosMotoristasListagemComponent  implements OnInit{
     constructor(private _service: MotoristaService){ }
 
     ngOnInit(): void {
-        this._service.getMotoristas()
+        this._service.getMotoristas(false)
         .subscribe((listaMotoristas) => {
             this.DadosListaMotoristas = listaMotoristas
         })

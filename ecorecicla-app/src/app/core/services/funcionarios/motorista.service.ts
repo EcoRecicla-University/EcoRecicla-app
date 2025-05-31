@@ -16,8 +16,11 @@ export class MotoristaService {
         private http: HttpClient
     ) { }
     
-    getMotoristas(){
-        return this.http.get<ListagemMotoristaModel[]>(this.apiUrl, {})
+    getMotoristas(somentedisponiveis: boolean){
+        const parametros = {
+            somenteDisponiveis: somentedisponiveis
+        }
+        return this.http.get<ListagemMotoristaModel[]>(this.apiUrl, { params: parametros })
     }
 
     criarNovoMotorista(dados: CadastroMotoristaModel): Observable<CadastroMotoristaModel>{
