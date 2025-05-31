@@ -46,8 +46,6 @@ export class PagesRotaCadastroComponent implements OnInit{
 
     public idSelecionado = null;
 
-    coletasDisponiveis: ListagemColetaModel[] = []
-
     allColetas: ListagemColetaModel[] = []
     allMotoristas: ListagemMotoristaModel[] = []
     allVeiculos: ListaVeiculosModel[] = []
@@ -86,7 +84,7 @@ export class PagesRotaCadastroComponent implements OnInit{
             this.allMotoristas = motoristas
         })
 
-        this.veiculoService.getVeiculos()
+        this.veiculoService.getVeiculos(true)
         .subscribe((veiculos) => {
             this.allVeiculos = veiculos
         })

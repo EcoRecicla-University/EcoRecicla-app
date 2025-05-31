@@ -47,7 +47,7 @@
                         <label for="veiculo">Veículo</label>
                         <mat-form-field appearance="outline" class="w-full">
                             <mat-select id="veiculo" placeholder="Selecione um veículo cadastrado" [formControlName]="'idVeiculo'">
-                                <mat-option *ngFor="let veiculo of allVeiculos" [value]="veiculo.ID_Veiculo">{{ veiculo.Placa }}</mat-option>
+                                <mat-option *ngFor="let veiculo of allVeiculos" [value]="veiculo.ID_Veiculo">Modelo: {{ veiculo.Modelo }} | Placa: {{ veiculo.Placa }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
