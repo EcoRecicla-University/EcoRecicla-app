@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { CadastroTriagemModel } from "../models/private/triagem/cadastroTriagem.model";
 import { Observable } from "rxjs";
 import { ListagemTriagemModel } from "../models/private/triagem/listagemTriagem.model";
+import { CadastroRotaModel } from "../models/private/rota/cadastroRota.model";
 
 @Injectable({
     providedIn: 'root'
@@ -13,13 +14,9 @@ export class RotaService {
     
     constructor(private http: HttpClient) { }
     
-    getCentrosTriagem(){
-        return this.http.get<ListagemTriagemModel[]>(this.apiUrl, {})
-    }
-
-    criarNovoCentroTriagem(dados: CadastroTriagemModel): Observable<CadastroTriagemModel> {
+    criarNovaColeta(dados: CadastroRotaModel): Observable<CadastroRotaModel>{
         const apiUrl = `${this.apiUrl}`;
-        return this.http.post<CadastroTriagemModel>(apiUrl, dados);
+        return this.http.post<CadastroRotaModel>(apiUrl, dados);
     }
 
 }
