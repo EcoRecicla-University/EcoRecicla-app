@@ -18,8 +18,11 @@ export class VeiculosService {
     //     return this.http.get<DadosClientesModel>(apiUrl, {})
     // }
 
-    getVeiculos(): Observable<ListaVeiculosModel[]>{
-        return this.http.get<ListaVeiculosModel[]>(this.apiUrl, {})
+    getVeiculos(somentedisponiveis: boolean): Observable<ListaVeiculosModel[]>{
+        const parametros = {
+            somenteDisponiveis: somentedisponiveis
+        }
+        return this.http.get<ListaVeiculosModel[]>(this.apiUrl, { params: parametros })
     }
 
     criarNovoVeiculo(dados: CadastroVeiculosModel): Observable<CadastroVeiculosModel> {

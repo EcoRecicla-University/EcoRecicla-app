@@ -47,7 +47,4 @@ export class PagesColetaDetalheComponent implements OnInit{
             })
     }
 
-    deletarFuncionario() {
-
-    }
 }

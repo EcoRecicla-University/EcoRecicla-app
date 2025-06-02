@@ -16,8 +16,11 @@ export class MotoristaService {
         private http: HttpClient
     ) { }
     
-    getMotoristas(){
-        return this.http.get<ListagemMotoristaModel[]>(this.apiUrl, {})
+    getMotoristas(somentedisponiveis: boolean){
+        const parametros = {
+            somenteDisponiveis: somentedisponiveis
+        }
+        return this.http.get<ListagemMotoristaModel[]>(this.apiUrl, { params: parametros })
     }
 
     criarNovoMotorista(dados: CadastroMotoristaModel): Observable<CadastroMotoristaModel>{
@@ -35,7 +38,7 @@ export class MotoristaService {
         return this.http.put<EditarMotoristaModel>(apiUrl, dados)
     }
 
-     deletarMotorista(id: string):Observable<void>{
+    deletarMotorista(id: string):Observable<void>{
         const apiUrl = `${this.apiUrl}/${id}`;
         return this.http.delete<void>(apiUrl, {})
     }

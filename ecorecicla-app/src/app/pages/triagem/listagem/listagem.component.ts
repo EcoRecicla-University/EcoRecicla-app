@@ -9,6 +9,8 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { RouterLink } from "@angular/router";
+import { TriagemService } from "../../../core/services/triagem.service";
+import { ListagemTriagemModel } from "../../../core/models/private/triagem/listagemTriagem.model";
 
 @Component ({
     selector: 'app-pages-coleta-listagem',
@@ -23,19 +25,21 @@ import { RouterLink } from "@angular/router";
         NgForOf,
         MatButtonModule,
         MatMenuModule,
-        RouterLink,
-        DatePipe
+        RouterLink
     ],
     providers: []
 })
 
 export class PagesTriagemListagemComponent implements OnInit{
 
-    constructor(
-
-    ) {}
+    DadosListaTriagem: ListagemTriagemModel[] = [];
+    
+    constructor(private _service: TriagemService){ }
 
     ngOnInit(): void {
-        
+        this._service.getCentrosTriagem()
+        .subscribe((listaCentrosTriagem) => {
+            this.DadosListaTriagem = listaCentrosTriagem
+        })
     }
 }

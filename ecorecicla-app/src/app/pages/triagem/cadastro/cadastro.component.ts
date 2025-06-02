@@ -12,7 +12,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { EnderecoService } from "../../../core/services/endereco.service";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { TriagemService } from "../../../core/services/triagem.service";
-import { CadastroTriagemModel } from "../../../core/models/private/triagem/triagemCadastro.model";
+import { CadastroTriagemModel } from "../../../core/models/private/triagem/cadastroTriagem.model";
 
 @Component ({
     selector: 'app-pages-veiculos',

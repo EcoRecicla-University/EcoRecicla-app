@@ -16,6 +16,11 @@ export class ColetaService{
         private http: HttpClient
     ) { }
 
+    getColetasHabilitadas(){
+        const apiUrl = `${this.apiUrl}/habilitadas`;
+        return this.http.get<ListagemColetaModel[]>(apiUrl, {})
+    }
+
     getColetas(){
         return this.http.get<ListagemColetaModel[]>(this.apiUrl, {})
     }

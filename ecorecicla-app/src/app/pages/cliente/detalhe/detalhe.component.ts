@@ -53,15 +53,18 @@ export class PagesClienteDetalheComponent implements OnInit, OnDestroy{
     }
 
     deletarCliente() {
-      const podeExcluir = confirm('Tem certeza que deseja excluir este cliente?')
+        const podeExcluir = confirm('Tem certeza que deseja excluir este cliente?')
 
-      if (podeExcluir) {
-        this.service.deletarCliente(this.idSelecionado)
-        .subscribe(() => {
-            this.snackbar.open('Cliente excluido com sucesso', 'Ok')
-            this.router.navigate(['..'], {
-                relativeTo: this.activeRoute
-            })
+        if (podeExcluir) {
+            this.service.deletarCliente(this.idSelecionado)
+            .subscribe(() => {
+                this.snackbar.open('Cliente excluido com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this.activeRoute
+                })
+        },
+        (error) => {
+            this.snackbar.open(error.error.error, 'Ok')
         })
       }
     }
