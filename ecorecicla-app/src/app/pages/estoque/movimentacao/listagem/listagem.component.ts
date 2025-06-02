@@ -14,10 +14,10 @@ import { RouterLink, RouterOutlet } from "@angular/router";
 
 
 type listaMovimen = {
-    ID_Coleta: number;
+    ID_Coleta_Tipo_Residuo: number;
     ID_Movimen: number;
     Data_Entrada: Date;
-    Quantidade_Entra: string;
+    Quantidade: string;
 }
 
 @Component ({

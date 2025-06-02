@@ -14,14 +14,14 @@
     </div>
     <div class="w-full mt-5 max-w-6xl">
 
-        <div class="bg-gray-200 grid grid-cols-[5%_45%_25%_25%] rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
+        <div class="bg-gray-200 grid grid-cols-[20%_30%_25%_25%] rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
 
             <div class="flex justify-center">
                 <span class="font-medium">ID_Movimen</span>
             </div>
             
             <div class="flex justify-start">
-                <span class="font-medium ml-3">ID_Coleta</span>
+                <span class="font-medium ml-3">ID_Coleta_Tipo_Residuo</span>
             </div>
             
             <div class="flex justify-center">
@@ -29,7 +29,7 @@
             </div>
             
             <div class="flex justify-center">
-                <span class="font-medium">Quantidade_Entrada</span>
+                <span class="font-medium">Quantidade</span>
             </div>
             
         </div>
@@ -46,7 +46,7 @@
         
                     <div class="flex justify-start">
                         <span class="">
-                            {{ movimen.ID_Coleta }}
+                            {{ movimen.ID_Coleta_Tipo_Residuo}}
                         </span>
                     </div>
         
@@ -58,7 +58,7 @@
         
                     <div class="flex justify-center">
                         <span class="">
-                            {{ movimen.Quantidade_Entra }}
+                            {{ movimen.Quantidade }}
                         </span>
                     </div>
                 </div>

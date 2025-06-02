@@ -1,4 +1,7 @@
 export interface CadastroMovimenModel {
-    Quantidade: string;
-    dataEntrada: Date;
+  ID_Coleta_Tipo_Residuo: number;
+  Quantidade: number;
+  Data_Entrada: string;
+  AvisarEstoqueMax: boolean;
+  AvisarEstoqueMin: boolean;
 }
