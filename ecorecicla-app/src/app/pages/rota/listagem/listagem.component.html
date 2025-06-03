@@ -1,7 +1,70 @@
-<h1 class="text-4xl font-light">Clientes</h1>
-<button class="flex items-center rounded-3xl px-5 py-2 text-white bg-green-600 hover:bg-green-800 cursor-pointer" [routerLink]="'novo'">
-    <mat-icon 
-        [fontIcon]="'add'" 
-        class="mr-2"></mat-icon>
-    Novo Cliente
-</button>
+<div class="pt-10 px-10">
+    <div class="flex justify-between">
+        <h1 class="text-4xl font-light">Rotas</h1>
+        <button class="flex items-center rounded-3xl px-5 py-2 text-white bg-green-600 hover:bg-green-800 cursor-pointer" [routerLink]="'novo'">
+            <mat-icon 
+                [fontIcon]="'add'" 
+                class="mr-2"></mat-icon>
+            Nova Rota
+        </button>
+    </div>
+    <h2 class="text-gray-400 pt-5">Exibindo {{ DadosListaRota.length }} resultados</h2>
+    <div class="w-hull pt-3">
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+    </div>
+    <div class="w-full mt-5 max-w-6xl">
+
+        <div class="bg-gray-200 grid grid-cols-[5%_45%_25%_25%] rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
+
+            <div class="flex justify-center">
+                <span class="font-medium">ID Rota</span>
+            </div>
+            
+            <div class="flex justify-start">
+                <span class="font-medium ml-3">Centro de triagem Inicio</span>
+            </div>
+            
+            <div class="flex justify-start">
+                <span class="font-medium">Centro de triagem Fim</span>
+            </div>
+
+            <div class="flex justify-center">
+                <span class="font-medium">Nome Cliente</span>
+            </div>
+            
+        </div>
+
+        <div *ngFor="let rota of DadosListaRota" class="hover:bg-gray-100">
+            
+            <a class="block p-3" [routerLink]="[rota.ID_Rota]">
+                <div class="grid grid-cols-[5%_45%_25%_25%] text-sm">
+                    <div class="flex justify-center">
+                        <span class="">
+                            {{ rota.ID_Rota }}
+                        </span>
+                    </div>
+                    <div class="flex justify-start">
+                        <span class="">
+                            {{ rota.Nome_Centro_Inicio }}
+                        </span>
+                    </div>
+        
+                    <div class="flex justify-start">
+                        <span class="">
+                            {{ rota.Nome_Centro_Final }}
+                        </span>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <span class="">
+                            {{ rota.Nome_Cliente }}
+                        </span>
+                    </div>
+        
+                </div>
+            </a>
+                
+        </div>
+        
+    </div>
+</div>
