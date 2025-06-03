@@ -11,6 +11,7 @@ import { EditarClienteModel } from "../models/private/clientes/editarCliente.mod
 export class ClientesService {
 
     private apiUrl = 'http://localhost:8080/api/clientes';
+    
 
     constructor(private http: HttpClient) { }
 
@@ -36,5 +37,12 @@ export class ClientesService {
     deletarCliente(id: string):Observable<void>{
         const apiUrl = `${this.apiUrl}/${id}`;
         return this.http.delete<void>(apiUrl, {})
+    }
+
+    getRelatorioClientes() {
+        const url = `${this.apiUrl}-relatorios`;
+        return this.http.get(url, {
+            responseType: 'blob'
+        });
     }
 }

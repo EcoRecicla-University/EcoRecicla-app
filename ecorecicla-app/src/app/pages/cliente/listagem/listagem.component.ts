@@ -55,4 +55,16 @@ export class PagesClientesListagemComponent implements OnInit{
         })
     }
 
+    baixarRelatorio() {
+        this._service.getRelatorioClientes()
+        .subscribe((blob) => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'relatorio_clientes.xlsx';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        });
+    }
+
 }
