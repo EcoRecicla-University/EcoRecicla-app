@@ -11,6 +11,7 @@ import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink, RouterOutlet } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 
 type listaClientes = {
@@ -45,7 +46,10 @@ export class PagesClientesListagemComponent implements OnInit{
 
     TipoClienteEnum = TipoClienteEnum;
 
-    constructor(private _service: ClientesService){ }
+    constructor(
+        private _service: ClientesService,
+        private snackbar: MatSnackBar
+    ){ }
 
     ngOnInit(): void {
         this._service.getClientes()
@@ -70,6 +74,10 @@ export class PagesClientesListagemComponent implements OnInit{
             a.download = `relatorio_clientes_${dataRelatorio}.xlsx`;
             a.click();
             window.URL.revokeObjectURL(url);
+            setTimeout(() => {
+                this.snackbar.open('Relatório gerado com sucesso', 'Ok')
+
+            }, 1000)
         });
     }
 
