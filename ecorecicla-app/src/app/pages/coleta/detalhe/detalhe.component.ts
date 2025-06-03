@@ -23,6 +23,8 @@ import { StatusColetaEnum } from "../../../core/models/private/coleta/listaColet
 })
 export class PagesColetaDetalheComponent implements OnInit{
     
+    statusCancelada: boolean
+
     idSelecionado = null
 
     StatusColetaEnum = StatusColetaEnum;
@@ -43,8 +45,9 @@ export class PagesColetaDetalheComponent implements OnInit{
                 this.service.getColeta(id)
                     .subscribe((coleta) => {
                         this.coletaSelecionada = coleta;
+                        this.statusCancelada = coleta.Status_Coleta === 'CA' || coleta.Status_Coleta === 'CO';
                     })
-            })
+                }) 
     }
 
 }

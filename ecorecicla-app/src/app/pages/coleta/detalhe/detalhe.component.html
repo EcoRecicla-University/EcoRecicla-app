@@ -18,7 +18,7 @@
                 {{ coletaSelecionada.Data_Coleta| date: 'dd/MM/yyyy' }}
             </span>
         </div>
-        <div class="ml-auto flex gap-2">
+        <div class="ml-auto flex gap-2" *ngIf="!statusCancelada">
             <button mat-button [routerLink]="'editar'">
                 <mat-icon>edit</mat-icon>
                 <span>Editar</span>

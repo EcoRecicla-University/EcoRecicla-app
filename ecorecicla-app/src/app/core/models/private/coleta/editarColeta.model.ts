@@ -6,5 +6,5 @@ export interface EditarColetaModel{
     Data_Coleta: string;
     ID_Cliente: string;
     Quantidade: string;
-    Status_Coleta: StatusColetaEnum;
+    Status_Coleta: keyof typeof StatusColetaEnum;
 }
