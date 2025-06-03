@@ -61,7 +61,13 @@ export class PagesClientesListagemComponent implements OnInit{
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'relatorio_clientes.xlsx';
+
+            const hoje = new Date()
+            const dia = hoje.getDate().toString().padStart(2,'0')
+            const mes = (hoje.getMonth()+1).toString().padStart(2,'0')
+            const ano = hoje.getFullYear().toString().padStart(2,'0')
+            const dataRelatorio = `${dia}-${mes}-${ano}`
+            a.download = `relatorio_clientes_${dataRelatorio}.xlsx`;
             a.click();
             window.URL.revokeObjectURL(url);
         });
