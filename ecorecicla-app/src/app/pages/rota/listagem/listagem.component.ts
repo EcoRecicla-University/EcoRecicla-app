@@ -8,7 +8,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { RouterLink } from "@angular/router";
 import { ListagemRotaModel } from "../../../core/models/private/rota/listagemRota.model";
 import { RotaService } from "../../../core/services/rota.service";
-import { NgForOf } from "@angular/common";
+import { DatePipe, NgForOf } from "@angular/common";
 
 @Component ({
     selector: 'app-pages-rota-listagem',
@@ -21,7 +21,8 @@ import { NgForOf } from "@angular/common";
         MatSelectModule,
         RouterLink,
         MatIcon,
-        NgForOf
+        NgForOf,
+        DatePipe
     ]
 })
 

@@ -1,6 +1,8 @@
 export interface ListagemRotaModel {
     ID_Rota: string;
-    Nome_Cliente: string;
-    Nome_Centro_Inicio: string;
-    Nome_Centro_Final: string;
+    Data_Coleta: string;
+    CentroInicio: string;
+    CentroInicioNome: string;
+    CentroFim: string;
+    CentroFimNome: string;
 }

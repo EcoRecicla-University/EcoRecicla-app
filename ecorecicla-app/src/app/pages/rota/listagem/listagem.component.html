@@ -29,7 +29,7 @@
             </div>
 
             <div class="flex justify-center">
-                <span class="font-medium">Nome Cliente</span>
+                <span class="font-medium">Data de Coleta</span>
             </div>
             
         </div>
@@ -45,19 +45,19 @@
                     </div>
                     <div class="flex justify-start">
                         <span class="">
-                            {{ rota.Nome_Centro_Inicio }}
+                            {{ rota.CentroInicioNome }}
                         </span>
                     </div>
         
                     <div class="flex justify-start">
                         <span class="">
-                            {{ rota.Nome_Centro_Final }}
+                            {{ rota.CentroFimNome }}
                         </span>
                     </div>
 
                     <div class="flex justify-center">
                         <span class="">
-                            {{ rota.Nome_Cliente }}
+                            {{ rota.Data_Coleta | date:'dd/MM/YYYY' }}
                         </span>
                     </div>
         
