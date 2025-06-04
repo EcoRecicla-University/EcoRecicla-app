@@ -1,7 +1,8 @@
 export interface CadastroMovimenModel {
-  ID_Coleta_Tipo_Residuo: number;
+  ID_Coleta: number;
   Quantidade: number;
   Data_Entrada: string;
-  AvisarEstoqueMax: boolean;
-  AvisarEstoqueMin: boolean;
+  Categoria: 'plastico' | 'metal' | 'organico' | 'papel' | 'vidro';
+  AvisarEstoqueMax: 'S' | 'N';
+  AvisarEstoqueMin: 'S' | 'N';
 }

@@ -11,19 +11,13 @@ import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterLink, RouterOutlet } from "@angular/router";
-
-
-type listaMovimen = {
-    ID_Coleta_Tipo_Residuo: number;
-    ID_Movimen: number;
-    Data_Entrada: Date;
-    Quantidade: string;
-}
+import { CommonModule } from '@angular/common';
 
 @Component ({
     selector: 'app-pages-movimen-listagem',
     templateUrl: './listagem.component.html',
     imports: [
+        CommonModule,         
         MatFormFieldModule, 
         MatInputModule, 
         MatIconModule, 
@@ -31,6 +25,7 @@ type listaMovimen = {
         MatCheckboxModule, 
         MatRadioModule, 
         NgForOf,
+        NgIf,                 
         MatButtonModule,
         MatMenuModule,
         RouterLink,
@@ -52,5 +47,4 @@ export class PagesMovimenListagemComponent implements OnInit{
             this.DadosListaMovimen = movimentacoes
         })
     }
-
 }

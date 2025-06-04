@@ -1,5 +1,9 @@
 export interface EditarMovimenModel {
-  ID_Coleta_Tipo_Residuo: number;
+  ID_Movimen: number; 
+  ID_Coleta: number;
   Quantidade: number;
-  Data_Entrada: string;
+  Data_Entrada: string; 
+  Categoria: 'plastico' | 'papel' | 'metal' | 'organico' | 'vidro';
+  AvisarEstoqueMax: 'S' | 'N';
+  AvisarEstoqueMin: 'S' | 'N';
 }

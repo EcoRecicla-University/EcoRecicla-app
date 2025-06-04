@@ -11,7 +11,6 @@ import { MatSelectModule } from "@angular/material/select";
 import { RouterLink } from "@angular/router";
 import { ColetaService } from "../../../core/services/coleta.service";
 import { ListagemColetaModel, StatusColetaEnum } from "../../../core/models/private/coleta/listaColeta.model";
-import { ClientesService } from "../../../core/services/clientes.service";
 
 @Component ({
     selector: 'app-pages-coleta-listagem',

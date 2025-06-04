@@ -8,16 +8,31 @@
     
     <!-- CHAVE DE COLETA -->
     <div class="flex flex-col pt-1">
-      <label for="ID_Coleta_Tipo_Residuo">Chave de coleta:</label>
+      <label for="ID_Coleta">Coleta Associada:</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-select placeholder="Selecione uma coleta" [formControlName]="'ID_Coleta'">
+            <mat-option *ngFor="let coleta of coletas" [value]="coleta.ID_Coleta">
+              {{ coleta.Nome }} - {{ coleta.Data_Coleta | date:'dd/MM/yyyy' }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+
+    <!-- CATEGORIA -->
+    <div class="flex flex-col pt-1">
+      <label for="Categoria">Categoria:</label>
       <mat-form-field appearance="outline" class="w-full">
-        <mat-select placeholder="Selecione uma chave" [formControlName]="'ID_Coleta_Tipo_Residuo'">
-          <mat-option *ngFor="let coleta of chavesColeta" [value]="coleta.ID_Coleta_Tipo_Residuo">
-            {{ coleta.Nome }}
-          </mat-option>
+        <mat-select placeholder="Selecione uma categoria" [formControlName]="'Categoria'">
+          <mat-option value="plastico">Plástico</mat-option>
+          <mat-option value="metal">Metal</mat-option>
+          <mat-option value="organico">Orgânico</mat-option>
+          <mat-option value="papel">Papel</mat-option>
+          <mat-option value="vidro">Vidro</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
+    
     <!-- QUANTIDADE -->
     <div class="flex flex-col pt-1">
       <label for="Quantidade">Quantidade:</label>
@@ -30,9 +45,18 @@
     <div class="flex flex-col pt-1">
       <label for="Data_Entrada">Data de Entrada:</label>
       <mat-form-field appearance="outline" class="w-full">
-        <input matInput type="date" placeholder="Selecione a data" [formControlName]="'Data_Entrada'" />
+        <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" formControlName="Data_Entrada">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('Data_Entrada')?.hasError('required')">
+          A data é obrigatória.
+        </mat-error>
+        <mat-error *ngIf="form.get('Data_Entrada')?.hasError('dataFutura')">
+          A data não pode ser no futuro.
+        </mat-error>
       </mat-form-field>
     </div>
+
 
     <!-- AVISOS -->
     <div class="pl-10">

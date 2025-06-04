@@ -1,0 +1,28 @@
+<div class="pt-10 px-10">
+  <div class="flex justify-between">
+    <h1 class="text-4xl font-light">Estoque</h1>
+  </div>
+
+  <h2 class="text-gray-400 pt-5">Exibindo {{ DadosListaEstoque.length }} resultados</h2>
+  <div class="w-full pt-3">
+    <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+  </div>
+
+  <div class="w-full mt-5 max-w-6xl">
+    <div class="bg-gray-200 grid grid-cols-3 rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
+      <div class="flex justify-center"><span class="font-medium">Categoria</span></div>
+      <div class="flex justify-center"><span class="font-medium">Quantidade Total</span></div>
+      <div class="flex justify-center"><span class="font-medium">Última Entrada</span></div>
+    </div>
+
+    <div *ngFor="let item of DadosListaEstoque" class="hover:bg-gray-100">
+      <div class="block p-3">
+        <div class="grid grid-cols-3 text-sm">
+          <div class="flex justify-center capitalize">{{ item.Categoria }}</div>
+          <div class="flex justify-center">{{ item.Qtd_Total }}</div>
+          <div class="flex justify-center">{{ item.Ult_Data_Entrada | date:'dd/MM/yyyy' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

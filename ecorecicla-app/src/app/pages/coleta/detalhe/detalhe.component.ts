@@ -47,4 +47,6 @@ export class PagesColetaDetalheComponent implements OnInit{
             })
     }
 
+    
+
 }

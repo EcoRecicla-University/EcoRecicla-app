@@ -1,0 +1,131 @@
+<div *ngIf="movimenSelecionado" class="p-10 max-w-5xl">
+  <div class="flex items-center pt-5">
+    <button mat-icon-button [routerLink]="['..']">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="text-3xl font-light ml-2 mt-1">Detalhes da movimentação</h1>
+  </div>
+  <hr class="my-4 border-gray-400 w-full" />
+
+  <div class="flex justify-between items-center">
+    <div>
+      <small class="text-gray-600">ID:</small>
+      <strong>{{ movimenSelecionado.ID_Movimen }}</strong>
+      <span class="mx-2">|</span>
+      <small class="text-gray-600">Data de entrada:</small>
+      <span>{{ movimenSelecionado.Data_Entrada | date: 'dd/MM/yyyy' }}</span>
+    </div>
+    <div>
+      <button mat-button (click)="modoEdicao = true">
+        <mat-icon>edit</mat-icon>
+        <span>Editar</span>
+      </button>
+
+      <button mat-button color="warn" (click)="inativarMovimentacao()">
+        <mat-icon>delete</mat-icon>
+        <span>Excluir</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- VISUALIZAÇÃO -->
+  <div *ngIf="!modoEdicao" class="flex flex-col gap-4 mt-4">
+    <div class="border p-4 rounded">
+      <small class="text-gray-600">ID Coleta</small>
+      <div>{{ movimenSelecionado.ID_Coleta }}</div>
+    </div>
+    <div class="border p-4 rounded">
+      <small class="text-gray-600">Quantidade</small>
+      <div>{{ movimenSelecionado.Quantidade }}</div>
+    </div>
+    <div class="border p-4 rounded">
+      <small class="text-gray-600">Categoria</small>
+      <div>{{ movimenSelecionado.Categoria }}</div>
+    </div>
+    <div class="border p-4 rounded">
+      <small class="text-gray-600">Avisar Estoque Máx</small>
+      <div>{{ movimenSelecionado.AvisarEstoqueMax }}</div>
+    </div>
+    <div class="border p-4 rounded">
+      <small class="text-gray-600">Avisar Estoque Mín</small>
+      <div>{{ movimenSelecionado.AvisarEstoqueMin }}</div>
+    </div>
+  </div>
+
+  <!-- FORMULÁRIO DE EDIÇÃO -->
+  <form *ngIf="modoEdicao" [formGroup]="formEdicao" (ngSubmit)="salvarEdicao()" class="flex flex-col gap-4 mt-4">
+    <div>
+      <label>Chave de Coleta</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-select formControlName="ID_Coleta">
+          <mat-option *ngFor="let coleta of chavesColeta" [value]="coleta.ID_Coleta">
+            {{ coleta.ID_Coleta }} - {{ coleta.Nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <label>Quantidade</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput type="number" formControlName="quantidade" required min="1" />
+      </mat-form-field>
+    </div>
+
+    <div>
+      <label>Data de Entrada</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" formControlName="dataEntrada">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="formEdicao.get('dataEntrada')?.hasError('required')">
+          A data é obrigatória.
+        </mat-error>
+        <mat-error *ngIf="formEdicao.get('dataEntrada')?.hasError('dataFutura')">
+          A data não pode ser no futuro.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div>
+      <label>Categoria</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-select formControlName="categoria">
+          <mat-option value="plastico">Plástico</mat-option>
+          <mat-option value="metal">Metal</mat-option>
+          <mat-option value="organico">Orgânico</mat-option>
+          <mat-option value="papel">Papel</mat-option>
+          <mat-option value="vidro">Vidro</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <label>Avisar Estoque Máximo</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-select formControlName="avisarEstoqueMax">
+          <mat-option value="S">Sim</mat-option>
+          <mat-option value="N">Não</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <label>Avisar Estoque Mínimo</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-select formControlName="avisarEstoqueMin">
+          <mat-option value="S">Sim</mat-option>
+          <mat-option value="N">Não</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="flex justify-end gap-2">
+      <button mat-button type="button" (click)="modoEdicao = false">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="formEdicao.invalid">
+        Salvar
+      </button>
+    </div>
+  </form>
+</div>

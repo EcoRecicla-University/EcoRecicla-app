@@ -1,20 +1,31 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { EstoqueService } from '../../../../core/services/estoque.service';
+import { ListagemEstoqueModel } from '../../../../core/models/private/estoque/listaEstoque.model';
 
-@Component ({
-    selector: 'app-pages-estoque-estoque-listagem',
-    templateUrl: './listagem.component.html',
-    providers: [],
-    imports: [
-
-    ]
+@Component({
+  selector: 'app-estoque-lista',
+  templateUrl: './lista.component.html',
+  standalone: true,
+  imports: [CommonModule, MatTableModule]
 })
+export class PagesEstoqueListagemComponent implements OnInit {
 
-export class PagesEstoqueEstoqueListagemComponent implements OnInit{
+  //displayedColumns: string[] = ['Categoria', 'Qtd_Total', 'Ult_Data_Entrada'];
 
+  DadosListaEstoque: ListagemEstoqueModel[] = [];
 
-    constructor() { }
+  constructor (
+    private service: EstoqueService
+  ){
 
-    ngOnInit(): void {
-        
+  }
+  ngOnInit(): void {
+        this.service.getEstoque()
+        .subscribe((listaEstoque) => {
+            this.DadosListaEstoque = listaEstoque
+        });
     }
-}
+  }
+

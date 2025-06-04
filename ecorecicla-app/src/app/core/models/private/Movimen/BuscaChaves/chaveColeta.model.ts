@@ -1,4 +1,4 @@
 export interface ChaveColetaModel {
-    ID_Coleta_Tipo_Residuo: number;
+    ID_Coleta: number;
     Nome: string;
 }
