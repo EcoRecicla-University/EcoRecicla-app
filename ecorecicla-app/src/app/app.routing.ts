@@ -71,6 +71,10 @@ export const APP_ROUTES: Routes = [
                         path: ':id',
                         component: PagesRotaDetalheComponent
                     },
+                    {
+                        path: ':id/editar',
+                        component: PagesRotaCadastroComponent
+                    }
                 ]
             },
             {

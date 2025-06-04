@@ -22,6 +22,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { CadastroRotaModel } from "../../../core/models/private/rota/cadastroRota.model";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { EditarRotaModel } from "../../../core/models/private/rota/editarRota.model";
 
 @Component ({
     selector: 'app-pages-rota-cadastro',
@@ -74,20 +75,6 @@ export class PagesRotaCadastroComponent implements OnInit{
     ) { }
 
     ngOnInit(): void {
-        this.coletaService.getColetasHabilitadas()
-        .subscribe((coletas) => {
-            this.allColetas = coletas
-        })
-
-        this.motoristaService.getMotoristas(true)
-        .subscribe((motoristas) => {
-            this.allMotoristas = motoristas
-        })
-
-        this.veiculoService.getVeiculos(true)
-        .subscribe((veiculos) => {
-            this.allVeiculos = veiculos
-        })
 
         this.funcionariosService.getFuncionarios()
         .subscribe((funcionarios) => {
@@ -98,6 +85,61 @@ export class PagesRotaCadastroComponent implements OnInit{
         .subscribe((centros) => {
             this.allTriagens = centros
         })
+
+        const id = this._activatedRoute.snapshot.params['id'];
+        if (id) {
+            this.isEdicao = true;
+            this.idSelecionado = id
+            this.service.getRota(id)
+            .subscribe(rota => {
+                console.log(rota)
+                this.form.patchValue({
+                    idColeta: rota.ID_Coleta,
+                    idMotorista: rota.ID_Motorista,
+                    idVeiculo: rota.ID_Veiculo,
+                    idFuncionario: rota.ID_Funci,
+                    idTriagemInicio: rota.ID_Centro_Inicio,
+                    idTriagemFim: rota.ID_Centro_Fim,
+                })
+            })
+        } else {
+            this.isEdicao = false;
+        }
+
+        if(this.isEdicao == true){
+
+            this.veiculoService.getVeiculos(false)
+            .subscribe((veiculos) => {
+                this.allVeiculos = veiculos
+            })
+
+            this.motoristaService.getMotoristas(false)
+            .subscribe((motoristas) => {
+                this.allMotoristas = motoristas
+            })
+
+            this.coletaService.getColetas()
+            .subscribe((coletas) => {
+                this.allColetas = coletas
+            })
+
+        } else {
+
+            this.veiculoService.getVeiculos(true)
+            .subscribe((veiculos) => {
+                this.allVeiculos = veiculos
+            })
+
+            this.coletaService.getColetasHabilitadas()
+            .subscribe((coletas) => {
+                this.allColetas = coletas
+            })
+
+            this.motoristaService.getMotoristas(true)
+            .subscribe((motoristas) => {
+                this.allMotoristas = motoristas
+            })
+        }
     }
 
     salvar() {
@@ -112,22 +154,24 @@ export class PagesRotaCadastroComponent implements OnInit{
             }
     
             if (this.isEdicao && this.idSelecionado) {
-                // const dadosEditaveis: EditarMotoristaModel = {
-                //     ID_Motorista: this.idSelecionado,
-                //     ID_Funci: this.form.value.idFuncionario ?? '',
-                //     Categoria: this.form.value.categoria ?? '',
-                //     Numero_Registro: this.form.value.numeroRegistro ?? '',
-                //     Validade: this.form.value.dataValidadeCarteira ?? '',
-                //     Nome: null
-                // };
+                const dadosEditaveis: EditarRotaModel = {
+                    ID_Rota: this.idSelecionado,
+                    ID_Coleta: this.form.value.idColeta ?? '',
+                    ID_Motorista: this.form.value.idMotorista ?? '',
+                    ID_Veiculo: this.form.value.idVeiculo ?? '',
+                    ID_Funci: this.form.value.idFuncionario ?? '',
+                    ID_Centro_Inicio: this.form.value.idTriagemInicio ?? '',
+                    ID_Centro_Fim: this.form.value.idTriagemFim ?? '',
+                    Data_Coleta: null
+                };
             
-                // this.service.editarMotorista(this.idSelecionado, dadosEditaveis)
-                // .subscribe(() => {
-                //     this.snackbar.open('Motorista editado com sucesso', 'Ok')
-                //     this.router.navigate(['..'], {
-                //         relativeTo: this._activatedRoute
-                //     })
-                // });
+                this.service.editarRota(this.idSelecionado, dadosEditaveis)
+                .subscribe(() => {
+                    this.snackbar.open('Rota editada com sucesso', 'Ok')
+                    this.router.navigate(['..'], {
+                        relativeTo: this._activatedRoute
+                    })
+                });
     
             } else {
                 this.service.criarNovaColeta(dadosDoFormulario)

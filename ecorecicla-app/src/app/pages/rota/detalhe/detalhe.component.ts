@@ -105,18 +105,18 @@ export class PagesRotaDetalheComponent implements OnInit, OnDestroy {
 
     }
 
-    deletarFuncionario() {
-        // const podeExcluir = confirm('Tem certeza que deseja excluir este motorista?')
+    deletarRota() {
+        const podeExcluir = confirm('Tem certeza que deseja excluir esta rota?')
 
-        // if (podeExcluir) {
-        //     this.service.deletarMotorista(this.idSelecionado)
-        //         .subscribe(() => {
-        //             this.snackbar.open('Motorista excluido com sucesso', 'Ok')
-        //             this.router.navigate(['..'], {
-        //                 relativeTo: this.activeRoute
-        //             })
-        //         })
-        // }
+        if (podeExcluir) {
+            this.service.deletarRota(this.idSelecionado)
+                .subscribe(() => {
+                    this.snackbar.open('Rota excluida com sucesso', 'Ok')
+                    this.router.navigate(['..'], {
+                        relativeTo: this.activeRoute
+                    })
+                })
+        }
     }
 
     listarDados(){

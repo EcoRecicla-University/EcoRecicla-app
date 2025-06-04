@@ -30,4 +30,13 @@ export class RotaService {
         return this.http.get<EditarRotaModel>(apiUrl, {})
     }
 
+    editarRota(id: string, dados: EditarRotaModel): Observable<EditarRotaModel> {
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.put<EditarRotaModel>(apiUrl, dados)
+    }
+
+    deletarRota(id: string):Observable<void>{
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.delete<void>(apiUrl, {})
+    }
 }
