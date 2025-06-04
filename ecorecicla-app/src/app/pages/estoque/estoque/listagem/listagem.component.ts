@@ -6,7 +6,7 @@ import { ListagemEstoqueModel } from '../../../../core/models/private/estoque/li
 
 @Component({
   selector: 'app-estoque-lista',
-  templateUrl: './lista.component.html',
+  templateUrl: './listagem.component.html',
   standalone: true,
   imports: [CommonModule, MatTableModule]
 })
