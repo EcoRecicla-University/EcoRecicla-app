@@ -11,7 +11,7 @@ import { EditarClienteModel } from "../models/private/clientes/editarCliente.mod
 export class ClientesService {
 
     private apiUrl = 'http://localhost:8080/api/clientes';
-    
+    private apiRelatorioUrl = 'http://localhost:8080/api/relatorio/clientes';
 
     constructor(private http: HttpClient) { }
 
@@ -40,7 +40,7 @@ export class ClientesService {
     }
 
     getRelatorioClientes() {
-        const url = `${this.apiUrl}-relatorios`;
+        const url = `${this.apiRelatorioUrl}`;
         return this.http.get(url, {
             responseType: 'blob'
         });

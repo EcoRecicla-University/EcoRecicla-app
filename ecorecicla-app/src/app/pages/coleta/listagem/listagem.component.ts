@@ -1,5 +1,5 @@
 import { DatePipe, NgForOf } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -12,7 +12,8 @@ import { RouterLink } from "@angular/router";
 import { ColetaService } from "../../../core/services/coleta.service";
 import { ListagemColetaModel, StatusColetaEnum } from "../../../core/models/private/coleta/listaColeta.model";
 import { ClientesService } from "../../../core/services/clientes.service";
-
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { DialogListaColetaComponent } from "./dialog/dialog.component";
 @Component ({
     selector: 'app-pages-coleta-listagem',
     templateUrl: './listagem.component.html',
@@ -27,19 +28,21 @@ import { ClientesService } from "../../../core/services/clientes.service";
         MatButtonModule,
         MatMenuModule,
         RouterLink,
-        DatePipe
+        DatePipe,
+        MatDialogModule
     ],
     providers: []
 })
 
 export class PagesColetaListagemComponent implements OnInit{
+    readonly dialog = inject(MatDialog);
 
     DadosListaColeta: ListagemColetaModel[] = [];
 
     StatusColetaEnum = StatusColetaEnum;
 
     constructor(
-        private service: ColetaService
+        private service: ColetaService,
     ) {}
 
     ngOnInit(): void {
@@ -48,4 +51,9 @@ export class PagesColetaListagemComponent implements OnInit{
             this.DadosListaColeta = listaColetas
         })
     }
+
+    openDialog() {
+    this.dialog.open(DialogListaColetaComponent);
+        
+  }
 }

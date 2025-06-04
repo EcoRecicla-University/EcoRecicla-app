@@ -7,6 +7,7 @@ export enum StatusColetaEnum {
 
 export interface ListagemColetaModel {
     Nome: string;
+    Nome_Cliente?: string;
     ID_Coleta: string;
     Data_Coleta: string;
     ID_Cliente: string;

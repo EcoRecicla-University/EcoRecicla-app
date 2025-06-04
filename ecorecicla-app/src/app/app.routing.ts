@@ -26,6 +26,7 @@ import { PagesTriagemListagemComponent } from "./pages/triagem/listagem/listagem
 import { PagesColetaDetalheComponent } from "./pages/coleta/detalhe/detalhe.component";
 import { PagesRotaListagemComponent } from "./pages/rota/listagem/listagem.component";
 import { PagesRotaDetalheComponent } from "./pages/rota/detalhe/detalhe.component";
+import { PagesColetaDashboardComponent } from "./pages/coleta/dashboard/dashboard.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -195,6 +196,10 @@ export const APP_ROUTES: Routes = [
                     {
                         path: 'novo',
                         component: PagesColetaCadastroComponent
+                    },
+                    {
+                        path: 'dashboard',
+                        component: PagesColetaDashboardComponent
                     },
                     {
                         path: ':id',

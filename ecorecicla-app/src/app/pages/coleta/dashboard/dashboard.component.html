@@ -1,0 +1,48 @@
+<div class="pt-10 px-10">
+    <div class="flex justify-between">
+        <h1 class="text-4xl font-light">Dashboard de Coletas</h1>
+    </div>
+    <div class="w-hull pt-3">
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+        <form class="flex items-center gap-4 mt-4" [formGroup]="form" (ngSubmit)="filtrar()">
+            <div class="flex flex-col gap-1">
+                <span class="font-bold">Data inicial</span>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput [matDatepicker]="pickerInicio" placeholder="Data inicial" name="dataInicio" [formControlName]="'dataInicio'">
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerInicio></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="flex flex-col gap-1">
+                <span class="font-bold">Data final</span>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput [matDatepicker]="pickerFim" placeholder="Data final" name="dataFim" [formControlName]="'dataFim'">
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerFim"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFim></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <button
+                type="submit"
+                class="flex items-center rounded-3xl px-5 py-2 text-white bg-blue-600 hover:bg-blue-800 cursor-pointer">
+                <mat-icon 
+                    [fontIcon]="'search'" 
+                    class="mr-2"></mat-icon>
+                Filtrar
+            </button>
+        </form>
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+    </div>
+    <div class="mt-4">
+        <ngx-charts-bar-vertical
+            [results]="single"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </div>
+</div>

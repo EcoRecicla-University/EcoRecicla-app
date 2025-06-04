@@ -88,8 +88,20 @@ export class LayoutPrivateSidebarComponent {
         {
             icon: 'pallet',
             label: 'Coletas',
-            type: 'ITEM',
-            url: '/coleta'
+            type: 'GRUPO',
+            // url: '/coleta',
+            children: [
+                {
+                    // icon: 'pallet',
+                    label: 'Dashboard',
+                    // type: 'ITEM',
+                    url: '/coleta/dashboard'
+                },
+                {
+                    label: 'Consulta',
+                    url: '/coleta'
+                },
+            ]
         },
         {
             icon: 'control_camera',
