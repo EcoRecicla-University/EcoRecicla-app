@@ -5,6 +5,7 @@ import { Observable, of } from "rxjs";
 import { ListagemTriagemModel } from "../models/private/triagem/listagemTriagem.model";
 import { CadastroRotaModel } from "../models/private/rota/cadastroRota.model";
 import { ListagemRotaModel } from "../models/private/rota/listagemRota.model";
+import { EditarRotaModel } from "../models/private/rota/editarRota.model";
 
 @Injectable({
     providedIn: 'root'
@@ -21,25 +22,12 @@ export class RotaService {
     }
 
     getRotas(): Observable<any>{
-        // return of(
-        //     [
-        //         {
-        //             ID_Rota: '1',
-        //             Nome_Cliente: 'José',
-        //             Nome_Centro_Inicio: 'Centro de curitiba',
-        //             Nome_Centro_Final: 'Centro de araucaria'
-
-        //         },
-        //         {
-        //             ID_Rota: '2',
-        //             Nome_Cliente: 'Yasmin',
-        //             Nome_Centro_Inicio: 'Centro de Guarapuava',
-        //             Nome_Centro_Final: 'Centro de Ponta Grossa'
-        //         }
-
-        //     ]
-        // )
         return this.http.get<ListagemRotaModel[]>(this.apiUrl, {})
+    }
+
+    getRota(id: string): Observable<EditarRotaModel> {
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.get<EditarRotaModel>(apiUrl, {})
     }
 
 }
