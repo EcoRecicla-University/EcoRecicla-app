@@ -22,4 +22,16 @@ export class TriagemService {
         return this.http.post<CadastroTriagemModel>(apiUrl, dados);
     }
 
+    getCentroTriagemById(id: number): Observable<CadastroTriagemModel> {
+        return this.http.get<CadastroTriagemModel>(`${this.apiUrl}/${id}`);
+    }
+
+    editarCentroTriagem(id: number, dados: CadastroTriagemModel): Observable<any> {
+        return this.http.put(`${this.apiUrl}/${id}`, dados);
+    }
+
+    inativarCentroTriagem(id: number): Observable<void> {
+        return this.http.patch<void>(`${this.apiUrl}/${id}/inativar`, {});
+    }
+    
 }

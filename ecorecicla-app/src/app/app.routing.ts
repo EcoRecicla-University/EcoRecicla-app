@@ -25,6 +25,7 @@ import { PagesTriagemCadastroComponent } from "./pages/triagem/cadastro/cadastro
 import { PagesTriagemListagemComponent } from "./pages/triagem/listagem/listagem.component";
 import { PagesColetaDetalheComponent } from "./pages/coleta/detalhe/detalhe.component";
 import { PagesRotaListagemComponent } from "./pages/rota/listagem/listagem.component";
+import { PagesTriagemDetalheComponent } from "./pages/triagem/detalhe/detalhe.component";
 
 export const APP_ROUTES: Routes = [
   {
@@ -127,7 +128,9 @@ export const APP_ROUTES: Routes = [
         path: 'triagem',
         children: [
           { path: '', component: PagesTriagemListagemComponent },
-          { path: 'novo', component: PagesTriagemCadastroComponent }
+          { path: 'novo', component: PagesTriagemCadastroComponent },
+          { path: ':id', component: PagesTriagemDetalheComponent },
+          { path: ':id/editar', component: PagesTriagemCadastroComponent }  
         ]
       }
     ]

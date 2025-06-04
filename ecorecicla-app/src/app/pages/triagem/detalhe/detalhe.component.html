@@ -1,0 +1,86 @@
+<div class="pt-10 px-10" *ngIf="!carregando">
+  <div class="flex gap-2">
+    <button mat-icon-button [routerLink]="['/triagem']">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="text-4xl font-light">Detalhes do Centro de Triagem</h1>
+  </div>
+
+  <h2 class="text-gray-400 pt-5">Informações cadastradas</h2>
+
+  <div class="flex flex-col max-w-4xl pt-5">
+    <div class="flex flex-col pt-2">
+      <label>Nome do centro de triagem</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput [value]="dados?.Nome_Centro" disabled />
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col pt-2">
+      <label>Capacidade Armazenamento</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput [value]="dados?.Capacidade_Armaze" disabled />
+      </mat-form-field>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 pt-4">
+      <div class="flex flex-col">
+        <label>CEP</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput [value]="dados?.Endereco?.CEP" disabled />
+        </mat-form-field>
+      </div>
+
+      <div class="flex flex-col">
+        <label>Logradouro</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput [value]="dados?.Endereco?.Logradouro" disabled />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label>Cidade</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput [value]="dados?.Endereco?.Localidade" disabled />
+        </mat-form-field>
+      </div>
+
+      <div class="flex flex-col">
+        <label>Bairro</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput [value]="dados?.Endereco?.Bairro" disabled />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label>Estado</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput [value]="dados?.Endereco?.Estado" disabled />
+        </mat-form-field>
+      </div>
+
+      <div class="flex flex-col">
+        <label>Número</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput [value]="dados?.Endereco?.Numero" disabled />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex gap-4 mt-6">
+    <button mat-raised-button color="primary" [routerLink]="['/triagem', idCentro, 'editar']">
+      <mat-icon class="mr-2">edit</mat-icon> Editar
+    </button>
+
+    <button mat-raised-button color="warn" (click)="inativar()">
+      <mat-icon class="mr-2">block</mat-icon> Inativar
+    </button>
+  </div>
+</div>
+
+<mat-progress-bar mode="indeterminate" *ngIf="carregando"></mat-progress-bar>
