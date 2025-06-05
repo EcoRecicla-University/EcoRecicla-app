@@ -1,42 +1,38 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable } from "rxjs";
 import { CadastroVeiculosModel } from "../models/private/veiculos/cadastroVeiculos.model";
 import { ListaVeiculosModel } from "../models/private/veiculos/listaVeiculos.model";
+import { DetalheVeiculoModel } from "../models/private/veiculos/detalheVeiculo.model";
+import { EditarVeiculoModel } from "../models/private/veiculos/editarVeiculo.model";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class VeiculosService {
 
-    private apiUrl = 'http://localhost:8080/api/veiculos';
+  private apiUrl = 'http://localhost:8080/api/veiculos';
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    // getCliente(id: string): Observable<DadosClientesModel>{
-    //     const apiUrl = `${this.apiUrl}/${id}`;
-    //     return this.http.get<DadosClientesModel>(apiUrl, {})
-    // }
+  getVeiculos(somentedisponiveis: boolean): Observable<ListaVeiculosModel[]> {
+    const params = new HttpParams().set('somenteDisponiveis', somentedisponiveis);
+    return this.http.get<ListaVeiculosModel[]>(this.apiUrl, { params });
+  }
 
-    getVeiculos(somentedisponiveis: boolean): Observable<ListaVeiculosModel[]>{
-        const parametros = {
-            somenteDisponiveis: somentedisponiveis
-        }
-        return this.http.get<ListaVeiculosModel[]>(this.apiUrl, { params: parametros })
-    }
+  criarNovoVeiculo(dados: CadastroVeiculosModel): Observable<CadastroVeiculosModel> {
+    return this.http.post<CadastroVeiculosModel>(this.apiUrl, dados);
+  }
 
-    criarNovoVeiculo(dados: CadastroVeiculosModel): Observable<CadastroVeiculosModel> {
-        const apiUrl = `${this.apiUrl}`;
-        return this.http.post<CadastroVeiculosModel>(apiUrl, dados);
-    }
+  getVeiculo(id: number): Observable<DetalheVeiculoModel> {
+    return this.http.get<DetalheVeiculoModel>(`${this.apiUrl}/${id}`);
+  }
 
-    // editarCliente(id: string, dados: EditarClienteModel): Observable<EditarClienteModel> {
-    //     const apiUrl = `${this.apiUrl}/${id}`;
-    //     return this.http.put<EditarClienteModel>(apiUrl, dados)
-    // }
+  editarVeiculo(id: number, dados: EditarVeiculoModel): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, dados);
+  }
 
-    // deletarCliente(id: string):Observable<void>{
-    //     const apiUrl = `${this.apiUrl}/${id}`;
-    //     return this.http.delete<void>(apiUrl, {})
-    // }
+  inativarVeiculo(id: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${id}/inativar`, null);
+  }
 }

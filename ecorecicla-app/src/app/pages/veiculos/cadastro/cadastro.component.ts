@@ -12,108 +12,72 @@ import { NgForOf, NgIf } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSelectModule } from "@angular/material/select";
-import { ListagemMotoristaModel } from "../../../core/models/private/funcionarios/motoristas/listaMotorista.model";
-import { MotoristaService } from "../../../core/services/funcionarios/motorista.service";
 
-@Component ({
-    selector: 'app-pages-veiculos',
-    templateUrl: './cadastro.component.html',
-    imports: [
-        MatFormFieldModule, 
-        MatInputModule, 
-        MatDatepickerModule, 
-        MatSelectModule,
-        MatIconModule,
-        MatButtonModule,
-        RouterLink,
-        ReactiveFormsModule,
-        NgIf
-    ]
+@Component({
+  selector: 'app-pages-veiculos',
+  templateUrl: './cadastro.component.html',
+  standalone: true,
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterLink,
+    ReactiveFormsModule,
+    NgIf
+  ]
 })
-
-    
 export class PagesVeiculosCadastroComponent implements OnInit {
 
-    public isEdicao = false;
+  public isEdicao = false;
+  public idSelecionado = null;
 
-    public idSelecionado = null
+  public form = new FormGroup({
+    placa: new FormControl('', Validators.required),
+    modeloVeiculo: new FormControl('', Validators.required),
+    quilometragem: new FormControl('', Validators.required),
+    renavam: new FormControl('', Validators.required),
+    capacidade: new FormControl('', Validators.required)
+  });
 
-    public form = new FormGroup({
-        placa: new FormControl('', Validators.required),
-        modeloVeiculo: new FormControl('', Validators.required),
-        quilometragem: new FormControl('', Validators.required),
-        renavam: new FormControl('', Validators.required),
-        capacidade: new FormControl('', Validators.required)
-    })
+  constructor(
+    private router: Router,
+    private _activatedRoute: ActivatedRoute,
+    private service: VeiculosService,
+    private snackbar: MatSnackBar
+  ) { }
 
-    constructor(
-        private router: Router,
-        private _activatedRoute: ActivatedRoute,
-        private service: VeiculosService,
-        private snackbar: MatSnackBar
-    ) { }
+  ngOnInit(): void {
+    
+  }
 
-    ngOnInit(): void {
-        // const id = this._activatedRoute.snapshot.params['id'];
-        // if (id) {
-        //     this.isEdicao = true;
-        //     this.idSelecionado = id
-        //     this.service.getCliente(id)
-        //     .subscribe(cliente => {
-        //         this.form.patchValue({
-        //             nome: cliente.Nome,
-        //             cpf: cliente.CPF,
-        //             cnpj: cliente.CNPJ,
-        //             telefone: cliente.Telefone,
-        //             pontoDeColeta: cliente.Pontos_Coleta,
-        //             tipoCliente: cliente.Tipo_Cliente
-        //         })
-        //     })
-        // } else {
-        //     this.isEdicao = false;
-        // }
-
+  salvar() {
+    if (this.form.invalid) {
+      this.snackbar.open('Por favor, preencha todos os campos obrigatórios.', 'Fechar', { duration: 3000 });
+      return;
     }
 
-    salvar() {
-        const dadosDoFormulario: CadastroVeiculosModel = {
-            Placa: this.form.value.placa ?? '',
-            Modelo: this.form.value.modeloVeiculo || undefined,
-            Quilometragem: this.form.value.quilometragem || undefined,
-            Renavam: this.form.value.renavam ?? '',
-            Capacidade_em_Kg: this.form.value.capacidade ?? ''
-        }
+    const dadosDoFormulario: CadastroVeiculosModel = {
+      Placa: this.form.value.placa ?? '',
+      Modelo: this.form.value.modeloVeiculo || undefined,
+      Quilometragem: this.form.value.quilometragem || undefined,
+      Renavam: this.form.value.renavam ?? '',
+      Capacidade_em_Kg: this.form.value.capacidade ?? ''
+    };
 
-        if (this.isEdicao) {
-            // const dadosEditaveis: EditarClienteModel = {
-            //     Id: this.idSelecionado,
-            //     Nome: this.form.value.nome ?? '',
-            //     CPF: this.form.value.cpf || undefined,
-            //     CNPJ: this.form.value.cnpj || undefined,
-            //     Telefone: this.form.value.telefone ?? '',
-            //     Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
-            //     Tipo_Cliente: this.form.value.tipoCliente ?? ''
-            // };
-        
-            // this.service.editarCliente(this.idSelecionado, dadosEditaveis)
-            // .subscribe(() => {
-            //     this.snackbar.open('Cliente editado com sucesso', 'Ok')
-            //     this.router.navigate(['..'], {
-            //         relativeTo: this._activatedRoute
-            //     })
-            // });
-
-        } else {
-            this.service.criarNovoVeiculo(dadosDoFormulario)
-            .subscribe(() => {
-                this.snackbar.open('Veiculo criado com sucesso', 'Ok')
-                this.router.navigate(['..'], {
-                    relativeTo: this._activatedRoute
-                })
-            },
-            (error) => {
-                this.snackbar.open(error.error.error, 'Ok')
-            })
-        }
-    }
+    this.service.criarNovoVeiculo(dadosDoFormulario).subscribe({
+      next: () => {
+        this.snackbar.open('Veículo criado com sucesso', 'Fechar', { duration: 3000 });
+        this.router.navigate(['..'], {
+          relativeTo: this._activatedRoute
+        });
+      },
+      error: (err) => {
+        const msg = err?.error?.error || 'Erro ao criar veículo. Verifique os dados e tente novamente.';
+        this.snackbar.open(msg, 'Fechar', { duration: 5000 });
+      }
+    });
+  }
 }

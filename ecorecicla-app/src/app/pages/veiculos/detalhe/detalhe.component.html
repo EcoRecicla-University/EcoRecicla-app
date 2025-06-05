@@ -1,0 +1,98 @@
+<div class="p-10 max-w-5xl mx-auto">
+  <div class="flex items-center pt-5">
+    <button mat-icon-button [routerLink]="['..']">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="text-3xl font-light leading-none ml-2 mt-1">Detalhes do Veículo</h1>
+    <div class="ml-auto flex gap-2">
+      <button mat-button color="warn" (click)="inativar()">
+        <mat-icon>delete</mat-icon>
+        Inativar
+      </button>
+      <button mat-button color="primary" (click)="alternarModoEdicao()">
+        <mat-icon>{{ modoEdicao ? 'close' : 'edit' }}</mat-icon>
+        {{ modoEdicao ? 'Cancelar' : 'Editar' }}
+      </button>
+    </div>
+  </div>
+
+  <hr class="my-4 border-gray-400 w-full" />
+
+  <div class="flex items-center gap-2 mb-4 pl-1">
+    <small class="text-gray-600">ID do veículo:</small>
+    <strong>{{ dadosDetalhe?.ID_Veiculo }}</strong>
+    <span class="mx-2">|</span>
+  </div>
+
+  <!-- MODO EDIÇÃO -->
+  <form *ngIf="modoEdicao" [formGroup]="formEdicao" (ngSubmit)="salvarEdicao()" class="flex flex-col gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="w-full">
+        <label>Placa</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput formControlName="Placa" class="w-full" />
+      </mat-form-field>
+    </div>
+    <div class="w-full">
+        <label>Modelo</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput formControlName="Modelo" class="w-full" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="w-full">
+        <label>Quilometragem</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput formControlName="Quilometragem" class="w-full" />
+      </mat-form-field>
+    </div>
+    <div class="w-full">
+        <label>Renavam</label>
+      <mat-form-field appearance="outline" class="w-full">
+        <input matInput formControlName="Renavam" class="w-full" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="w-full">
+        <label>Capacidade (em Kg)</label>
+    <mat-form-field appearance="outline" class="w-full">
+      <input matInput formControlName="Capacidade_em_Kg" class="w-full" />
+    </mat-form-field>
+  </div>
+
+  <div class="flex justify-end mt-2">
+    <button type="submit" mat-flat-button color="primary">Salvar Alterações</button>
+  </div>
+</form>
+
+  <!-- MODO VISUALIZAÇÃO -->
+  <div *ngIf="!modoEdicao" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1">
+      <small class="text-gray-600">Placa</small>
+      <div>{{ dadosDetalhe?.Placa }}</div>
+    </div>
+
+    <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1">
+      <small class="text-gray-600">Modelo</small>
+      <div>{{ dadosDetalhe?.Modelo }}</div>
+    </div>
+
+    <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1">
+      <small class="text-gray-600">Quilometragem</small>
+      <div>{{ dadosDetalhe?.Quilometragem }}</div>
+    </div>
+
+    <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1">
+      <small class="text-gray-600">RENAVAM</small>
+      <div>{{ dadosDetalhe?.Renavam }}</div>
+    </div>
+
+    <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 md:col-span-2">
+      <small class="text-gray-600">Capacidade (em Kg)</small>
+      <div>{{ dadosDetalhe?.Capacidade_em_Kg }}</div>
+    </div>
+  </div>
+</div>

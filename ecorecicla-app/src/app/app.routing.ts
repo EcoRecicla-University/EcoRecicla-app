@@ -112,7 +112,8 @@ export const APP_ROUTES: Routes = [
         path: 'veiculos',
         children: [
           { path: '', component: PagesVeiculosListagemComponent },
-          { path: 'novo', component: PagesVeiculosCadastroComponent }
+          { path: 'novo', component: PagesVeiculosCadastroComponent },
+          { path: ':id', loadComponent: () => import('./pages/veiculos/detalhe/detalhe.component').then(m => m.VeiculosDetalheComponent) }
         ]
       },
       {
