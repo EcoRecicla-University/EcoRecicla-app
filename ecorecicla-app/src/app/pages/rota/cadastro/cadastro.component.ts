@@ -105,7 +105,6 @@ export class PagesRotaCadastroComponent implements OnInit{
         } else {
             this.isEdicao = false;
         }
-
         if(this.isEdicao == true){
 
             this.veiculoService.getVeiculos(false)
