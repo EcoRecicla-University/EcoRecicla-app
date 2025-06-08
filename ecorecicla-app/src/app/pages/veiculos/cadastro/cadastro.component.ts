@@ -14,6 +14,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSelectModule } from "@angular/material/select";
 import { ListagemMotoristaModel } from "../../../core/models/private/funcionarios/motoristas/listaMotorista.model";
 import { MotoristaService } from "../../../core/services/funcionarios/motorista.service";
+import { EditarVeiculosModel } from "../../../core/models/private/veiculos/editarVeiculos.model";
 
 @Component ({
     selector: 'app-pages-veiculos',
@@ -54,54 +55,52 @@ export class PagesVeiculosCadastroComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        // const id = this._activatedRoute.snapshot.params['id'];
-        // if (id) {
-        //     this.isEdicao = true;
-        //     this.idSelecionado = id
-        //     this.service.getCliente(id)
-        //     .subscribe(cliente => {
-        //         this.form.patchValue({
-        //             nome: cliente.Nome,
-        //             cpf: cliente.CPF,
-        //             cnpj: cliente.CNPJ,
-        //             telefone: cliente.Telefone,
-        //             pontoDeColeta: cliente.Pontos_Coleta,
-        //             tipoCliente: cliente.Tipo_Cliente
-        //         })
-        //     })
-        // } else {
-        //     this.isEdicao = false;
-        // }
+        const id = this._activatedRoute.snapshot.params['id'];
+        if (id) {
+            this.isEdicao = true;
+            this.idSelecionado = id
+            this.service.getVeiculo(id)
+            .subscribe(veiculo => {
+                this.form.patchValue({
+                    modeloVeiculo: veiculo.Modelo,
+                    placa: veiculo.Placa,
+                    renavam: veiculo.Renavam,
+                    capacidade: veiculo.Capacidade_em_Kg,
+                    quilometragem: veiculo.Quilometragem
+                })
+            })
+        } else {
+            this.isEdicao = false;
+        }
 
     }
 
     salvar() {
         const dadosDoFormulario: CadastroVeiculosModel = {
             Placa: this.form.value.placa ?? '',
-            Modelo: this.form.value.modeloVeiculo || undefined,
-            Quilometragem: this.form.value.quilometragem || undefined,
+            Modelo: this.form.value.modeloVeiculo ?? '',
+            Quilometragem: this.form.value.quilometragem ?? '',
             Renavam: this.form.value.renavam ?? '',
             Capacidade_em_Kg: this.form.value.capacidade ?? ''
         }
 
         if (this.isEdicao) {
-            // const dadosEditaveis: EditarClienteModel = {
-            //     Id: this.idSelecionado,
-            //     Nome: this.form.value.nome ?? '',
-            //     CPF: this.form.value.cpf || undefined,
-            //     CNPJ: this.form.value.cnpj || undefined,
-            //     Telefone: this.form.value.telefone ?? '',
-            //     Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
-            //     Tipo_Cliente: this.form.value.tipoCliente ?? ''
-            // };
+            const dadosEditaveis: EditarVeiculosModel = {
+                ID_Veiculo: this.idSelecionado,
+                Modelo: this.form.value.modeloVeiculo ?? '',
+                Placa: this.form.value.placa ?? '',
+                Renavam: this.form.value.renavam ?? '',
+                Quilometragem: this.form.value.quilometragem ?? '',
+                Capacidade_em_Kg: this.form.value.capacidade ?? ''
+            };
         
-            // this.service.editarCliente(this.idSelecionado, dadosEditaveis)
-            // .subscribe(() => {
-            //     this.snackbar.open('Cliente editado com sucesso', 'Ok')
-            //     this.router.navigate(['..'], {
-            //         relativeTo: this._activatedRoute
-            //     })
-            // });
+            this.service.editarVeiculo(this.idSelecionado, dadosEditaveis)
+            .subscribe(() => {
+                this.snackbar.open('Veiculo editado com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            });
 
         } else {
             this.service.criarNovoVeiculo(dadosDoFormulario)

@@ -16,8 +16,7 @@ import { VeiculosService } from "../../../core/services/veiculos.service";
         NgIf,
         MatMenuModule,
         MatIconModule,
-        MatButtonModule,
-        DatePipe
+        MatButtonModule
     ]
 })
 export class PagesVeiculosDetalheComponent implements OnInit, OnDestroy {
@@ -38,7 +37,7 @@ export class PagesVeiculosDetalheComponent implements OnInit, OnDestroy {
             .subscribe((params) => {
                 const id = params['id'];
                 this.idSelecionado = id;
-                this.service.getMotorista(id)
+                this.service.getVeiculo(id)
                     .subscribe((motorista) => {
                         this.veiculoSelecionado = motorista;
                     })

@@ -14,7 +14,7 @@ export class VeiculosService {
 
     constructor(private http: HttpClient) { }
 
-    getMotorista(id: string): Observable<EditarVeiculosModel>{
+    getVeiculo(id: string): Observable<EditarVeiculosModel>{
         const apiUrl = `${this.apiUrl}/${id}`;
         return this.http.get<EditarVeiculosModel>(apiUrl, {})
     }
@@ -31,10 +31,10 @@ export class VeiculosService {
         return this.http.post<CadastroVeiculosModel>(apiUrl, dados);
     }
 
-    // editarCliente(id: string, dados: EditarClienteModel): Observable<EditarClienteModel> {
-    //     const apiUrl = `${this.apiUrl}/${id}`;
-    //     return this.http.put<EditarClienteModel>(apiUrl, dados)
-    // }
+    editarVeiculo(id: string, dados: EditarVeiculosModel): Observable<EditarVeiculosModel> {
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.put<EditarVeiculosModel>(apiUrl, dados)
+    }
 
     // deletarCliente(id: string):Observable<void>{
     //     const apiUrl = `${this.apiUrl}/${id}`;
