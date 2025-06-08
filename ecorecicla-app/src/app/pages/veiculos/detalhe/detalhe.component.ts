@@ -49,16 +49,19 @@ export class PagesVeiculosDetalheComponent implements OnInit, OnDestroy {
     }
 
     deletarFuncionario() {
-        // const podeExcluir = confirm('Tem certeza que deseja excluir este motorista?')
+        const podeExcluir = confirm('Tem certeza que deseja excluir este veiculo?')
 
-        // if (podeExcluir) {
-        //     this.service.deletarMotorista(this.idSelecionado)
-        //         .subscribe(() => {
-        //             this.snackbar.open('Motorista excluido com sucesso', 'Ok')
-        //             this.router.navigate(['..'], {
-        //                 relativeTo: this.activeRoute
-        //             })
-        //         })
-        // }
+        if (podeExcluir) {
+            this.service.deletarVeiculo(this.idSelecionado)
+            .subscribe(() => {
+                this.snackbar.open('Veiculo excluido com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this.activeRoute
+                })
+            },
+            (error) => {
+            this.snackbar.open(error.error.error, 'Ok')
+            })
+        }
     }
 }

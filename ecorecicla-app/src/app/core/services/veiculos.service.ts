@@ -36,8 +36,8 @@ export class VeiculosService {
         return this.http.put<EditarVeiculosModel>(apiUrl, dados)
     }
 
-    // deletarCliente(id: string):Observable<void>{
-    //     const apiUrl = `${this.apiUrl}/${id}`;
-    //     return this.http.delete<void>(apiUrl, {})
-    // }
+    deletarVeiculo(id: string):Observable<void>{
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.delete<void>(apiUrl, {})
+    }
 }
