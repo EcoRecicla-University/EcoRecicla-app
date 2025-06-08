@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { CadastroTriagemModel } from "../models/private/triagem/cadastroTriagem.model";
 import { Observable } from "rxjs";
 import { ListagemTriagemModel } from "../models/private/triagem/listagemTriagem.model";
+import { EditarTriagemModel } from "../models/private/triagem/editarTriagem.model";
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +17,11 @@ export class TriagemService {
     getCentrosTriagem(){
         return this.http.get<ListagemTriagemModel[]>(this.apiUrl, {})
     }
+
+    getCentroTriagem(id: string): Observable<EditarTriagemModel>{
+            const apiUrl = `${this.apiUrl}/${id}`;
+            return this.http.get<EditarTriagemModel>(apiUrl, {})
+        }
 
     criarNovoCentroTriagem(dados: CadastroTriagemModel): Observable<CadastroTriagemModel> {
         const apiUrl = `${this.apiUrl}`;
