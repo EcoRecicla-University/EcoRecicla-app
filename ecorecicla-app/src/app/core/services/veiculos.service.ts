@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { CadastroVeiculosModel } from "../models/private/veiculos/cadastroVeiculos.model";
 import { ListaVeiculosModel } from "../models/private/veiculos/listaVeiculos.model";
+import { EditarVeiculosModel } from "../models/private/veiculos/editarVeiculos.model";
 
 @Injectable({
     providedIn: 'root'
@@ -13,10 +14,10 @@ export class VeiculosService {
 
     constructor(private http: HttpClient) { }
 
-    // getCliente(id: string): Observable<DadosClientesModel>{
-    //     const apiUrl = `${this.apiUrl}/${id}`;
-    //     return this.http.get<DadosClientesModel>(apiUrl, {})
-    // }
+    getMotorista(id: string): Observable<EditarVeiculosModel>{
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.get<EditarVeiculosModel>(apiUrl, {})
+    }
 
     getVeiculos(somentedisponiveis: boolean): Observable<ListaVeiculosModel[]>{
         const parametros = {

@@ -20,12 +20,9 @@ import { MotoristaService } from "../../../../core/services/funcionarios/motoris
         MatFormFieldModule, 
         MatInputModule, 
         MatIconModule, 
-        MatSelectModule, 
-        MatCheckboxModule, 
-        MatRadioModule, 
+        MatSelectModule,
         NgForOf,
         MatButtonModule,
-        MatMenuModule,
         RouterLink,
         DatePipe
     ]

@@ -4,6 +4,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { RouterLink } from "@angular/router";
 import { VeiculosService } from "../../../core/services/veiculos.service";
 import { ListaVeiculosModel } from "../../../core/models/private/veiculos/listaVeiculos.model";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component ({
     selector: 'app-pages-veiculos-listagem',
@@ -11,7 +12,8 @@ import { ListaVeiculosModel } from "../../../core/models/private/veiculos/listaV
     imports: [
         NgForOf,
         MatIconModule,
-        RouterLink
+        MatButtonModule,
+        RouterLink,
     ]
 })
 export class PagesVeiculosListagemComponent implements OnInit{

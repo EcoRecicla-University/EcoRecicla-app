@@ -27,6 +27,7 @@ import { PagesColetaDetalheComponent } from "./pages/coleta/detalhe/detalhe.comp
 import { PagesRotaListagemComponent } from "./pages/rota/listagem/listagem.component";
 import { PagesRotaDetalheComponent } from "./pages/rota/detalhe/detalhe.component";
 import { PagesColetaDashboardComponent } from "./pages/coleta/dashboard/dashboard.component";
+import { PagesVeiculosDetalheComponent } from "./pages/veiculos/detalhe/detalhe.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -183,6 +184,10 @@ export const APP_ROUTES: Routes = [
                     {
                         path: 'novo',
                         component: PagesVeiculosCadastroComponent
+                    },
+                    {
+                        path: ':id',
+                        component: PagesVeiculosDetalheComponent
                     },
                 ]
             },
