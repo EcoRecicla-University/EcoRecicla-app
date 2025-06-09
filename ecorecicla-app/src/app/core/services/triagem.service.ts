@@ -28,4 +28,9 @@ export class TriagemService {
         return this.http.post<CadastroTriagemModel>(apiUrl, dados);
     }
 
+    editarTriagem(id: string, dados: EditarTriagemModel): Observable<EditarTriagemModel> {
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.put<EditarTriagemModel>(apiUrl, dados)
+    }
+
 }

@@ -13,6 +13,7 @@ import { EnderecoService } from "../../../core/services/endereco.service";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { TriagemService } from "../../../core/services/triagem.service";
 import { CadastroTriagemModel } from "../../../core/models/private/triagem/cadastroTriagem.model";
+import { EditarTriagemModel } from "../../../core/models/private/triagem/editarTriagem.model";
 
 @Component ({
     selector: 'app-pages-veiculos',
@@ -62,6 +63,31 @@ export class PagesTriagemCadastroComponent implements OnInit {
 
     ngOnInit(): void {
         this._desabilitarFormularioEndereco()
+        const id = this._activatedRoute.snapshot.params['id'];
+        if (id) {
+            this.isEdicao = true;
+            this.idSelecionado = id
+            this.service.getCentroTriagem(id).subscribe(triagem => {
+
+                this.form.patchValue({
+                    nomeCentro: triagem.Nome_Centro,
+                    capacidade: triagem.Capaci_Armaze
+                })
+                if(triagem.Endereco){
+                    this.form.get('endereco').patchValue({
+                        cep: triagem.Endereco.CEP,
+                        logradouro: triagem.Endereco.Logradouro,
+                        localidade: triagem.Endereco.Cidade,
+                        estado: triagem.Endereco.Estado,
+                        bairro: triagem.Endereco.Bairro,
+                        numero: triagem.Endereco.Numero
+                    })
+                }
+
+            })
+        } else {
+            this.isEdicao = false;
+        }
     }
 
     salvar() {
@@ -82,30 +108,27 @@ export class PagesTriagemCadastroComponent implements OnInit {
         }
 
         if (this.isEdicao && this.idSelecionado) {
-            // const dadosEditaveis: EditarClienteModel = {
-            //     Id: this.idSelecionado,
-            //     Nome: this.form.value.nome ?? '',
-            //     CPF: this.form.value.cpf || undefined,
-            //     CNPJ: this.form.value.cnpj || undefined,
-            //     Telefone: this.form.value.telefone ?? '',
-            //     Tipo_Cliente: this.form.value.tipoCliente ?? '',
-            //     Endereco: {
-            //         CEP: this.form.value.endereco.cep ?? '',
-            //         Logradouro: this.form.get('endereco').get('logradouro').value,
-            //         Localidade: this.form.get('endereco').get('localidade').value,
-            //         Estado: this.form.get('endereco').get('estado').value,
-            //         Bairro: this.form.get('endereco').get('bairro').value,
-            //         Numero: this.form.value.endereco.numero ?? ''
-            //     }
-            // };
+            const dadosEditaveis: EditarTriagemModel = {
+                ID_Centro: this.idSelecionado,
+                Nome_Centro: this.form.value.nomeCentro ?? '',
+                Capaci_Armaze: this.form.value.capacidade ?? '',
+                Endereco: {
+                    CEP: this.form.value.endereco.cep ?? '',
+                    Logradouro: this.form.get('endereco').get('logradouro').value,
+                    Cidade: this.form.get('endereco').get('localidade').value,
+                    Estado: this.form.get('endereco').get('estado').value,
+                    Bairro: this.form.get('endereco').get('bairro').value,
+                    Numero: this.form.value.endereco.numero ?? ''
+                }
+            };
         
-            // this.service.editarCliente(this.idSelecionado, dadosEditaveis)
-            // .subscribe(() => {
-            //     this.snackbar.open('Cliente editado com sucesso', 'Ok')
-            //     this.router.navigate(['..'], {
-            //         relativeTo: this._activatedRoute
-            //     })
-            // });
+            this.service.editarTriagem(this.idSelecionado, dadosEditaveis)
+            .subscribe(() => {
+                this.snackbar.open('Centro de triagem editado com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            });
 
         } else {
             this.service.criarNovoCentroTriagem(dadosDoFormulario)
