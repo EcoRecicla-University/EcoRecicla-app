@@ -50,20 +50,20 @@ export class PagesTriagemDetalheComponent implements OnInit, OnDestroy {
 
     }
 
-    deletarFuncionario() {
-        // const podeExcluir = confirm('Tem certeza que deseja excluir este veiculo?')
+    deletarTriagem() {
+        const podeExcluir = confirm('Tem certeza que deseja excluir este Centro de triagem?')
 
-        // if (podeExcluir) {
-        //     this.service.deletarVeiculo(this.idSelecionado)
-        //     .subscribe(() => {
-        //         this.snackbar.open('Veiculo excluido com sucesso', 'Ok')
-        //         this.router.navigate(['..'], {
-        //             relativeTo: this.activeRoute
-        //         })
-        //     },
-        //     (error) => {
-        //     this.snackbar.open(error.error.error, 'Ok')
-        //     })
-        // }
+        if (podeExcluir) {
+            this.service.deletarTriagem(this.idSelecionado)
+            .subscribe(() => {
+                this.snackbar.open('Centro de triagem excluido com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this.activeRoute
+                })
+            },
+            (error) => {
+            this.snackbar.open(error.error.error, 'Ok')
+            })
+        }
     }
 }
