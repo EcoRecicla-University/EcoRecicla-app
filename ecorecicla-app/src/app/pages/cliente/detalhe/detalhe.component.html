@@ -1,0 +1,97 @@
+<div *ngIf="clienteSelecionado" class="p-10 max-w-5xl">
+    <div class="flex items-center pt-5">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1 class="text-3xl font-light leading-none ml-2 mt-1">Dados do Cliente</h1>
+    </div>
+    <hr class="my-4 border-gray-400 w-full" />
+    <div class="flex items-center justify-start">
+        <div class="pl-2 flex items-center gap-2">
+            <small class="text-gray-600">ID do usuário:</small>
+            <strong>
+                {{ clienteSelecionado.ID_Cliente }}
+            </strong>
+            <span class="flex mx-2">|</span>
+            <small class="text-gray-600">Cadastrado em:</small>
+            <span>
+                {{ clienteSelecionado.Data_Cadastro | date: 'dd/MM/yyyy' }}
+            </span>
+        </div>
+        <div class="ml-auto flex gap-2">
+            <button mat-button [routerLink]="'editar'">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+            </button>
+            <button mat-button (click)="deletarCliente()">
+                <mat-icon>delete</mat-icon>
+                <span>Excluir</span>
+            </button>
+        </div>
+    </div>
+    <div class="flex flex-col gap-4 mt-4">
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Nome
+                </small>
+                <div>
+                    {{ clienteSelecionado.Nome }}
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Telefone
+                </small>
+                <div>
+                    {{ clienteSelecionado.Telefone }}
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    CPF
+                </small>
+                <div *ngIf="clienteSelecionado.CPF">
+                    {{ clienteSelecionado.CPF }}
+                </div>
+                <div *ngIf="!clienteSelecionado.CPF" class="italic text-gray-800">
+                    Não informado
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    CNPJ
+                </small>
+                <div *ngIf="clienteSelecionado.CNPJ">
+                    {{ clienteSelecionado.CNPJ }}
+                </div>
+                <div *ngIf="!clienteSelecionado.CNPJ" class="italic text-gray-800">
+                    Não informado
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Tipo de cliente
+                </small>
+                <div>
+                    {{ TipoClienteEnum[clienteSelecionado.Tipo_Cliente] }}
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Número de pedidos
+                </small>
+                <div *ngIf="clienteSelecionado.Numero_Pedidos">
+                    {{ clienteSelecionado.Numero_Pedidos }}
+                </div>
+                <div *ngIf="!clienteSelecionado.Numero_Pedidos" class="italic text-gray-800">
+                    Nenhum pedido realizado
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

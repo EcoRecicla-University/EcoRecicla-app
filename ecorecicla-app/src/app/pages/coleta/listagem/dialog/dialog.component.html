@@ -1,0 +1,28 @@
+<div class="">
+    <h2 mat-dialog-title>Emitir relatório por data</h2>
+    <mat-dialog-content>
+        <form action="">
+            <div class="flex flex-col">
+                <label>Data Inicio</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput [matDatepicker]="pickerInicio" placeholder="Selecione uma data" [(ngModel)]="dataInicio" name="dataInicio">
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerInicio></mat-datepicker>
+                </mat-form-field>
+    
+            </div>
+            <div class="flex flex-col">
+                <label>Data Final</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <input matInput [matDatepicker]="pickerFinal" placeholder="Selecione uma data" [(ngModel)]="dataFim" name="dataFim">
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerFinal"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFinal></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions class="gap-4">
+      <button matButton mat-dialog-close>Cancelar</button>
+      <button matButton [mat-dialog-close]="true" (click)="baixarRelatorioPorData()">Confirmar</button>
+    </mat-dialog-actions>
+</div>

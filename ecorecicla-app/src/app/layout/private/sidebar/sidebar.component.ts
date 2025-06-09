@@ -1,14 +1,16 @@
-import { NgClass, NgForOf, NgIf, NgStyle } from "@angular/common";
+import { NgForOf, NgIf } from "@angular/common";
 import { Component } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { MatIconModule } from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { SidebarComponentesModel } from "../../../core/models/private/sidebar-componentes.model";
+import { SidebarComponentesModel } from "../../../core/models/private/veiculos/sidebar-componentes.model";
+
 
 type SidebarNavigationItem = {
     icon: string;
     label: string;
     url?: string;
+    type: 'GRUPO' | 'ITEM';
     children?: SidebarComponentesModel[]
 }
 
@@ -17,7 +19,6 @@ type SidebarNavigationItem = {
     templateUrl: 'sidebar.component.html',
     imports: [
         NgIf,
-        NgClass,
         NgForOf, 
         RouterLink, 
         MatIconModule, 
@@ -27,94 +28,86 @@ type SidebarNavigationItem = {
 
 export class LayoutPrivateSidebarComponent {
 
-    constructor() {
-
-    }
+    constructor() {}
 
     itemsidebar:SidebarNavigationItem[] = [
         {
             icon: 'home',
             label: 'Home',
-            children: [
-                {
-                    label: 'Pagina inicial',
-                    url: '/home'
-                },
-                {
-                    label: 'Relatório Geral',
-                    url: '/relatorios'
-                }
-            ]
+            type: 'ITEM',
+            url: '/home'
+        },
+        {
+            label: 'Clientes',
+            icon: 'person',
+            url: '/clientes',
+            type: 'ITEM',
         },
         {
             icon: 'route',
             label: 'Rota',
-            children: [
-                {
-                    label: 'Cadastro',
-                    url: '/rota'
-                },
-                {
-                    label: 'Listagem',
-                    url: '/ListagemRota'
-                }
-            ]
-        },
-        {
-            icon: 'person',
-            label: 'Cliente',
-            children: [
-                {
-                    label: 'Cadastro',
-                    url: '/cliente'
-                },
-                {
-                    label: 'Listagem',
-                    url: '/ListagemCliente'
-                }
-            ]
+            url: '/rota',
+            type: 'ITEM',
         },
         {
             icon: 'inventory_2',
             label: 'Estoque',
+            type: 'GRUPO',
             children: [
                 {
-                    label: 'Cadastro',
-                    url: '/estoque'
+                    label: 'Movimentos',
+                    url: '/movimentos'
                 },
                 {
-                    label: 'Listagem',
-                    url: '/ListagemEstoque'
+                    label: 'Estoque',
+                    url: '/estoque'
                 }
             ]
         },
         {
             icon: 'group_add',
             label: 'Cadastro',
+            type: 'GRUPO',
             children: [
                 {
-                    label: 'Cadastro',
-                    url: '/cadastro'
+                    label: 'Funcionarios',
+                    url: '/funcionarios'
                 },
                 {
-                    label: 'Listagem',
-                    url: '/ListagemCadastro'
+                    label: 'Motoristas',
+                    url: '/motoristas'
                 }
             ]
         },
         {
             icon: 'local_shipping',
             label: 'Veiculos',
+            type: 'ITEM',
+            url: '/veiculos'
+        },
+        {
+            icon: 'pallet',
+            label: 'Coletas',
+            type: 'GRUPO',
+            // url: '/coleta',
             children: [
                 {
-                    label: 'Cadastro',
-                    url: '/veiculos'
+                    // icon: 'pallet',
+                    label: 'Dashboard',
+                    // type: 'ITEM',
+                    url: '/coleta/dashboard'
                 },
                 {
-                    label: 'Listagem',
-                    url: '/ListagemVeiculos'
-                }
+                    label: 'Consulta',
+                    url: '/coleta'
+                },
             ]
-        }
+        },
+        {
+            icon: 'control_camera',
+            label: 'Triagem',
+            type: 'ITEM',
+            url: '/triagem'
+        },
     ]
 }

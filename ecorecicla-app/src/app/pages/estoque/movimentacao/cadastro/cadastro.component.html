@@ -1,0 +1,78 @@
+<div class="pt-10 px-10">
+    <h1 class="text-4xl font-light">Estoque</h1>
+    <h2 class="text-gray-400 pt-5">Visualização do estoque</h2>
+    <div class="w-full pt-3">
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+    </div>
+    <form [formGroup]="form" class="grid grid-cols-1 lg:grid-cols-2 max-w-5xl">
+            <div>
+                <!-- <div class="flex flex-col pt-7">
+                    <label>Nome do Resíduo</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput placeholder="Digite o nome do resíduo" class="w-full" [formControlName]="'nomeResiduo'">
+                    </mat-form-field>
+                </div> -->
+    
+            <div class="flex flex-col pt-1">
+                <label for="chaveColeta">Chave de coleta</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-select placeholder="Selecione um tipo" [formControlName]="'chaveColeta'">
+                        <mat-option value="O">Madeira</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+    
+            <div class="flex flex-col pt-1">
+                <label for="tipoResiduo">Tipo de Resíduo:</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-select id="tipoResiduo" placeholder="Selecione um tipo" required>
+                        <mat-option value="madeira">Madeira</mat-option>
+                        <mat-option value="plastico">Plástico</mat-option>
+                        <mat-option value="vidro">Vidro</mat-option>
+                        <mat-option value="metal">Metal</mat-option>
+                        <mat-option value="borracha">Borracha</mat-option>
+                        <mat-option value="eletronico">Eletrônico</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+    
+            <!-- Campos de Quantidade e Chave de Triagem -->
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-col w-full">
+                    <label for="quantidade">Quantidade:</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput placeholder="Digite a quantidade" oninput="this.value = this.value.replace(/[^0-9]/g, '')" type="number" min="0" class="w-full" [formControlName]="'quantidade'">
+                    </mat-form-field>
+                </div>
+                <!-- <div class="flex flex-col">
+                    <label>Chave de triagem:</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput placeholder="Digite o codigo de triagem" class="w-1/2" [formControlName]="'codigoTriagem'">
+                    </mat-form-field>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="pl-10">
+            <div class="flex-col pt-7">
+                <h1 class="pl-2">Avisos</h1>
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center bg-gray-200 h-16 rounded-lg p-2 pl-4">
+                        <mat-checkbox>
+                            <span>Avisar quando quantidade estiver próximo à capacidade máxima.</span>
+                        </mat-checkbox>
+                    </div>
+                    <div class="flex items-center bg-gray-200 h-16 rounded-lg p-2 pl-4">
+                        <mat-checkbox>
+                            <span>Avisar quando quantidade estiver próximo à capacidade mínima.</span>
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer mt-6">
+            Gravar
+        </button>
+    </form>
+</div>

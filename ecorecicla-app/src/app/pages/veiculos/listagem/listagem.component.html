@@ -1,0 +1,72 @@
+<div class="pt-10 px-10">
+    <div class="flex justify-between">
+        <h1 class="text-4xl font-light">Veículos</h1>
+        <button class="flex items-center rounded-3xl px-5 py-2 text-white bg-green-600 hover:bg-green-800 cursor-pointer" [routerLink]="'novo'">
+            <mat-icon 
+                [fontIcon]="'add'" 
+                class="mr-2"></mat-icon>
+            Novo Veiculo
+        </button>
+    </div>
+    <h2 class="text-gray-400 pt-5">Exibindo 
+        {{ DadosListaVeiculos.length }} 
+        resultados</h2>
+    <div class="w-hull pt-3">
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+    </div>
+    <div class="w-full mt-5 max-w-6xl">
+
+        <div class="bg-gray-200 grid grid-cols-[5%_45%_25%_25%] rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
+
+            <div class="flex justify-center">
+                <span class="font-medium">ID</span>
+            </div>
+            
+            <div class="flex justify-start">
+                <span class="font-medium ml-3">Modelo</span>
+            </div>
+            
+            <div class="flex justify-center">
+                <span class="font-medium">Placa</span>
+            </div>
+            
+            <div class="flex justify-center">
+                <span class="font-medium">Capacidade(KG)</span>
+            </div>
+            
+        </div>
+
+        <div *ngFor="let veiculo of DadosListaVeiculos" class="hover:bg-gray-100">
+            
+            <a class="block p-3" [routerLink]="[veiculo.ID_Veiculo]">
+                <div class="grid grid-cols-[5%_45%_25%_25%] text-sm">
+                    <div class="flex justify-center">
+                        <span class="">
+                            {{ veiculo.ID_Veiculo }}
+                        </span>
+                    </div>
+        
+                    <div class="flex justify-start">
+                        <span class="ml-3">
+                            {{ veiculo.Modelo }}
+                        </span>
+                    </div>
+        
+                    <div class="flex justify-center">
+                        <span class="">
+                            {{ veiculo.Placa }}
+                        </span>
+                    </div>
+        
+                    <div class="flex justify-center">
+                        <span class="">
+                            {{ veiculo.Capacidade_em_Kg }}
+                        </span>
+                    </div>
+                </div>
+            </a>
+                
+        </div>
+        
+    </div>
+</div>

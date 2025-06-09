@@ -1,0 +1,94 @@
+<div class="pt-10 px-10">
+    <div class="flex gap-2">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
+        <h1 class="text-4xl font-light">
+            <span *ngIf="isEdicao">
+                Edição de rota
+            </span>
+            <span *ngIf="!isEdicao">
+                Cadastro de rota
+            </span>
+        </h1>
+    </div>
+    <h2 class="text-gray-400 pt-5" *ngIf="!isEdicao">
+        Cadastro
+    </h2>
+    <h2 class="text-gray-400 pt-5" *ngIf="isEdicao">
+        Editar cadastro de rota
+    </h2>
+    <div class="w-hull pt-3">
+        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
+    </div>
+    <form [formGroup]="form" class="flex flex-col max-w-4xl" (ngSubmit)="salvar()">
+        <div>
+            <div class="flex flex-col w-full pt-5">
+                <label for="cliente">Coletas</label>
+                <mat-form-field appearance="outline" class="w-full">
+                    <mat-select id="cliente" placeholder="Selecione uma coleta cadastrada" [formControlName]="'idColeta'">
+                        <mat-option *ngFor="let coleta of allColetas" [value]="coleta.ID_Coleta">{{ coleta.Nome }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 pt-1">
+                <div class="flex flex-col">
+                    <label for="endereco">Motorista</label>
+                   <mat-form-field appearance="outline" class="w-full">
+                    <mat-select id="motorista" placeholder="Selecione um motorista cadastrado" [formControlName]="'idMotorista'">
+                        <mat-option *ngFor="let motorista of allMotoristas" [value]="motorista.ID_Motorista">{{ motorista.Nome }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                </div>
+    
+                <div class="flex flex-col">
+                    <div class="flex flex-col">
+                        <label for="veiculo">Veículo</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <mat-select id="veiculo" placeholder="Selecione um veículo cadastrado" [formControlName]="'idVeiculo'">
+                                <mat-option *ngFor="let veiculo of allVeiculos" [value]="veiculo.ID_Veiculo">Modelo: {{ veiculo.Modelo }} | Placa: {{ veiculo.Placa }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex flex-col">
+                <div class="flex flex-col">
+                    <label for="veiculo">Funcionarios</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-select id="funcionario" placeholder="Selecione um funcionario cadastrado" [formControlName]="'idFuncionario'">
+                            <mat-option *ngFor="let funcionario of allFuncionarios" [value]="funcionario.ID_Funci">{{ funcionario.Nome }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="flex flex-col">
+                    <label for="veiculo">Centro Triagem Início</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-select id="CentroTriagem" placeholder="Selecione um centro de tiagem cadastrado" [formControlName]="'idTriagemInicio'">
+                            <mat-option *ngFor="let centro of allTriagens" [value]="centro.ID_Centro">{{ centro.Nome_Centro }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="veiculo">Centro Triagem Fim</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <mat-select id="CentroTriagemFim" placeholder="Selecione um centro de tiagem cadastrado" [formControlName]="'idTriagemFim'">
+                            <mat-option *ngFor="let centro of allTriagens" [value]="centro.ID_Centro">{{ centro.Nome_Centro }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer mt-6">
+            Gravar
+        </button>
+    </form>
+</div>

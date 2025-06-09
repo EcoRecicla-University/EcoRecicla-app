@@ -1,8 +1,7 @@
-import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { importProvidersFrom, Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import {  Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { LoginPayload, LoginResponse } from "../models/auth/login.model";
-import { bootstrapApplication } from "@angular/platform-browser";
 import { RecuperacaoSenhaPayload, RecuperacaoSenhaResponse } from "../models/auth/recuperacao-senha.model";
 
 @Injectable({
@@ -45,4 +44,5 @@ export class LoginService {
             message: 'Usuario não encontrado na base de dados.'
         });
     }
+
 }

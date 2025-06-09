@@ -1,0 +1,99 @@
+<div *ngIf="triagemSelecionada" class="p-10 max-w-5xl">
+    <div class="flex items-center pt-5">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1 class="text-3xl font-light leading-none ml-2 mt-1">Dados do Centro de Triagem</h1>
+    </div>
+    <hr class="my-4 border-gray-400 w-full" />
+    <div class="flex items-center justify-start">
+        <div class="pl-2 flex items-center gap-2">
+            <small class="text-gray-600">ID do centro:</small>
+            <strong>
+                {{ triagemSelecionada.ID_Centro }}
+            </strong>
+            <span class="flex mx-2">|</span>
+            <small class="text-gray-600">Capacidade max de armazenamento:</small>
+            <span>
+                {{ triagemSelecionada.Capaci_Armaze }}
+            </span>
+        </div>
+        <div class="ml-auto flex gap-2">
+            <button mat-button [routerLink]="'editar'">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+            </button>
+            <button mat-button (click)="deletarTriagem()">
+                <mat-icon>delete</mat-icon>
+                <span>Excluir</span>
+            </button>
+        </div>
+    </div>
+    <div class="flex flex-col gap-4 mt-4">
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-full">
+                <small class="text-gray-600">
+                    Nome do centro de triagem
+                </small>
+                <div>
+                    {{ triagemSelecionada.Nome_Centro }}
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    CEP
+                </small>
+                <div>
+                    {{ triagemSelecionada.Endereco.CEP }}
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Estado
+                </small>
+                <div>
+                    {{ triagemSelecionada.Endereco.Estado }}
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Bairro
+                </small>
+                <div>
+                    {{ triagemSelecionada.Endereco.Bairro }}
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Cidade
+                </small>
+                <div>
+                    {{ triagemSelecionada.Endereco.Cidade }}
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Logradouro
+                </small>
+                <div>
+                    {{ triagemSelecionada.Endereco.Logradouro }}
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Número
+                </small>
+                <div>
+                    {{ triagemSelecionada.Endereco.Numero }}
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
