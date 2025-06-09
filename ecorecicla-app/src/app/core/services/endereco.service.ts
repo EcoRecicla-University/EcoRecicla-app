@@ -16,7 +16,7 @@ export class EnderecoService {
         const url = `${this.apiUrl}/${cep}/json`
         return this.http.get<ViaCepEnderecoModel>(url)
         .pipe(
-            delay(5000)
+            delay(2500)
         )
     }
 }
