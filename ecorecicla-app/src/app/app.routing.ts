@@ -105,7 +105,7 @@ export const APP_ROUTES: Routes = [
                 path: '', 
                 children: [
                     {
-                        path: 'movimentos',
+                        path: 'movimentacao',
                         children: [
                             {
                                 path: '',

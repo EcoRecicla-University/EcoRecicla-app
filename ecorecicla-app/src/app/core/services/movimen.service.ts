@@ -24,10 +24,10 @@ export class MovimenService {
         return this.http.get<DadosMovimenModel[]>(this.apiUrl, {})
     }
 
-    // criarNovaMovimen(dados: CadastroMovimenModel): Observable<CadastroMovimenModel> {
-    //     const apiUrl = `${this.apiUrl}`;
-    //     return this.http.post<CadastroMovimenModel>(apiUrl, dados);
-    // }
+    criarNovaMovimen(dados: CadastroMovimenModel): Observable<CadastroMovimenModel> {
+        const apiUrl = `${this.apiUrl}`;
+        return this.http.post<CadastroMovimenModel>(apiUrl, dados);
+    }
 
 //     editarMovimen(id: string, dados: EditarMovimenModel): Observable<EditarMovimenModel> {
 //         const apiUrl = `${this.apiUrl}/${id}`;

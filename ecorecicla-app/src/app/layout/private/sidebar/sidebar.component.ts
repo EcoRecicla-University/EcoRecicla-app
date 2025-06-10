@@ -55,8 +55,8 @@ export class LayoutPrivateSidebarComponent {
             type: 'GRUPO',
             children: [
                 {
-                    label: 'Movimentos',
-                    url: '/movimentos'
+                    label: 'Movimentação',
+                    url: '/movimentacao'
                 },
                 {
                     label: 'Estoque',
