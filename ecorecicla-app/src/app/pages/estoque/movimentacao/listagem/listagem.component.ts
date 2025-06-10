@@ -6,7 +6,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { MovimenService } from "../../../../core/services/movimen.service";
-import { DadosMovimenModel} from "../../../../core/models/private/Movimen/listaMovimen.model";
+import { ListagemMovimenModel} from "../../../../core/models/private/Movimen/listaMovimen.model";
 import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -39,7 +39,7 @@ type listaMovimen = {
 })
 export class PagesMovimenListagemComponent implements OnInit{
     
-    DadosListaMovimen:DadosMovimenModel[] = []
+    DadosListaMovimen:ListagemMovimenModel[] = []
 
     constructor(
         private _service: MovimenService

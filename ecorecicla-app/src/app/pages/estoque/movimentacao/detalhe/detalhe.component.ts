@@ -9,6 +9,9 @@ import { FuncionarioService } from "../../../../core/services/funcionarios/funci
 import { EditarFuncionarioModel } from "../../../../core/models/private/funcionarios/funcionarios/editarFuncionarioModel";
 import { EditarMotoristaModel } from "../../../../core/models/private/funcionarios/motoristas/editarMotorista.model";
 import { MotoristaService } from "../../../../core/services/funcionarios/motorista.service";
+import { MovimenService } from "../../../../core/services/movimen.service";
+import { AvisosEnum, EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
+import { CategoriaEnum } from "../../../../core/models/private/Movimen/cadastroMovimen.model";
 
 @Component({
     selector: 'app-pages-funcionarios-motoristas-detalhe',
@@ -22,16 +25,20 @@ import { MotoristaService } from "../../../../core/services/funcionarios/motoris
         DatePipe
     ]
 })
-export class PagesFuncionariosMotoristasDetalheComponent implements OnInit, OnDestroy {
+export class PagesEstoqueMovimentacaoDetalheComponent implements OnInit, OnDestroy {
 
-    motoristaSelecionado: EditarMotoristaModel;
+    movimentacaoSelecionada: EditarMovimenModel;
+
+    CategoriaEnum = CategoriaEnum;
+
+    AvisosEnum = AvisosEnum;
 
     idSelecionado = null;
 
     constructor(
         private router: Router,
         private activeRoute: ActivatedRoute,
-        private service: MotoristaService,
+        private service: MovimenService,
         private snackbar: MatSnackBar
     ) { }
 
@@ -40,9 +47,9 @@ export class PagesFuncionariosMotoristasDetalheComponent implements OnInit, OnDe
             .subscribe((params) => {
                 const id = params['id'];
                 this.idSelecionado = id;
-                this.service.getMotorista(id)
-                    .subscribe((motorista) => {
-                        this.motoristaSelecionado = motorista;
+                this.service.getMovimenById(id)
+                    .subscribe((movimentacao) => {
+                        this.movimentacaoSelecionada = movimentacao;
                     })
             })
     }
@@ -52,19 +59,19 @@ export class PagesFuncionariosMotoristasDetalheComponent implements OnInit, OnDe
     }
 
     deletarFuncionario() {
-        const podeExcluir = confirm('Tem certeza que deseja excluir este motorista?')
+        // const podeExcluir = confirm('Tem certeza que deseja excluir este motorista?')
 
-        if (podeExcluir) {
-            this.service.deletarMotorista(this.idSelecionado)
-            .subscribe(() => {
-                this.snackbar.open('Motorista excluido com sucesso', 'Ok')
-                this.router.navigate(['..'], {
-                    relativeTo: this.activeRoute
-                })
-            },
-            (error) => {
-                this.snackbar.open(error.error.error, 'Ok')
-            })
-        }
+        // if (podeExcluir) {
+        //     this.service.deletarMotorista(this.idSelecionado)
+        //     .subscribe(() => {
+        //         this.snackbar.open('Motorista excluido com sucesso', 'Ok')
+        //         this.router.navigate(['..'], {
+        //             relativeTo: this.activeRoute
+        //         })
+        //     },
+        //     (error) => {
+        //         this.snackbar.open(error.error.error, 'Ok')
+        //     })
+        // }
     }
 }

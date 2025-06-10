@@ -1,0 +1,81 @@
+<div *ngIf="movimentacaoSelecionada" class="p-10 max-w-5xl">
+    <div class="flex items-center pt-5">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1 class="text-3xl font-light leading-none ml-2 mt-1">Dados da Movimentação</h1>
+    </div>
+    <hr class="my-4 border-gray-400 w-full" />
+    <div class="flex items-center justify-start">
+        <div class="pl-2 flex items-center gap-2">
+            <small class="text-gray-600">ID da Movimentação:</small>
+            <strong>
+                {{ movimentacaoSelecionada.ID_Movimen }}
+            </strong>
+            <span class="flex mx-2">|</span>
+            <small class="text-gray-600">Data de Entrada:</small>
+            <span>
+                {{ movimentacaoSelecionada.Data_Entrada| date: 'dd/MM/yyyy' }}
+            </span>
+        </div>
+        <div class="ml-auto flex gap-2">
+            <button mat-button [routerLink]="'editar'">
+                <mat-icon>edit</mat-icon>
+                <span>Editar</span>
+            </button>
+            <button mat-button (click)="deletarFuncionario()">
+                <mat-icon>delete</mat-icon>
+                <span>Excluir</span>
+            </button>
+        </div>
+    </div>
+    <div class="flex flex-col gap-4 mt-4">
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-full">
+                <small class="text-gray-600">
+                    Nome
+                </small>
+                <div>
+                    {{ movimentacaoSelecionada.Nome_Coleta }}
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Tipo do Residuo
+                </small>
+                <div>
+                    {{ CategoriaEnum[movimentacaoSelecionada.Categoria] }}
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Quantidade de entrada
+                </small>
+                <div>
+                    {{ movimentacaoSelecionada.Quantidade }}
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Avisar quando atingir estoque Máximo
+                </small>
+                <div>
+                    {{ AvisosEnum[movimentacaoSelecionada.AvisarEstoqueMax] }}
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
+                <small class="text-gray-600">
+                    Avisar quando atingir estoque Mínimo
+                </small>
+                <div>
+                    {{ AvisosEnum[movimentacaoSelecionada.AvisarEstoqueMin] }}
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

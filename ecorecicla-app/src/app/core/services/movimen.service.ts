@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { DadosMovimenModel } from "../models/private/Movimen/listaMovimen.model";
+import { ListagemMovimenModel } from "../models/private/Movimen/listaMovimen.model";
 import { CadastroMovimenModel } from "../models/private/Movimen/cadastroMovimen.model";
 import { EditarMovimenModel } from "../models/private/Movimen/editarMovimen.model";
 import { ChaveColetaModel } from "../models/private/Movimen/BuscaChaves/chaveColeta.model";
@@ -15,13 +15,13 @@ export class MovimenService {
 
     constructor(private http: HttpClient) { }
 
-    // getMovimenById(id: string): Observable<DadosMovimenModel>{
-    // const apiUrl = `${this.apiUrl}/${id}`;
-    // return this.http.get<DadosMovimenModel>(apiUrl, {})
-    // }
+    getMovimenById(id: string): Observable<EditarMovimenModel>{
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.get<EditarMovimenModel>(apiUrl, {})
+    }
 
-    getMovimentacoes(): Observable<DadosMovimenModel[]>{
-        return this.http.get<DadosMovimenModel[]>(this.apiUrl, {})
+    getMovimentacoes(): Observable<ListagemMovimenModel[]>{
+        return this.http.get<ListagemMovimenModel[]>(this.apiUrl, {})
     }
 
     criarNovaMovimen(dados: CadastroMovimenModel): Observable<CadastroMovimenModel> {
