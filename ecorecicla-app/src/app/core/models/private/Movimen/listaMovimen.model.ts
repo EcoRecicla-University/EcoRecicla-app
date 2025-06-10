@@ -1,6 +1,7 @@
 export interface DadosMovimenModel {
-    ID_Coleta: number;
-    ID_Movimen: number;
-    Data_Entrada: Date;
-    Quantidade_Entra: string;
+    ID_Movimen: string;
+    ID_Coleta: string;
+    Nome_Coleta: string;
+    Data_Entrada: string;
+    Quantidade: string;
 }

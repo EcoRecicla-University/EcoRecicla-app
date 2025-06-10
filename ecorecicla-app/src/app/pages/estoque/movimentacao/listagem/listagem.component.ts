@@ -41,14 +41,13 @@ export class PagesMovimenListagemComponent implements OnInit{
     
     DadosListaMovimen:DadosMovimenModel[] = []
 
-    movimenSelecionado?: DadosMovimenModel;
-
-    constructor(private _service: MovimenService){ }
+    constructor(
+        private _service: MovimenService
+    ){ }
 
     ngOnInit(): void {
         this._service.getMovimentacoes()
         .subscribe((movimentacoes) => {
-
             this.DadosListaMovimen = movimentacoes
         })
     }

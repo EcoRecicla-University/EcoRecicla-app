@@ -1,6 +1,6 @@
 <div class="pt-10 px-10">
     <div class="flex justify-between">
-        <h1 class="text-4xl font-light">Movimentações</h1>
+        <h1 class="text-4xl font-light">Movimentação</h1>
         <button class="flex items-center rounded-3xl px-5 py-2 text-white bg-green-600 hover:bg-green-800 cursor-pointer" [routerLink]="'novo'">
             <mat-icon 
                 [fontIcon]="'add'" 
@@ -17,19 +17,19 @@
         <div class="bg-gray-200 grid grid-cols-[5%_45%_25%_25%] rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
 
             <div class="flex justify-center">
-                <span class="font-medium">ID_Movimen</span>
+                <span class="font-medium">ID</span>
             </div>
             
             <div class="flex justify-start">
-                <span class="font-medium ml-3">ID_Coleta</span>
+                <span class="font-medium ml-3">Coleta</span>
             </div>
             
             <div class="flex justify-center">
-                <span class="font-medium">Data_Entrada</span>
+                <span class="font-medium">Data entrada</span>
             </div>
             
             <div class="flex justify-center">
-                <span class="font-medium">Quantidade_Entrada</span>
+                <span class="font-medium">Quantidade</span>
             </div>
             
         </div>
@@ -46,7 +46,7 @@
         
                     <div class="flex justify-start">
                         <span class="">
-                            {{ movimen.ID_Coleta }}
+                            {{ movimen.Nome_Coleta }}
                         </span>
                     </div>
         
@@ -58,7 +58,7 @@
         
                     <div class="flex justify-center">
                         <span class="">
-                            {{ movimen.Quantidade_Entra }}
+                            {{ movimen.Quantidade }}
                         </span>
                     </div>
                 </div>
