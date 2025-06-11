@@ -17,6 +17,8 @@ import { ListagemColetaModel } from "../../../../core/models/private/coleta/list
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { AvisosEnum, EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
+import { ListagemRotaModel } from "../../../../core/models/private/rota/listagemRota.model";
+import { RotaService } from "../../../../core/services/rota.service";
 
 @Component ({
     selector: 'app-pages-estoque',
@@ -44,10 +46,10 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
 
     public idSelecionado = null;
 
-    public allColetas: ListagemColetaModel[] = [];
+    public allRotas: ListagemRotaModel[] = [];
 
     public form = new FormGroup({
-        idColeta: new FormControl('', Validators.required),
+        idRota: new FormControl('', Validators.required),
         categoria: new FormControl(null, Validators.required),
         quantidade: new FormControl('', Validators.required),
         dataEntrada: new FormControl('', Validators.required),
@@ -56,7 +58,7 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
     })
 
     constructor(
-        private coletaService: ColetaService,
+        private rotaService: RotaService,
         private router: Router,
         private datePipe: DatePipe,
         private _activatedRoute: ActivatedRoute,
@@ -65,9 +67,9 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
     ) {}
 
     ngOnInit(): void {
-        this.coletaService.getColetas()
-        .subscribe((coletas) => {
-            this.allColetas = coletas
+        this.rotaService.getRotas()
+        .subscribe((rotas) => {
+            this.allRotas = rotas
         })
 
         const id = this._activatedRoute.snapshot.params['id'];
@@ -79,7 +81,7 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
                 const avisarMax = movimentacao.AvisarEstoqueMax == AvisosEnum.Sim;
                 const avisarMin = movimentacao.AvisarEstoqueMin == AvisosEnum.Sim;
                 this.form.patchValue({
-                    idColeta: movimentacao.ID_Coleta,
+                    idRota: movimentacao.ID_Rota,
                     quantidade: movimentacao.Quantidade,
                     dataEntrada: movimentacao.Data_Entrada,
                     categoria: movimentacao.Categoria,
@@ -99,7 +101,7 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
         const dadosDoFormulario: CadastroMovimenModel = {
             Quantidade: this.form.value.quantidade ?? '',
             Data_Entrada: dataValidadeFormatada,
-            ID_Coleta: this.form.value.idColeta ?? '',
+            ID_Rota: this.form.value.idRota ?? '',
             Categoria: this.form.value.categoria ?? '',
             AvisarEstoqueMax: this.form.value.avisarEstoqueMax ? AvisosEnum.Sim : AvisosEnum.Nao,
             AvisarEstoqueMin: this.form.value.avisarEstoqueMin ? AvisosEnum.Sim : AvisosEnum.Nao
@@ -110,7 +112,7 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
                 ID_Movimen: this.idSelecionado,
                 Quantidade: this.form.value.quantidade ?? '',
                 Data_Entrada: dataValidadeFormatada,
-                ID_Coleta: this.form.value.idColeta ?? '',
+                ID_Rota: this.form.value.idRota ?? '',
                 Categoria: this.form.value.categoria ?? '',
                 AvisarEstoqueMax: this.form.value.avisarEstoqueMax ? AvisosEnum.Sim : AvisosEnum.Nao,
                 AvisarEstoqueMin: this.form.value.avisarEstoqueMin ? AvisosEnum.Sim : AvisosEnum.Nao

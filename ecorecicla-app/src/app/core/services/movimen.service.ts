@@ -4,7 +4,6 @@ import { Observable, of } from "rxjs";
 import { ListagemMovimenModel } from "../models/private/Movimen/listaMovimen.model";
 import { CadastroMovimenModel } from "../models/private/Movimen/cadastroMovimen.model";
 import { EditarMovimenModel } from "../models/private/Movimen/editarMovimen.model";
-import { ChaveColetaModel } from "../models/private/Movimen/BuscaChaves/chaveColeta.model";
 
 @Injectable({
     providedIn: 'root'

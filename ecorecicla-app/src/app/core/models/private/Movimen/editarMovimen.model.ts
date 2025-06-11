@@ -13,9 +13,9 @@ export interface EditarMovimenModel {
     ID_Movimen: string;
     Quantidade: string;
     Data_Entrada: string;
-    Nome_Coleta?: string;
-    ID_Coleta: string;
+    ID_Rota: string;
     Categoria: CategoriaEnum;
     AvisarEstoqueMax: AvisosEnum;
     AvisarEstoqueMin: AvisosEnum;  
+    Nome?: string;
 }

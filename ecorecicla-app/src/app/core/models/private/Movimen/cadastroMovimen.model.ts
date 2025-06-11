@@ -11,8 +11,9 @@ export enum CategoriaEnum {
 export interface CadastroMovimenModel {
     Quantidade: string;
     Data_Entrada: string;
-    ID_Coleta: string;
+    ID_Rota: string;
     Categoria: CategoriaEnum;
     AvisarEstoqueMax: AvisosEnum;
     AvisarEstoqueMin: AvisosEnum; 
+    Nome_Coleta?: string;
 }

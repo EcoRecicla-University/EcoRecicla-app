@@ -14,14 +14,18 @@
     </div>
     <div class="w-full mt-5 max-w-6xl">
 
-        <div class="bg-gray-200 grid grid-cols-[5%_45%_25%_25%] rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
+        <div class="bg-gray-200 grid grid-cols-[5%_5%_35%_25%_25%] rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
 
             <div class="flex justify-center">
                 <span class="font-medium">ID</span>
             </div>
             
-            <div class="flex justify-start">
-                <span class="font-medium ml-3">Coleta</span>
+            <div class="flex justify-center ml-10">
+                <span class="font-medium">Rota</span>
+            </div>
+
+            <div class="flex justify-center">
+                <span class="font-medium">Nome Coleta</span>
             </div>
             
             <div class="flex justify-center">
@@ -37,16 +41,22 @@
         <div *ngFor="let movimen of DadosListaMovimen" class="hover:bg-gray-100">
             
             <a class="block p-3" [routerLink]="[movimen.ID_Movimen]">
-                <div class="grid grid-cols-[5%_45%_25%_25%] text-sm">
+                <div class="grid grid-cols-[5%_5%_35%_25%_25%] text-sm">
                     <div class="flex justify-center">
                         <span class="">
                             {{ movimen.ID_Movimen }}
                         </span>
                     </div>
         
-                    <div class="flex justify-start">
+                    <div class="flex justify-center ml-10">
                         <span class="">
-                            {{ movimen.Nome_Coleta }}
+                            {{ movimen.ID_Rota }}
+                        </span>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <span class="">
+                            {{ movimen.Nome }}
                         </span>
                     </div>
         

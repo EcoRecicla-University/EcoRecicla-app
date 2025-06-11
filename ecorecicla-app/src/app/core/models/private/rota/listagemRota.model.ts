@@ -5,4 +5,5 @@ export interface ListagemRotaModel {
     CentroInicioNome: string;
     CentroFim: string;
     CentroFimNome: string;
+    Nome: string;
 }
