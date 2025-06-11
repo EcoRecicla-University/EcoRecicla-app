@@ -59,19 +59,19 @@ export class PagesEstoqueMovimentacaoDetalheComponent implements OnInit, OnDestr
     }
 
     deletarFuncionario() {
-        // const podeExcluir = confirm('Tem certeza que deseja excluir este motorista?')
+        const podeExcluir = confirm('Tem certeza que deseja excluir esta movimentação?')
 
-        // if (podeExcluir) {
-        //     this.service.deletarMotorista(this.idSelecionado)
-        //     .subscribe(() => {
-        //         this.snackbar.open('Motorista excluido com sucesso', 'Ok')
-        //         this.router.navigate(['..'], {
-        //             relativeTo: this.activeRoute
-        //         })
-        //     },
-        //     (error) => {
-        //         this.snackbar.open(error.error.error, 'Ok')
-        //     })
-        // }
+        if (podeExcluir) {
+            this.service.excluirMovimen(this.idSelecionado)
+            .subscribe(() => {
+                this.snackbar.open('Movimentação excluido com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this.activeRoute
+                })
+            },
+            (error) => {
+                this.snackbar.open(error.error.error, 'Ok')
+            })
+        }
     }
 }

@@ -34,12 +34,9 @@ export class MovimenService {
         return this.http.put<EditarMovimenModel>(apiUrl, dados)
     }
 
-//     excluirMovimen(id: string):Observable<void>{
-//         const apiUrl = `${this.apiUrl}/${id}`;
-//         return this.http.delete<void>(apiUrl, {})
-//     }
+    excluirMovimen(id: string):Observable<void>{
+        const apiUrl = `${this.apiUrl}/${id}`;
+        return this.http.delete<void>(apiUrl, {})
+    }
 
-    //    getChaveColeta():Observable<ChaveColetaModel[]>{
-    //         return this.http.get<ChaveColetaModel[]>(this.apiUrl, {})
-    //    }
 }
