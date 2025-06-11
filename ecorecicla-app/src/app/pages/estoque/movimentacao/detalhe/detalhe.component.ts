@@ -10,7 +10,7 @@ import { EditarFuncionarioModel } from "../../../../core/models/private/funciona
 import { EditarMotoristaModel } from "../../../../core/models/private/funcionarios/motoristas/editarMotorista.model";
 import { MotoristaService } from "../../../../core/services/funcionarios/motorista.service";
 import { MovimenService } from "../../../../core/services/movimen.service";
-import { AvisosEnum, EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
+import { AvisosEnum, AvisosEnumLabel, EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
 import { CategoriaEnum } from "../../../../core/models/private/Movimen/cadastroMovimen.model";
 
 @Component({
@@ -31,7 +31,7 @@ export class PagesEstoqueMovimentacaoDetalheComponent implements OnInit, OnDestr
 
     CategoriaEnum = CategoriaEnum;
 
-    AvisosEnum = AvisosEnum;
+    AvisosEnumLabel = AvisosEnumLabel;
 
     idSelecionado = null;
 

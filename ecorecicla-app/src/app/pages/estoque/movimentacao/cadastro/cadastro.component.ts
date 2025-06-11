@@ -16,6 +16,7 @@ import { EditarColetaModel } from "../../../../core/models/private/coleta/editar
 import { ListagemColetaModel } from "../../../../core/models/private/coleta/listaColeta.model";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { provideNativeDateAdapter } from "@angular/material/core";
+import { AvisosEnum, EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
 
 @Component ({
     selector: 'app-pages-estoque',
@@ -50,8 +51,8 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
         categoria: new FormControl(null, Validators.required),
         quantidade: new FormControl('', Validators.required),
         dataEntrada: new FormControl('', Validators.required),
-        avisarEstoqueMax: new FormControl(null, Validators.required),
-        avisarEstoqueMin: new FormControl(null, Validators.required)
+        avisarEstoqueMax: new FormControl(false, Validators.required),
+        avisarEstoqueMin: new FormControl(false, Validators.required)
     })
 
     constructor(
@@ -68,6 +69,27 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
         .subscribe((coletas) => {
             this.allColetas = coletas
         })
+
+        const id = this._activatedRoute.snapshot.params['id'];
+        if (id) {
+            this.isEdicao = true;
+            this.idSelecionado = id
+            this.service.getMovimenById(id)
+            .subscribe(movimentacao => {
+                const avisarMax = movimentacao.AvisarEstoqueMax == AvisosEnum.Sim;
+                const avisarMin = movimentacao.AvisarEstoqueMin == AvisosEnum.Sim;
+                this.form.patchValue({
+                    idColeta: movimentacao.ID_Coleta,
+                    quantidade: movimentacao.Quantidade,
+                    dataEntrada: movimentacao.Data_Entrada,
+                    categoria: movimentacao.Categoria,
+                    avisarEstoqueMax: avisarMax,
+                    avisarEstoqueMin: avisarMin
+                })
+            })
+        } else {
+            this.isEdicao = false;
+        }
     }
 
     salvar() {
@@ -79,28 +101,28 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
             Data_Entrada: dataValidadeFormatada,
             ID_Coleta: this.form.value.idColeta ?? '',
             Categoria: this.form.value.categoria ?? '',
-            AvisarEstoqueMax: this.form.value.avisarEstoqueMax ?? '',
-            AvisarEstoqueMin: this.form.value.avisarEstoqueMin ?? ''
+            AvisarEstoqueMax: this.form.value.avisarEstoqueMax ? AvisosEnum.Sim : AvisosEnum.Nao,
+            AvisarEstoqueMin: this.form.value.avisarEstoqueMin ? AvisosEnum.Sim : AvisosEnum.Nao
         }
 
         if (this.isEdicao && this.idSelecionado) {
-            // const dadosEditaveis: EditarClienteModel = {
-            //     Id: this.idSelecionado,
-            //     Nome: this.form.value.nome ?? '',
-            //     CPF: this.form.value.cpf || undefined,
-            //     CNPJ: this.form.value.cnpj || undefined,
-            //     Telefone: this.form.value.telefone ?? '',
-            //     Pontos_Coleta: this.form.value.pontoDeColeta ?? '',
-            //     Tipo_Cliente: this.form.value.tipoCliente ?? ''
-            // };
+            const dadosEditaveis: EditarMovimenModel = {
+                ID_Movimen: this.idSelecionado,
+                Quantidade: this.form.value.quantidade ?? '',
+                Data_Entrada: dataValidadeFormatada,
+                ID_Coleta: this.form.value.idColeta ?? '',
+                Categoria: this.form.value.categoria ?? '',
+                AvisarEstoqueMax: this.form.value.avisarEstoqueMax ? AvisosEnum.Sim : AvisosEnum.Nao,
+                AvisarEstoqueMin: this.form.value.avisarEstoqueMin ? AvisosEnum.Sim : AvisosEnum.Nao
+            };
         
-            // this.service.editarCliente(this.idSelecionado, dadosEditaveis)
-            // .subscribe(() => {
-            //     this.snackbar.open('Cliente editado com sucesso', 'Ok')
-            //     this.router.navigate(['..'], {
-            //         relativeTo: this._activatedRoute
-            //     })
-            // });
+            this.service.editarMovimen(this.idSelecionado, dadosEditaveis)
+            .subscribe(() => {
+                this.snackbar.open('Movimentação editada com sucesso', 'Ok')
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            });
 
         } else {
             this.service.criarNovaMovimen(dadosDoFormulario)

@@ -1,3 +1,5 @@
+import { AvisosEnum } from "./editarMovimen.model";
+
 export enum CategoriaEnum {
     PL = 'Plastico',
     ME = 'Metal',
@@ -11,6 +13,6 @@ export interface CadastroMovimenModel {
     Data_Entrada: string;
     ID_Coleta: string;
     Categoria: CategoriaEnum;
-    AvisarEstoqueMax: boolean;
-    AvisarEstoqueMin: boolean; 
+    AvisarEstoqueMax: AvisosEnum;
+    AvisarEstoqueMin: AvisosEnum; 
 }
