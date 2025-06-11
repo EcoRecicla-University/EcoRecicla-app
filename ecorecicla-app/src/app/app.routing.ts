@@ -30,6 +30,7 @@ import { PagesColetaDashboardComponent } from "./pages/coleta/dashboard/dashboar
 import { PagesVeiculosDetalheComponent } from "./pages/veiculos/detalhe/detalhe.component";
 import { PagesTriagemDetalheComponent } from "./pages/triagem/detalhe/detalhe.component";
 import { PagesEstoqueMovimentacaoDetalheComponent } from "./pages/estoque/movimentacao/detalhe/detalhe.component";
+import { PagesEstoqueEstoqueDetalheComponent } from "./pages/estoque/estoque/detalhe/detalhe.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -132,6 +133,10 @@ export const APP_ROUTES: Routes = [
                             {
                                 path: '',
                                 component: PagesEstoqueEstoqueListagemComponent
+                            },
+                            {
+                                path: ':id',
+                                component: PagesEstoqueEstoqueDetalheComponent
                             }
                         ]
                     }

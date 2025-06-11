@@ -1,0 +1,104 @@
+<div *ngIf="DadosEstoqueSelecionado" class="p-10 max-w-5xl">
+    <div class="flex items-center pt-5">
+        <button mat-icon-button [routerLink]="['..']">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h1 class="text-3xl font-light leading-none ml-2 mt-1">Dados do Estoque</h1>
+    </div>
+    <hr class="my-4 border-gray-400 w-full" />
+    <div class="flex items-center justify-start">
+        <div class="pl-2 flex items-center gap-2">
+            <small class="text-gray-600">ID do centro:</small>
+            <strong>
+                {{ idSelecionado }}
+            </strong>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+
+        <div class="w-full mt-5 max-w-6xl">
+
+            <div
+                class="bg-gray-200 grid grid-cols-[5%_30%_10%_30%_25%] rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
+
+                <div class="flex justify-center">
+                    <span class="font-medium">Rota</span>
+                </div>
+
+                <div class="flex justify-start ml-10">
+                    <span class="font-medium">Nome</span>
+                </div>
+
+                <div class="flex justify-center">
+                    <span class="font-medium">Movimento</span>
+                </div>
+
+                <div class="flex justify-center">
+                    <span class="font-medium">Categoria</span>
+                </div>
+
+                <div class="flex justify-center">
+                    <span class="font-medium">Quantidade</span>
+                </div>
+
+            </div>
+
+            <div *ngFor="let item of DadosEstoqueSelecionado" class="hover:bg-gray-100">
+
+                <a class="block p-3">
+                    <div class="grid grid-cols-[5%_30%_10%_30%_25%] text-sm">
+                        <div class="flex justify-center">
+                            <span class="">
+                                {{ item.ID_Rota }}
+                            </span>
+                        </div>
+
+                        <div class="flex justify-start ml-10">
+                            <span class="">
+                                {{ item.Nome_Coleta }}
+                            </span>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <span class="">
+                                {{ item.ID_Movimen }}
+                            </span>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <span class="">
+                                {{ CategoriaEnum[item.Categoria] }}
+                            </span>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <span class="">
+                                {{ item.Quantidade }}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="bg-gray-100 rounded-bl-2xl rounded-br-2xl p-3 text-gray-400 text-sm">
+                <div class="grid grid-cols-[75%_25%]">
+                    <div class="pl-2 flex items-center gap-2">
+                        <small class="text-gray-600">Capacidade máxima do centro:</small>
+                        <strong>
+                            {{ dadosCentro?.Capaci_Armaze }}
+                        </strong>
+                    </div>
+    
+                    <div class="pl-2 flex items-center gap-2">
+                        <small class="text-gray-600">Total:</small>
+                        <span>{{ totalQuantidade }}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
