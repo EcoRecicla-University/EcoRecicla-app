@@ -11,6 +11,7 @@ import { EditarFuncionarioModel } from "../../models/private/funcionarios/funcio
 export class FuncionarioService {
 
     private apiUrl = 'http://localhost:8080/api/funcionarios';
+    private apiRelatorioUrl = 'http://localhost:8080/api/relatorio/funcionarios';
 
     constructor(private http: HttpClient) { }
 
@@ -36,5 +37,12 @@ export class FuncionarioService {
     deletarFuncionario(id: string):Observable<void>{
         const apiUrl = `${this.apiUrl}/${id}`;
         return this.http.delete<void>(apiUrl, {})
+    }
+
+    getRelatorioFuncionarios() {
+        const url = `${this.apiRelatorioUrl}`;
+        return this.http.get(url, {
+            responseType: 'blob'
+        });
     }
 }
