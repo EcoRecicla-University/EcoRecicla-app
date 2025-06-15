@@ -14,7 +14,7 @@ import { AvisosEnum, AvisosEnumLabel, EditarMovimenModel } from "../../../../cor
 import { CategoriaEnum } from "../../../../core/models/private/Movimen/cadastroMovimen.model";
 
 @Component({
-    selector: 'app-pages-funcionarios-motoristas-detalhe',
+    selector: 'app-pages-estoque-movimentacao-detalhe',
     templateUrl: './detalhe.component.html',
     imports: [
         RouterLink,
