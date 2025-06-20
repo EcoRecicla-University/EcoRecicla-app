@@ -18,12 +18,17 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { AvisosEnum, EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
 import { ListagemRotaModel } from "../../../../core/models/private/rota/listagemRota.model";
+import { DATE_CONFIG_PROVIDERS } from '../../../../core/date-format.config';
 import { RotaService } from "../../../../core/services/rota.service";
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 @Component ({
     selector: 'app-pages-estoque',
     templateUrl: './cadastro.component.html',
-    providers: [provideNativeDateAdapter(), DatePipe],
+    providers: [provideNativeDateAdapter(), DatePipe, ...DATE_CONFIG_PROVIDERS],
     imports: [
         MatFormFieldModule, 
         MatInputModule,
@@ -48,6 +53,8 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
 
     public allRotas: ListagemRotaModel[] = [];
 
+    dataMinimaMovimento = new Date();
+
     public form = new FormGroup({
         idRota: new FormControl('', Validators.required),
         categoria: new FormControl(null, Validators.required),
@@ -67,6 +74,10 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
     ) {}
 
     ngOnInit(): void {
+
+        const hoje = new Date();
+        this.dataMinimaMovimento = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+
         this.rotaService.getRotas()
         .subscribe((rotas) => {
             this.allRotas = rotas
@@ -95,6 +106,13 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
     }
 
     salvar() {
+
+        const entradaItem = new Date(this.form.value.dataEntrada);
+
+        if (entradaItem > this.dataMinimaMovimento) {
+            this.snackbar.open('O movimento tem que ser uma data anterior a hoje.', 'Ok', { duration: 4000 });
+            return;
+        }
 
         const dataValidadeFormatada = this.datePipe.transform(this.form.value.dataEntrada, 'yyyy-MM-dd') ?? '';
 

@@ -17,6 +17,7 @@ import { ColetaService } from "../../../core/services/coleta.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { DadosClientesModel } from "../../../core/models/private/clientes/listaClientes.model";
 import { EditarColetaModel } from "../../../core/models/private/coleta/editarColeta.model";
+import { DATE_CONFIG_PROVIDERS } from '../../../core/date-format.config';
 
 @Component ({
     selector: 'app-pages-coleta-cadastro',
@@ -35,7 +36,7 @@ import { EditarColetaModel } from "../../../core/models/private/coleta/editarCol
         MatButtonModule,
         MatDatepickerModule
     ],
-    providers: [provideNativeDateAdapter(), DatePipe],
+    providers: [provideNativeDateAdapter(), DatePipe, ...DATE_CONFIG_PROVIDERS],
 })
 
 export class PagesColetaCadastroComponent implements OnInit{
@@ -48,6 +49,8 @@ export class PagesColetaCadastroComponent implements OnInit{
 
     public idSelecionado = null;
 
+    dataMinimaColeta = new Date();
+    
     public form = new FormGroup({
         clienteId: new FormControl('', [Validators.required]),
         dataColeta: new FormControl('', [Validators.required]),
@@ -65,6 +68,9 @@ export class PagesColetaCadastroComponent implements OnInit{
     ) {}
 
     ngOnInit(): void {
+        const hoje = new Date();
+        this.dataMinimaColeta = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+
         this.clienteService.getClientes()
         .subscribe((clientes) => {
             this.allClientes = clientes
@@ -89,11 +95,18 @@ export class PagesColetaCadastroComponent implements OnInit{
     }
 
     salvar() {
-        const dataValidadeFormatada = this.datePipe.transform(this.form.value.dataColeta, 'yyyy-MM-dd') ?? '';
+        const dataColetaLimite = new Date(this.form.value.dataColeta);
+
+        if (dataColetaLimite < this.dataMinimaColeta) {
+            this.snackbar.open('A data da coleta deve ser uma data futura.', 'Ok', { duration: 4000 });
+            return;
+        }
+
+        const dataColetaAjustada = this.datePipe.transform(this.form.value.dataColeta, 'yyyy-MM-dd');
 
         const dadosDoFormulario: CadastroColetaModel = {
             Cliente_ID: this.form.value.clienteId ?? '',
-            Data_Coleta: dataValidadeFormatada,
+            Data_Coleta: dataColetaAjustada ?? '',
             Quantidade: this.form.value.quantidade ?? '',
             Status_Coleta: this.form.value.statusColeta ?? '',
         }

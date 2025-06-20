@@ -15,6 +15,10 @@ import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { EditarFuncionarioModel } from "../../../../core/models/private/funcionarios/funcionarios/editarFuncionarioModel";
 import { DATE_CONFIG_PROVIDERS } from '../../../../core/date-format.config';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 @Component({
     selector: 'app-pages-cadastro',
     templateUrl: './cadastro.component.html',
@@ -90,43 +94,45 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit {
     salvar() {
         const dataNascimento = new Date(this.form.value.dataNascimento);
 
-
         if (dataNascimento > this.dataMinimaPara18Anos) {
             this.snackbar.open('O funcionário deve ter 18 anos ou mais.', 'Ok', { duration: 4000 });
             return;
-        } else{
+        }
 
-            const dadosDoFormulario: CadastroFuncionarioModel = {
+        const dataNascimentoFormatada = this.datePipe.transform(this.form.value.dataNascimento, 'yyyy-MM-dd');
+        const dataContratacaoFormatada = this.datePipe.transform(this.form.value.dataContratacao, 'yyyy-MM-dd');
+
+        const dadosDoFormulario: CadastroFuncionarioModel = {
+            Nome: this.form.value.nome ?? '',
+            CPF: this.form.value.cpf ?? '',
+            RG: this.form.value.rg ?? '',
+            Telefone: this.form.value.telefone ?? '',
+            Data_Nascimento: dataNascimentoFormatada ?? '',
+            Data_Contratacao: dataContratacaoFormatada ?? '',
+            Estado_Civil: this.form.value.estadoCivil ?? '',
+            Email: this.form.value.email ?? ''
+        }
+
+        if (this.isEdicao && this.idSelecionado) {
+            const dadosEditaveis: EditarFuncionarioModel = {
+                ID_Funci: this.idSelecionado,
                 Nome: this.form.value.nome ?? '',
                 CPF: this.form.value.cpf ?? '',
                 RG: this.form.value.rg ?? '',
                 Telefone: this.form.value.telefone ?? '',
-                Data_Nascimento: this.form.value.dataNascimento,
-                Data_Contratacao: this.form.value.dataContratacao,
+                Email: this.form.value.email ?? '',
                 Estado_Civil: this.form.value.estadoCivil ?? '',
-                Email: this.form.value.email ?? ''
-            }
+                Data_Contratacao: this.form.value.dataContratacao ?? '',
+                Data_Nascimento: this.form.value.dataNascimento ?? ''
+            };
 
-            if (this.isEdicao && this.idSelecionado) {
-                const dadosEditaveis: EditarFuncionarioModel = {
-                    ID_Funci: this.idSelecionado,
-                    Nome: this.form.value.nome ?? '',
-                    CPF: this.form.value.cpf ?? '',
-                    RG: this.form.value.rg ?? '',
-                    Telefone: this.form.value.telefone ?? '',
-                    Email: this.form.value.email ?? '',
-                    Estado_Civil: this.form.value.estadoCivil ?? '',
-                    Data_Contratacao: this.form.value.dataContratacao ?? '',
-                    Data_Nascimento: this.form.value.dataNascimento ?? ''
-                };
-    
-                this.service.editarFuncionario(this.idSelecionado, dadosEditaveis)
-                    .subscribe(() => {
-                        this.snackbar.open('Cliente editado com sucesso', 'Ok')
-                        this.router.navigate(['..'], {
-                            relativeTo: this._activatedRoute
-                        })
-                    });
+            this.service.editarFuncionario(this.idSelecionado, dadosEditaveis)
+                .subscribe(() => {
+                    this.snackbar.open('Cliente editado com sucesso', 'Ok')
+                    this.router.navigate(['..'], {
+                        relativeTo: this._activatedRoute
+                    })
+                });
     
             } else {
                 this.service.criarNovoFuncionario(dadosDoFormulario)
@@ -140,7 +146,7 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit {
                         this.snackbar.open(error.error.error, 'Ok')
                     })
             }
-        } 
+        
         
 
 

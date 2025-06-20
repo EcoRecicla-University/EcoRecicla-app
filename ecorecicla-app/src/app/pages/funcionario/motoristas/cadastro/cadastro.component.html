@@ -37,7 +37,7 @@
                 <div class="flex flex-col pt-1">
                     <label>Data de Validade da carteira</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" [formControlName]="'dataValidadeCarteira'">
+                        <input matInput [matDatepicker]="picker" [min]="dataMinimaValidadeCarteira" placeholder="dd/mm/aaaa" [formControlName]="'dataValidadeCarteira'">
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
