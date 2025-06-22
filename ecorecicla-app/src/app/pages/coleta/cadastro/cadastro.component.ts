@@ -54,8 +54,7 @@ export class PagesColetaCadastroComponent implements OnInit{
     public form = new FormGroup({
         clienteId: new FormControl('', [Validators.required]),
         dataColeta: new FormControl('', [Validators.required]),
-        quantidade: new FormControl('', [Validators.required]),
-        statusColeta: new FormControl(null, [Validators.required]),
+        quantidade: new FormControl('', [Validators.required])
     });
 
     constructor(
@@ -85,8 +84,7 @@ export class PagesColetaCadastroComponent implements OnInit{
                 this.form.patchValue({
                     clienteId: coleta.ID_Cliente,
                     dataColeta: coleta.Data_Coleta,
-                    quantidade: coleta.Quantidade,
-                    statusColeta: coleta.Status_Coleta
+                    quantidade: coleta.Quantidade
                 })
             })
         } else {
@@ -108,7 +106,6 @@ export class PagesColetaCadastroComponent implements OnInit{
             Cliente_ID: this.form.value.clienteId ?? '',
             Data_Coleta: dataColetaAjustada ?? '',
             Quantidade: this.form.value.quantidade ?? '',
-            Status_Coleta: this.form.value.statusColeta ?? '',
         }
 
         if (this.isEdicao && this.idSelecionado) {
@@ -116,7 +113,6 @@ export class PagesColetaCadastroComponent implements OnInit{
                 ID_Coleta: this.idSelecionado,
                 ID_Cliente: this.form.value.clienteId ?? '',
                 Data_Coleta: this.form.value.dataColeta ?? '',
-                Status_Coleta: this.form.value.statusColeta ?? '',
                 Quantidade: this.form.value.quantidade ?? '',
                 Nome: null
             };

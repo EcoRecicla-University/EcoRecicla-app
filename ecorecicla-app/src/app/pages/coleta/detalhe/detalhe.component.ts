@@ -45,7 +45,6 @@ export class PagesColetaDetalheComponent implements OnInit{
                 this.service.getColeta(id)
                     .subscribe((coleta) => {
                         this.coletaSelecionada = coleta;
-                        this.statusCancelada = coleta.Status_Coleta === 'CA' || coleta.Status_Coleta === 'CO';
                     })
                 }) 
     }
