@@ -24,8 +24,8 @@ export class LoginComponent {
     ) { }
 
     formularioLogin = new FormGroup({
-        email: new FormControl('eric@gmail.com', [Validators.required, Validators.email]),
-        password: new FormControl('91008', [Validators.required])
+        email: new FormControl('eric.viniciusbasso@gmail.com', [Validators.required, Validators.email]),
+        password: new FormControl('DSLGv0nrCV', [Validators.required])
     });
 
     loginSuccess:boolean = null
@@ -59,8 +59,6 @@ export class LoginComponent {
 
                 this.loginSuccess = res.success
                 this._router.navigate(['/auth-redirect'])
-
-                localStorage.setItem('tokenId', res.token)
 
             } else {
 

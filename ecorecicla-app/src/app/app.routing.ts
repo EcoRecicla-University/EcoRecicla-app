@@ -31,6 +31,7 @@ import { PagesVeiculosDetalheComponent } from "./pages/veiculos/detalhe/detalhe.
 import { PagesTriagemDetalheComponent } from "./pages/triagem/detalhe/detalhe.component";
 import { PagesEstoqueMovimentacaoDetalheComponent } from "./pages/estoque/movimentacao/detalhe/detalhe.component";
 import { PagesEstoqueEstoqueDetalheComponent } from "./pages/estoque/estoque/detalhe/detalhe.component";
+import { AuthGuard } from "./core/guards/auth.guard";
 
 
 export const APP_ROUTES: Routes = [
@@ -63,6 +64,7 @@ export const APP_ROUTES: Routes = [
             },
             {
                 path: 'rota', 
+                canActivate: [AuthGuard],
                 children: [
                     {
                         path: '',
@@ -84,6 +86,7 @@ export const APP_ROUTES: Routes = [
             },
             {
                 path: 'clientes',
+                canActivate: [AuthGuard],
                 children: [
                     {
                         path: '',
@@ -104,93 +107,88 @@ export const APP_ROUTES: Routes = [
                 ]
             },
             {
-                path: '', 
+                path: 'movimentacao',
+                canActivate: [AuthGuard],
                 children: [
                     {
-                        path: 'movimentacao',
-                        children: [
-                            {
-                                path: '',
-                                component: PagesMovimenListagemComponent
-                            },
-                            {
-                                path:'novo',
-                                component: PagesEstoqueMovimentacaoCadastroComponent
-                            },
-                            {
-                                path: ':id',
-                                component: PagesEstoqueMovimentacaoDetalheComponent
-                            },
-                            {
-                                path: ':id/editar',
-                                component: PagesEstoqueMovimentacaoCadastroComponent
-                            },
-                        ]
+                        path: '',
+                        component: PagesMovimenListagemComponent
                     },
                     {
-                        path: 'estoque',
-                        children: [
-                            {
-                                path: '',
-                                component: PagesEstoqueEstoqueListagemComponent
-                            },
-                            {
-                                path: ':id',
-                                component: PagesEstoqueEstoqueDetalheComponent
-                            }
-                        ]
+                        path:'novo',
+                        component: PagesEstoqueMovimentacaoCadastroComponent
+                    },
+                    {
+                        path: ':id',
+                        component: PagesEstoqueMovimentacaoDetalheComponent
+                    },
+                    {
+                        path: ':id/editar',
+                        component: PagesEstoqueMovimentacaoCadastroComponent
+                    },
+                ]
+            },
+            {
+                path: 'estoque',
+                canActivate: [AuthGuard],
+                children: [
+                    {
+                        path: '',
+                        component: PagesEstoqueEstoqueListagemComponent
+                    },
+                    {
+                        path: ':id',
+                        component: PagesEstoqueEstoqueDetalheComponent
                     }
                 ]
             },
             {
-                path: '',
+                path: 'funcionarios',
+                canActivate: [AuthGuard],
                 children: [
                     {
-                        path: 'funcionarios',
-                        children: [
-                            {
-                                path: '',
-                                component: PagesFuncionariosFuncionariosListagemComponent
-                            },
-                            {
-                                path: 'novo',
-                                component: PagesFuncionariosFuncionariosCadastroComponent
-                            },
-                            {
-                                path: ':id',
-                                component: PagesFuncionariosFuncionariosDetalheComponent
-                            },
-                            {
-                                path: ':id/editar',
-                                component: PagesFuncionariosFuncionariosCadastroComponent
-                            },
-                        ]
+                        path: '',
+                        component: PagesFuncionariosFuncionariosListagemComponent
                     },
                     {
-                        path: 'motoristas',
-                        children: [
-                            {
-                                path: '',
-                                component: PagesFuncionariosMotoristasListagemComponent
-                            },
-                            {
-                                path: 'novo',
-                                component: PagesFuncionariosMotoristasCadastroComponent
-                            },
-                            {
-                                path: ':id',
-                                component: PagesFuncionariosMotoristasDetalheComponent
-                            },
-                            {
-                                path: ':id/editar',
-                                component: PagesFuncionariosMotoristasCadastroComponent
-                            },
-                        ]
-                    }
+                        path: 'novo',
+                        component: PagesFuncionariosFuncionariosCadastroComponent
+                    },
+                    {
+                        path: ':id',
+                        component: PagesFuncionariosFuncionariosDetalheComponent
+                    },
+                    {
+                        path: ':id/editar',
+                        component: PagesFuncionariosFuncionariosCadastroComponent
+                    },
+                ]
+            },
+            {
+                path: 'motoristas',
+                canActivate: [AuthGuard],
+                children: [
+                    {
+                        path: '',
+                        component: PagesFuncionariosMotoristasListagemComponent
+                    },
+                    {
+                        path: 'novo',
+                        component: PagesFuncionariosMotoristasCadastroComponent
+                    },
+                    {
+                        path: ':id',
+                        component: PagesFuncionariosMotoristasDetalheComponent
+                    },
+                    {
+                        path: ':id/editar',
+                        component: PagesFuncionariosMotoristasCadastroComponent
+                    },
                 ]
             },
             {
                 path: 'veiculos',
+                canActivate: [AuthGuard],
                 children: [
                     {
                         path: '',
@@ -212,6 +210,7 @@ export const APP_ROUTES: Routes = [
             },
             {
                 path: 'coleta',
+                canActivate: [AuthGuard],
                 children: [
                     {
                         path: '',
@@ -237,6 +236,7 @@ export const APP_ROUTES: Routes = [
             },
             {
                 path: 'triagem',
+                canActivate: [AuthGuard],
                 children: [
                     {
                         path: '',

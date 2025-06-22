@@ -50,6 +50,17 @@
             
         </div>
 
+        @if (DadosListaColeta.length === 0) {
+            <div class="text-center p-8 text-gray-600 bg-gray-100">
+                <div class="flex justify-center items-center">
+                    <mat-icon>info</mat-icon>
+                    <span class="ml-2">
+                        Não há resultados para exibir aqui.
+                    </span>
+                </div>
+            </div>
+        }
+
         <div *ngFor="let coleta of DadosListaColeta" class="hover:bg-gray-100">
             
             <a class="block p-3" [routerLink]="[coleta.ID_Coleta]">

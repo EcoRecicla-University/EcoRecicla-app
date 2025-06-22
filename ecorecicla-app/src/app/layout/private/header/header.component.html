@@ -1,9 +1,9 @@
 <header class="w-full h-auto flex justify-start items-center bg-[#06467a]">
     <img class="max-w-40 max-h-24 h-auto w-auto p-3" src="images/Logo.png" alt="logo">
-    <a class="ml-auto mr-4 flex items-center gap-2 text-white" [routerLink]="'/login'">
+    <button mat-flat-button class="ml-auto mr-4 flex items-center gap-2 text-white" (click)="logout()">
         <span>
             Sair
         </span>
         <mat-icon>logout</mat-icon>
-    </a>
+    </button>
 </header>
