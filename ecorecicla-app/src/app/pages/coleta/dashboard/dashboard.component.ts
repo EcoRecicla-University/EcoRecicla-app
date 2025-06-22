@@ -8,6 +8,7 @@ import { MatInputModule } from "@angular/material/input";
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 import { ColetaService } from "../../../core/services/coleta.service";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DATE_CONFIG_PROVIDERS } from '../../../core/date-format.config';
 
 @Component ({
     selector: 'app-pages-coleta-dashboard',
@@ -21,7 +22,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angul
         ReactiveFormsModule,
         FormsModule,
     ],
-    providers: [provideNativeDateAdapter(), DatePipe],
+    providers: [provideNativeDateAdapter(), DatePipe, ...DATE_CONFIG_PROVIDERS],
 })
 export class PagesColetaDashboardComponent implements OnInit {
 

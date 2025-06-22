@@ -7,6 +7,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { ColetaService } from "../../../../core/services/coleta.service";
 import { FormsModule } from "@angular/forms";
+import { DATE_CONFIG_PROVIDERS } from '../../../../core/date-format.config';
 
 @Component ({
     selector: 'pages-coleta-listagem-dialog',
@@ -18,7 +19,7 @@ import { FormsModule } from "@angular/forms";
         MatDatepickerModule,
         FormsModule
     ],
-    providers: [provideNativeDateAdapter(), DatePipe],
+    providers: [provideNativeDateAdapter(), DatePipe, ...DATE_CONFIG_PROVIDERS],
 })
 
 export class DialogListaColetaComponent {
