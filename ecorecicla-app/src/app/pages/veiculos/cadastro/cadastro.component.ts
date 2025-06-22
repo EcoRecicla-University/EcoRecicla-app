@@ -42,8 +42,8 @@ export class PagesVeiculosCadastroComponent implements OnInit {
     public form = new FormGroup({
         placa: new FormControl('', Validators.required),
         modeloVeiculo: new FormControl('', Validators.required),
-        quilometragem: new FormControl('', Validators.required),
-        renavam: new FormControl('', Validators.required),
+        quilometragem: new FormControl('', [Validators.required, Validators.maxLength(11)]),
+        renavam: new FormControl('', [Validators.required, Validators.maxLength(11)]),
         capacidade: new FormControl('', Validators.required)
     })
 
@@ -113,6 +113,14 @@ export class PagesVeiculosCadastroComponent implements OnInit {
             (error) => {
                 this.snackbar.open(error.error.error, 'Ok')
             })
+        }
+    }
+
+    // Permitir apenas números
+    permitirApenasNumeros(event: KeyboardEvent) {
+        const regex = /^[0-9]*$/;
+        if (!regex.test(event.key)) {
+            event.preventDefault();
         }
     }
 }

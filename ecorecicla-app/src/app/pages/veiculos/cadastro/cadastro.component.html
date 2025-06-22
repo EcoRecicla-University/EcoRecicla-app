@@ -24,24 +24,36 @@
                 <label>Placa do veiculo</label>
                 <mat-form-field appearance="outline" class="w-full">
                     <input matInput 
-                       placeholder="Digite a placa do veiculo" 
-                       class="w-full" 
-                       [formControlName]="'placa'">
-                   
+                    maxLength="11"
+                    placeholder="Digite a placa do veiculo" 
+                    class="w-full" 
+                    [formControlName]="'placa'">
                 </mat-form-field>
             </div>
     
             <div class="flex flex-col">
                 <label>Modelo do veiculo</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite o Modelo do veiculo" class="w-full" [formControlName]="'modeloVeiculo'">
+                    <input 
+                    matInput 
+                    placeholder="Digite o Modelo do veiculo" 
+                    maxLength="50"
+                    class="w-full" 
+                    [formControlName]="'modeloVeiculo'">
                 </mat-form-field>
             </div>
     
             <div class="flex flex-col w-full">
                 <label>Quilometragem do veiculo</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite a quilometragem" type="number" min="0" class="w-full" [formControlName]="'quilometragem'">
+                    <input 
+                    matInput 
+                    placeholder="Digite a quilometragem" 
+                    type="number" 
+                    maxlength="10"
+                    min="0" 
+                    class="w-full" 
+                    [formControlName]="'quilometragem'">
                 </mat-form-field>
             </div>
 
@@ -49,7 +61,13 @@
                 <div class="flex flex-col">
                     <label>Código RENAVAM</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput placeholder="Digite o RENAVAM" class="w-1/2" [formControlName]="'renavam'">
+                        <input 
+                        matInput 
+                        placeholder="Digite o RENAVAM" 
+                        class="w-1/2"
+                        maxlength="11"
+                        (keypress)="permitirApenasNumeros($event)"
+                        [formControlName]="'renavam'">
                     </mat-form-field>
                 </div>
         
