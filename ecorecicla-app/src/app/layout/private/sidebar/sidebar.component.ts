@@ -44,27 +44,6 @@ export class LayoutPrivateSidebarComponent {
             type: 'ITEM',
         },
         {
-            icon: 'route',
-            label: 'Rota',
-            url: '/rota',
-            type: 'ITEM',
-        },
-        {
-            icon: 'inventory_2',
-            label: 'Estoque',
-            type: 'GRUPO',
-            children: [
-                {
-                    label: 'Movimentação',
-                    url: '/movimentacao'
-                },
-                {
-                    label: 'Estoque',
-                    url: '/estoque'
-                }
-            ]
-        },
-        {
             icon: 'group_add',
             label: 'Cadastro',
             type: 'GRUPO',
@@ -92,14 +71,14 @@ export class LayoutPrivateSidebarComponent {
             // url: '/coleta',
             children: [
                 {
+                    label: 'Consulta',
+                    url: '/coleta'
+                },
+                {
                     // icon: 'pallet',
                     label: 'Dashboard',
                     // type: 'ITEM',
                     url: '/coleta/dashboard'
-                },
-                {
-                    label: 'Consulta',
-                    url: '/coleta'
                 },
             ]
         },
@@ -109,5 +88,26 @@ export class LayoutPrivateSidebarComponent {
             type: 'ITEM',
             url: '/triagem'
         },
+        {
+            icon: 'route',
+            label: 'Rota',
+            url: '/rota',
+            type: 'ITEM',
+        },
+        {
+            icon: 'inventory_2',
+            label: 'Estoque',
+            type: 'GRUPO',
+            children: [
+                {
+                    label: 'Movimentação',
+                    url: '/movimentacao'
+                },
+                {
+                    label: 'Estoque',
+                    url: '/estoque'
+                }
+            ]
+        }
     ]
 }
