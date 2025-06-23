@@ -135,7 +135,7 @@ export class PagesClienteCadastroComponent implements OnInit {
         
             this.service.editarCliente(this.idSelecionado, dadosEditaveis)
             .subscribe(() => {
-                this.snackbar.open('Cliente editado com sucesso', 'Ok')
+                this.snackbar.open('Cliente editado com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
@@ -144,13 +144,13 @@ export class PagesClienteCadastroComponent implements OnInit {
         } else {
             this.service.criarNovoCliente(dadosDoFormulario)
             .subscribe(() => {
-                this.snackbar.open('Cliente criado com sucesso', 'Ok')
+                this.snackbar.open('Cliente criado com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
             },
                 (error) => {
-                    this.snackbar.open(error.error.error, 'Ok')
+                    this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
                 })
         }
     }

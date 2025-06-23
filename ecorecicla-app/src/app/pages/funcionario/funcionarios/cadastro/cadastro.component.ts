@@ -53,7 +53,7 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit {
         rg: new FormControl('', Validators.required),
         dataContratacao: new FormControl(null, Validators.required),
         estadoCivil: new FormControl(null, Validators.required),
-        email: new FormControl('', Validators.required)
+        email: new FormControl('', [Validators.required, Validators.email])
     })
 
     constructor(
@@ -95,7 +95,7 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit {
         const dataNascimento = new Date(this.form.value.dataNascimento);
 
         if (dataNascimento > this.dataMinimaPara18Anos) {
-            this.snackbar.open('O funcionário deve ter 18 anos ou mais.', 'Ok', { duration: 4000 });
+            this.snackbar.open('O funcionário deve ter 18 anos ou mais.', 'Ok', { duration: 5000 });
             return;
         }
 
@@ -128,28 +128,27 @@ export class PagesFuncionariosFuncionariosCadastroComponent implements OnInit {
 
             this.service.editarFuncionario(this.idSelecionado, dadosEditaveis)
                 .subscribe(() => {
-                    this.snackbar.open('Cliente editado com sucesso', 'Ok')
+                    this.snackbar.open('Cliente editado com sucesso', 'Ok', { duration: 5000 })
                     this.router.navigate(['..'], {
                         relativeTo: this._activatedRoute
                     })
+                },
+                (error) => {
+                    this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
                 });
     
             } else {
                 this.service.criarNovoFuncionario(dadosDoFormulario)
                     .subscribe(() => {
-                        this.snackbar.open('Funcionário criado com sucesso', 'Ok')
+                        this.snackbar.open('Funcionário criado com sucesso', 'Ok', { duration: 5000 })
                         this.router.navigate(['..'], {
                             relativeTo: this._activatedRoute
                         })
                     },
                     (error) => {
-                        this.snackbar.open(error.error.error, 'Ok')
+                        this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
                     })
             }
-        
-        
-
-
 
     }
 

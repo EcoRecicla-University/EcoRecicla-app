@@ -54,13 +54,13 @@ export class PagesVeiculosDetalheComponent implements OnInit, OnDestroy {
         if (podeExcluir) {
             this.service.deletarVeiculo(this.idSelecionado)
             .subscribe(() => {
-                this.snackbar.open('Veiculo excluido com sucesso', 'Ok')
+                this.snackbar.open('Veiculo excluido com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this.activeRoute
                 })
             },
             (error) => {
-            this.snackbar.open(error.error.error, 'Ok')
+            this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
             })
         }
     }

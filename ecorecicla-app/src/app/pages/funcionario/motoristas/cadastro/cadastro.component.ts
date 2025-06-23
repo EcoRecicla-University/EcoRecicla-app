@@ -98,7 +98,7 @@ export class PagesFuncionariosMotoristasCadastroComponent implements OnInit{
         const validadeCarteira = new Date(this.form.value.dataValidadeCarteira);
 
         if (validadeCarteira < this.dataMinimaValidadeCarteira) {
-            this.snackbar.open('A validade da carteira deve ser uma data futura.', 'Ok', { duration: 4000 });
+            this.snackbar.open('A validade da carteira deve ser uma data futura.', 'Ok', { duration: 5000 });
             return;
         }
 
@@ -123,7 +123,7 @@ export class PagesFuncionariosMotoristasCadastroComponent implements OnInit{
         
             this.service.editarMotorista(this.idSelecionado, dadosEditaveis)
             .subscribe(() => {
-                this.snackbar.open('Motorista editado com sucesso', 'Ok')
+                this.snackbar.open('Motorista editado com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
@@ -132,13 +132,13 @@ export class PagesFuncionariosMotoristasCadastroComponent implements OnInit{
         } else {
             this.service.criarNovoMotorista(dadosDoFormulario)
             .subscribe(() => {
-                this.snackbar.open('Motorista criado com sucesso', 'Ok')
+                this.snackbar.open('Motorista criado com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
             },
             (error) => {
-                this.snackbar.open(error.error.error, 'Ok')
+                this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
             })
         }
     }

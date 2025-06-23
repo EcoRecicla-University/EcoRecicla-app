@@ -124,7 +124,7 @@ export class PagesTriagemCadastroComponent implements OnInit {
         
             this.service.editarTriagem(this.idSelecionado, dadosEditaveis)
             .subscribe(() => {
-                this.snackbar.open('Centro de triagem editado com sucesso', 'Ok')
+                this.snackbar.open('Centro de triagem editado com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
@@ -133,13 +133,13 @@ export class PagesTriagemCadastroComponent implements OnInit {
         } else {
             this.service.criarNovoCentroTriagem(dadosDoFormulario)
             .subscribe(() => {
-                this.snackbar.open('Centro de triagem criado com sucesso', 'Ok')
+                this.snackbar.open('Centro de triagem criado com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
             },
                 (error) => {
-                    this.snackbar.open(error.error.error, 'Ok')
+                    this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
                 })
         }
     }

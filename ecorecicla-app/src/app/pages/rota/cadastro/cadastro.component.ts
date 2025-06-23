@@ -166,7 +166,7 @@ export class PagesRotaCadastroComponent implements OnInit{
             
                 this.service.editarRota(this.idSelecionado, dadosEditaveis)
                 .subscribe(() => {
-                    this.snackbar.open('Rota editada com sucesso', 'Ok')
+                    this.snackbar.open('Rota editada com sucesso', 'Ok', { duration: 5000 })
                     this.router.navigate(['..'], {
                         relativeTo: this._activatedRoute
                     })
@@ -175,13 +175,13 @@ export class PagesRotaCadastroComponent implements OnInit{
             } else {
                 this.service.criarNovaColeta(dadosDoFormulario)
                 .subscribe(() => {
-                    this.snackbar.open('Rota criada com sucesso', 'Ok')
+                    this.snackbar.open('Rota criada com sucesso', 'Ok', { duration: 5000 })
                     this.router.navigate(['..'], {
                         relativeTo: this._activatedRoute
                     })
                 },
                 (error) => {
-                    this.snackbar.open(error.error.error, 'Ok')
+                    this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
                 })
             }
         }

@@ -64,13 +64,13 @@ export class PagesEstoqueMovimentacaoDetalheComponent implements OnInit, OnDestr
         if (podeExcluir) {
             this.service.excluirMovimen(this.idSelecionado)
             .subscribe(() => {
-                this.snackbar.open('Movimentação excluido com sucesso', 'Ok')
+                this.snackbar.open('Movimentação excluido com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this.activeRoute
                 })
             },
             (error) => {
-                this.snackbar.open(error.error.error, 'Ok')
+                this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
             })
         }
     }

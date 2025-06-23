@@ -96,7 +96,7 @@ export class PagesColetaCadastroComponent implements OnInit{
         const dataColetaLimite = new Date(this.form.value.dataColeta);
 
         if (dataColetaLimite < this.dataMinimaColeta) {
-            this.snackbar.open('A data da coleta deve ser uma data futura.', 'Ok', { duration: 4000 });
+            this.snackbar.open('A data da coleta deve ser uma data futura.', 'Ok', { duration: 5000 });
             return;
         }
 
@@ -119,7 +119,7 @@ export class PagesColetaCadastroComponent implements OnInit{
         
             this.service.editarColeta(this.idSelecionado, dadosEditaveis)
             .subscribe(() => {
-                this.snackbar.open('Coleta editada com sucesso', 'Ok')
+                this.snackbar.open('Coleta editada com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
@@ -128,13 +128,13 @@ export class PagesColetaCadastroComponent implements OnInit{
         } else {
             this.service.criarNovaColeta(dadosDoFormulario)
             .subscribe(() => {
-                this.snackbar.open('Coleta criada com sucesso', 'Ok')
+                this.snackbar.open('Coleta criada com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
             },
                 (error) => {
-                    this.snackbar.open(error.error.error, 'Ok')
+                    this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
                 })
         }
     }

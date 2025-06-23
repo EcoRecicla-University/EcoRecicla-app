@@ -96,7 +96,7 @@ export class PagesVeiculosCadastroComponent implements OnInit {
         
             this.service.editarVeiculo(this.idSelecionado, dadosEditaveis)
             .subscribe(() => {
-                this.snackbar.open('Veiculo editado com sucesso', 'Ok')
+                this.snackbar.open('Veiculo editado com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
@@ -105,13 +105,13 @@ export class PagesVeiculosCadastroComponent implements OnInit {
         } else {
             this.service.criarNovoVeiculo(dadosDoFormulario)
             .subscribe(() => {
-                this.snackbar.open('Veiculo criado com sucesso', 'Ok')
+                this.snackbar.open('Veiculo criado com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
             },
             (error) => {
-                this.snackbar.open(error.error.error, 'Ok')
+                this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
             })
         }
     }

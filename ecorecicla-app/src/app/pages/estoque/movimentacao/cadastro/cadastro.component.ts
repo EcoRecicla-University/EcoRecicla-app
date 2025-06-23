@@ -110,7 +110,7 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
         const entradaItem = new Date(this.form.value.dataEntrada);
 
         if (entradaItem > this.dataMinimaMovimento) {
-            this.snackbar.open('O movimento tem que ser uma data anterior a hoje.', 'Ok', { duration: 4000 });
+            this.snackbar.open('O movimento tem que ser uma data anterior a hoje.', 'Ok', { duration: 5000 });
             return;
         }
 
@@ -138,7 +138,7 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
         
             this.service.editarMovimen(this.idSelecionado, dadosEditaveis)
             .subscribe(() => {
-                this.snackbar.open('Movimentação editada com sucesso', 'Ok')
+                this.snackbar.open('Movimentação editada com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })
@@ -147,7 +147,7 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
         } else {
             this.service.criarNovaMovimen(dadosDoFormulario)
             .subscribe(() => {
-                this.snackbar.open('Movimentação criado com sucesso', 'Ok')
+                this.snackbar.open('Movimentação criado com sucesso', 'Ok', { duration: 5000 })
                 this.router.navigate(['..'], {
                     relativeTo: this._activatedRoute
                 })

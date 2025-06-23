@@ -50,6 +50,9 @@
                 <label>Email</label>
                 <mat-form-field appearance="outline" class="w-full">
                     <input matInput placeholder="Digite um email" class="w-full" [formControlName]="'email'">
+                    <mat-error>
+                        <span>Formato de e-mail inválido</span>
+                    </mat-error>
                 </mat-form-field>
             </div>
     

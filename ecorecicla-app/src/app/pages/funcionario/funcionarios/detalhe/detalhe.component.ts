@@ -55,13 +55,13 @@ export class PagesFuncionariosFuncionariosDetalheComponent implements OnInit, On
         if (podeExcluir) {
             this.service.deletarFuncionario(this.idSelecionado)
                 .subscribe(() => {
-                    this.snackbar.open('Funcionário excluido com sucesso', 'Ok')
+                    this.snackbar.open('Funcionário excluido com sucesso', 'Ok', { duration: 5000 })
                     this.router.navigate(['..'], {
                         relativeTo: this.activeRoute
                     })
                 },
                 (error) => {
-                    this.snackbar.open(error.error.error, 'Ok')
+                    this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
                 })
         }
     }

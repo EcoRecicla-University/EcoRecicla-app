@@ -111,7 +111,7 @@ export class PagesRotaDetalheComponent implements OnInit, OnDestroy {
         if (podeExcluir) {
             this.service.deletarRota(this.idSelecionado)
                 .subscribe(() => {
-                    this.snackbar.open('Rota excluida com sucesso', 'Ok')
+                    this.snackbar.open('Rota excluida com sucesso', 'Ok', { duration: 5000 })
                     this.router.navigate(['..'], {
                         relativeTo: this.activeRoute
                     })

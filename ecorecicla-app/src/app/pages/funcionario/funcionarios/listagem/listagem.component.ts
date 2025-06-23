@@ -62,7 +62,7 @@ export class PagesFuncionariosFuncionariosListagemComponent {
             a.click();
             window.URL.revokeObjectURL(url);
             setTimeout(() => {
-                this.snackbar.open('Relatório gerado com sucesso', 'Ok')
+                this.snackbar.open('Relatório gerado com sucesso', 'Ok', { duration: 5000 })
 
             }, 1000)
         });
