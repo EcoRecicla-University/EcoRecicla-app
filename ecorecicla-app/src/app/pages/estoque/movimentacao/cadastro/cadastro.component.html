@@ -49,7 +49,7 @@
             <!-- Campos de Quantidade e Chave de Triagem -->
             <div class="flex flex-col pt-1">
                 <div class="flex flex-col w-full">
-                    <label>Quantidade</label>
+                    <label>Quantidade (KG)</label>
                     <mat-form-field appearance="outline" class="w-full">
                         <input matInput placeholder="Digite a quantidade"
                             oninput="this.value = this.value.replace(/[^0-9]/g, '')" type="number" min="0"
@@ -59,7 +59,7 @@
                 <div class="flex flex-col w-full">
                     <label>Data de Entrada</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput [matDatepicker]="picker" [max]="dataMinimaMovimento" placeholder="dd/mm/aaaa" [formControlName]="'dataEntrada'">
+                        <input matInput [matDatepicker]="picker" [max]="dataMinimaMovimento" placeholder="Selecione uma data" [formControlName]="'dataEntrada'">
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>

@@ -51,9 +51,11 @@
                 <div class="flex flex-col pt-1">
                     <label>CEP</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput 
-                            placeholder="Digite o CEP"
-                            [formControlName]="'cep'">
+                        <input 
+                        matInput 
+                        placeholder="Digite o CEP"
+                        [formControlName]="'cep'"
+                        (keypress)="permitirApenasNumeros($event)">
                         <button
                             matSuffix
                             mat-icon-button
@@ -106,9 +108,11 @@
                 <div class="flex flex-col pt-1">
                     <label>Número</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput 
-                            placeholder="Número"
-                            [formControlName]="'numero'">
+                        <input 
+                        matInput 
+                        placeholder="Número"
+                        [formControlName]="'numero'"
+                        (keypress)="permitirApenasNumeros($event)">
                     </mat-form-field>
                 </div>
                 

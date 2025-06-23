@@ -32,9 +32,16 @@
             </div>
             
             <div class="flex flex-col w-full">
-                <label>Capacidade Armazenamento</label>
+                <label>Capacidade Armazenamento (KG)</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput placeholder="Digite o peso em kg" type="number" min="0" class="w-full" [formControlName]="'capacidade'">
+                    <input 
+                    matInput 
+                    placeholder="Digite o peso em kg" 
+                    type="number" 
+                    min="0" 
+                    class="w-full" 
+                    [formControlName]="'capacidade'"
+                    (keypress)="permitirApenasNumeros($event)">
                 </mat-form-field>
             </div>
 
@@ -44,15 +51,17 @@
                     <div class="flex flex-col pt-1">
                         <label>CEP</label>
                         <mat-form-field appearance="outline" class="w-full">
-                            <input matInput 
-                                placeholder="Digite o CEP"
-                                [formControlName]="'cep'">
+                            <input 
+                            matInput 
+                            placeholder="Digite o CEP"
+                            [formControlName]="'cep'"
+                            (keypress)="permitirApenasNumeros($event)">
                             <button
-                                matSuffix
-                                mat-icon-button
-                                type="button"
-                                (click)="buscarEnderecoPorCep()"
-                                [disabled]="form.get('endereco').get('cep').invalid || isLoadingCep">
+                            matSuffix
+                            mat-icon-button
+                            type="button"
+                            (click)="buscarEnderecoPorCep()"
+                            [disabled]="form.get('endereco').get('cep').invalid || isLoadingCep">
                                 <mat-icon>search</mat-icon>
                             </button>
                             <mat-hint>Digite apenas números</mat-hint>
@@ -103,9 +112,11 @@
                     <div class="flex flex-col pt-1">
                         <label>Número</label>
                         <mat-form-field appearance="outline" class="w-full">
-                            <input matInput 
-                                placeholder="Número"
-                                [formControlName]="'numero'">
+                            <input 
+                            matInput 
+                            placeholder="Número"
+                            [formControlName]="'numero'"
+                            (keypress)="permitirApenasNumeros($event)">
                         </mat-form-field>
                     </div>
                 </div>

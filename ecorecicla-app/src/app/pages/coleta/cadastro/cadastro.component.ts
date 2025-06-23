@@ -138,4 +138,11 @@ export class PagesColetaCadastroComponent implements OnInit{
                 })
         }
     }
+
+    permitirApenasNumeros(event: KeyboardEvent) {
+        const regex = /^[0-9]*$/;
+        if (!regex.test(event.key)) {
+            event.preventDefault();
+        }
+    }
 }

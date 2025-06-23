@@ -33,7 +33,7 @@
             <div class="flex flex-col pt-1">
                 <label>Data de Nascimento</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <input matInput [matDatepicker]="pickerData" placeholder="dd/mm/aaaa" [formControlName]="'dataNascimento'" (keypress)="permitirApenasNumeros($event)">
+                    <input matInput [matDatepicker]="pickerData" placeholder="Selecione uma data" [formControlName]="'dataNascimento'" (keypress)="permitirApenasNumeros($event)">
                     <mat-datepicker-toggle matIconSuffix [for]="pickerData"></mat-datepicker-toggle>
                     <mat-datepicker #pickerData></mat-datepicker>
                 </mat-form-field>
@@ -77,7 +77,7 @@
                 <div class="flex flex-col pt-1">
                     <label>Data de Contratação</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" [formControlName]="'dataContratacao'" (keypress)="permitirApenasNumeros($event)">
+                        <input matInput [matDatepicker]="picker" placeholder="Selecione uma data" [formControlName]="'dataContratacao'" (keypress)="permitirApenasNumeros($event)">
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>

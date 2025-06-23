@@ -172,4 +172,11 @@ export class PagesTriagemCadastroComponent implements OnInit {
         this.form.get('endereco').get('estado').disable();
         this.form.get('endereco').get('bairro').disable();
     }
+
+    permitirApenasNumeros(event: KeyboardEvent) {
+        const regex = /^[0-9]*$/;
+        if (!regex.test(event.key)) {
+            event.preventDefault();
+        }
+    }
 }

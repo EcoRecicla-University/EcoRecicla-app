@@ -27,7 +27,7 @@
             <div class="flex flex-col pt-5">
                 <label>Cliente</label>
                 <mat-form-field appearance="outline" class="w-full">
-                    <mat-select placeholder="Selecione a categoria" [formControlName]="'clienteId'">
+                    <mat-select placeholder="Selecione um cliente" [formControlName]="'clienteId'">
                         <mat-option *ngFor="let cliente of allClientes" [value]="cliente.ID_Cliente">{{ cliente.Nome }}</mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -37,19 +37,21 @@
                 <div class="flex flex-col pt-1">
                     <label>Data da coleta</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput [matDatepicker]="picker" [min]="dataMinimaColeta" placeholder="dd/mm/aaaa" [formControlName]="'dataColeta'">
+                        <input matInput [matDatepicker]="picker" [min]="dataMinimaColeta" placeholder="Selecione uma data" [formControlName]="'dataColeta'">
                         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </div>
     
                 <div class="flex flex-col pt-1">
-                    <label>Quantidade</label>
+                    <label>Quantidade Estimada (KG)</label>
                     <mat-form-field appearance="outline" class="w-full">
-                        <input matInput 
-                            placeholder="Digite a quantidade" 
-                            class="w-full"
-                            [formControlName]="'quantidade'">
+                        <input 
+                        matInput 
+                        placeholder="Digite a quantidade" 
+                        class="w-full"
+                        [formControlName]="'quantidade'"
+                        (keypress)="permitirApenasNumeros($event)">
                     </mat-form-field>
                 </div>
             </div>
