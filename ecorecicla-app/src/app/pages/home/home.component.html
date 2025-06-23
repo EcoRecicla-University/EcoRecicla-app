@@ -1,19 +1,93 @@
 <div class="pt-4">
     <div class="flex items-center flex-col">
-        <span>
-            Olá {{ usuario }}, seja bem vindo!
-        </span>
         <div class="flex flex-col items-center pt-7">
-            <span class="text-sm text-gray-300">Você está na página</span>
-            <h1 class="text-6xl">Home</h1>
+            <span class="text-md text-gray-400">Bem Vindo à</span>
+            <div class="max-w-90 max-h-40 h-auto w-auto">
+                <img src="/images/Logo.png" alt="" srcset="">
+            </div>
         </div>
-        
-        <div class="flex justify-center w-full pt-10">
-            <div class="flex justify-start items-center w-1/2 border border-gray-400 rounded-full gap-1 h-12 bg-gray-100">
-                <div class="flex justify-center items-center pl-2 pr-1">
-                    <mat-icon fontIcon="search" class=""></mat-icon>
+
+        <div class="flex items-center">
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full gap-4 m-10">
+
+                <div class="flex flex-col bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="flex items-center text-2xl mb-4 gap-2">
+                        <mat-icon 
+                        [fontIcon]="'person'" 
+                        class="mr-2"></mat-icon>
+                        Clientes
+                    </div>
+                    <span class="text-gray-600 h-full max-h-12">Nessa tela você pode administrar o cadastro de seus clientes.</span>
+                    <div class="flex justify-end mt-4">
+                        <button [routerLink]="'/clientes'" class="flex items-center rounded-3xl px-5 py-2 text-white bg-[#06467a] hover:bg-[#085b9d] cursor-pointer">Gerenciar Clientes</button>
+                    </div>
                 </div>
-                <input type="text" placeholder="Digite sua pesquisa" class="focus:outline-0 w-full rounded-br-full rounded-tr-full focus:border-none">
+
+                <div class="flex flex-col bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="flex items-center text-2xl mb-4 gap-2">
+                        <mat-icon 
+                        [fontIcon]="'group_add'" 
+                        class="mr-2"></mat-icon>
+                        Funcionários
+                    </div>
+                    <span class="text-gray-600 h-full max-h-12">Aqui você pode administrar o cadastro de seus funcionários.</span>
+                    <div class="flex justify-end mt-4">
+                        <button [routerLink]="'/funcionarios'" class="flex items-center rounded-3xl px-5 py-2 text-white bg-[#06467a] hover:bg-[#085b9d] cursor-pointer">Gerenciar Funcionários</button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="flex items-center text-2xl mb-4 gap-2">
+                        <mat-icon 
+                        [fontIcon]="'local_shipping'" 
+                        class="mr-2"></mat-icon>
+                        Veículos
+                    </div>
+                    <span class="text-gray-600 h-full max-h-12">Administre seus veículos.</span>
+                    <div class="flex justify-end mt-4">
+                        <button [routerLink]="'/veiculos'" class="flex items-center rounded-3xl px-5 py-2 text-white bg-[#06467a] hover:bg-[#085b9d] cursor-pointer">Gerenciar Veículos</button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="flex items-center text-2xl mb-4 gap-2">
+                        <mat-icon 
+                        [fontIcon]="'pallet'" 
+                        class="mr-2"></mat-icon>
+                        Coletas
+                    </div>
+                    <span class="text-gray-600 h-full max-h-12">Gerencie seus pontos de coletas.</span>
+                    <div class="flex justify-end mt-4">
+                        <button [routerLink]="'/coleta'" class="flex items-center rounded-3xl px-5 py-2 text-white bg-[#06467a] hover:bg-[#085b9d] cursor-pointer">Gerenciar Coletas</button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="flex items-center text-2xl mb-4 gap-2">
+                        <mat-icon 
+                        [fontIcon]="'route'" 
+                        class="mr-2"></mat-icon>
+                        Rotas
+                    </div>
+                    <span class="text-gray-600 h-full max-h-12">Crie, edite e exclua cada uma das suas rotas.</span>
+                    <div class="flex justify-end mt-4">
+                        <button [routerLink]="'/rota'" class="flex items-center rounded-3xl px-5 py-2 text-white bg-[#06467a] hover:bg-[#085b9d] cursor-pointer">Gerenciar Rotas</button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-xl transition">
+                    <div class="flex items-center text-2xl mb-4 gap-2">
+                        <mat-icon 
+                        [fontIcon]="'inventory_2'" 
+                        class="mr-2"></mat-icon> 
+                        Estoque
+                    </div>
+                    <span class="text-gray-600 h-full max-h-12">Visualize seus saldos e movimentações detalhadamente.</span>
+                    <div class="flex justify-end mt-4">
+                        <button [routerLink]="'/estoque'" class="flex items-center rounded-3xl px-5 py-2 text-white bg-[#06467a] hover:bg-[#085b9d] cursor-pointer">Visualizar Estoque</button>
+                    </div>
+                </div>
+
             </div>
 
         </div>
