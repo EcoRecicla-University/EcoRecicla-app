@@ -43,6 +43,8 @@ import { EditarRotaModel } from "../../../core/models/private/rota/editarRota.mo
 })
 export class PagesRotaCadastroComponent implements OnInit{
 
+    erroCapacidadeVeiculo: boolean = false;
+
     public isEdicao = false;
 
     public idSelecionado = null;
@@ -143,46 +145,63 @@ export class PagesRotaCadastroComponent implements OnInit{
 
     salvar() {
         
-            const dadosDoFormulario: CadastroRotaModel = {
+        const dadosDoFormulario: CadastroRotaModel = {
+            ID_Coleta: this.form.value.idColeta ?? '',
+            ID_Motorista: this.form.value.idMotorista ?? '',
+            ID_Veiculo: this.form.value.idVeiculo ?? '',
+            ID_Funci: this.form.value.idFuncionario ?? '',
+            ID_Centro_Inicio: this.form.value.idTriagemInicio ?? '',
+            ID_Centro_Fim: this.form.value.idTriagemFim ?? ''
+        }
+
+        if (this.isEdicao && this.idSelecionado) {
+            const dadosEditaveis: EditarRotaModel = {
+                ID_Rota: this.idSelecionado,
                 ID_Coleta: this.form.value.idColeta ?? '',
                 ID_Motorista: this.form.value.idMotorista ?? '',
                 ID_Veiculo: this.form.value.idVeiculo ?? '',
                 ID_Funci: this.form.value.idFuncionario ?? '',
                 ID_Centro_Inicio: this.form.value.idTriagemInicio ?? '',
-                ID_Centro_Fim: this.form.value.idTriagemFim ?? ''
-            }
-    
-            if (this.isEdicao && this.idSelecionado) {
-                const dadosEditaveis: EditarRotaModel = {
-                    ID_Rota: this.idSelecionado,
-                    ID_Coleta: this.form.value.idColeta ?? '',
-                    ID_Motorista: this.form.value.idMotorista ?? '',
-                    ID_Veiculo: this.form.value.idVeiculo ?? '',
-                    ID_Funci: this.form.value.idFuncionario ?? '',
-                    ID_Centro_Inicio: this.form.value.idTriagemInicio ?? '',
-                    ID_Centro_Fim: this.form.value.idTriagemFim ?? '',
-                    Data_Coleta: null
-                };
-            
-                this.service.editarRota(this.idSelecionado, dadosEditaveis)
-                .subscribe(() => {
-                    this.snackbar.open('Rota editada com sucesso', 'Ok', { duration: 5000 })
-                    this.router.navigate(['..'], {
-                        relativeTo: this._activatedRoute
-                    })
-                });
-    
-            } else {
-                this.service.criarNovaColeta(dadosDoFormulario)
-                .subscribe(() => {
-                    this.snackbar.open('Rota criada com sucesso', 'Ok', { duration: 5000 })
-                    this.router.navigate(['..'], {
-                        relativeTo: this._activatedRoute
-                    })
-                },
-                (error) => {
-                    this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
+                ID_Centro_Fim: this.form.value.idTriagemFim ?? '',
+                Data_Coleta: null
+            };
+        
+            this.service.editarRota(this.idSelecionado, dadosEditaveis)
+            .subscribe(() => {
+                this.snackbar.open('Rota editada com sucesso', 'Ok', { duration: 5000 })
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
                 })
-            }
+            });
+
+        } else {
+            this.service.criarNovaColeta(dadosDoFormulario)
+            .subscribe(() => {
+                this.snackbar.open('Rota criada com sucesso', 'Ok', { duration: 5000 })
+                this.router.navigate(['..'], {
+                    relativeTo: this._activatedRoute
+                })
+            },
+            (error) => {
+                this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
+            })
         }
+    }
+
+    verificarCapacidadeVeiculo() {
+        const idColeta = this.form.value.idColeta;
+        const idVeiculo = this.form.value.idVeiculo;
+
+        const coletaSelecionada = this.allColetas.find(c => c.ID_Coleta === idColeta);
+        const veiculoSelecionado = this.allVeiculos.find(v => v.ID_Veiculo === idVeiculo);
+
+        if (coletaSelecionada && veiculoSelecionado) {
+            const quantidade = Number(coletaSelecionada.Quantidade);
+            const capacidade = Number(veiculoSelecionado.Capacidade_em_Kg);
+
+            this.erroCapacidadeVeiculo = capacidade < quantidade;
+        } else {
+            this.erroCapacidadeVeiculo = false;
+        }
+    }
 }
