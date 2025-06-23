@@ -1,5 +1,5 @@
 export enum TipoClienteEnum {
-    C = 'Coleta',
+    C = 'Compra',
     V = 'Venda',
     A = 'Ambos'
 }
