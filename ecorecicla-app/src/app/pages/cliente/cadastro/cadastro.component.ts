@@ -199,5 +199,7 @@ export class PagesClienteCadastroComponent implements OnInit {
         this.form.get('endereco').get('localidade').disable();
         this.form.get('endereco').get('estado').disable();
         this.form.get('endereco').get('bairro').disable();
+
+        console.log('')
     }
 }
