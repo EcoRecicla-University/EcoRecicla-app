@@ -1,14 +1,33 @@
-<div class="flex justify-center items-center pt-5">
-    <div class="flex items-center flex-col bg-white w-full max-w-lg h-auto rounded-3xl mx-2 shadow-xl">
-        <div class="pt-5">
-            <span class="text-3xl text-[#06467a] font-semibold">Login</span>
+<div class="flex flex-row-reverse w-full h-full">
+    <!-- Image -->
+    <div class="hidden md:block relative w-1/2 bg-[#06467a]">
+        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-[#06467a] to-transparent">
+            &nbsp;
         </div>
-        <div class="p-5 px-10 w-full">
-            <form action="" class="flex flex-col" [formGroup]="formularioLogin" (ngSubmit)="onSubmit()">
+        <div class="w-full h-full">
+            <img
+                class="w-full h-full object-cover"
+                src="images/bg-coleta-seletiva-1.jpg"
+                alt="">
+        </div>
+    </div>
+    <!-- Login -->
+    <div class="w-full md:w-1/2 flex flex-col justify-center items-center p-4 md:p-12 bg-[#06467a]">
+        <img
+            class="max-w-2/3 md:max-w-xs relative"
+            src="images/Logo.png"
+            alt="">
+        <div class="-mt-16 w-full flex flex-col justify-center items-center gap-6 p-12 bg-white rounded-md shadow-lg max-w-lg">
+            <header class="mt-6">
+                <p class="text-center">
+                    <span class="text-3xl text-[#06467a] font-semibold">Login</span>
+                </p>
+                <p class="text-gray-600 text-center mt-4">
+                    Informe seus dados de acesso para fazer login na plataforma.
+                </p>
+            </header>
+            <form action="" class="w-full flex flex-col gap-4" [formGroup]="formularioLogin" (ngSubmit)="onSubmit()">
                 
-                <span class="text-white text-sm">
-                    Digite seu email
-                </span>
                 <mat-form-field class="w-full">
                     <mat-label>Email</mat-label>
                     <input 
@@ -29,9 +48,6 @@
                     }
                 </mat-form-field>
 
-                <span class="text-white text-sm">
-                    Digite sua senha
-                </span>
                 <mat-form-field class="w-full">
                     <mat-label>Senha</mat-label>
                     <input 
@@ -52,21 +68,20 @@
                         {{ loginErrorMessage }}
                     </div>
                 }
-                <div class="flex flex-col gap-2 pb-5 pt-4">
 
+                <footer class="flex flex-col gap-6">
                     <button
                         type="submit"
-                        class="bg-blue-500 text-white rounded-3xl h-10 hover:bg-blue-600 cursor-pointer disabled:bg-gray-600"
+                        class="p-4 text-lg text-white rounded-full bg-[#06467a] cursor-pointer disabled:bg-gray-600"
                         [disabled]="formularioLogin.invalid">
                         Entrar
                     </button>
-
-                    <button class="bg-green-900 text-white rounded-3xl h-10 hover:bg-green-950 cursor-pointer" 
-                        [routerLink]="'/recuperacao-senha'">
-                        Esqueci minha senha
-                    </button>
-                </div>
-                
+                    <p class="text-center">
+                        <a class="text-[#06467a] underline"  [routerLink]="'/recuperacao-senha'">
+                            Esqueci minha senha
+                        </a>
+                    </p>
+                </footer>
             </form>
         </div>
     </div>
