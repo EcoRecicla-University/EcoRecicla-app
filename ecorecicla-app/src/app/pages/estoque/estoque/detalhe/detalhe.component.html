@@ -16,11 +16,9 @@
     </div>
 
     <div class="flex flex-col gap-4">
-
         <div class="w-full mt-5 max-w-6xl">
-
             <div
-                class="bg-gray-200 grid grid-cols-[5%_30%_10%_30%_25%] rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
+                class="bg-gray-200 grid grid-cols-[5%_25%_10%_20%_20%_10%] rounded-tl-2xl rounded-tr-2xl p-3 text-gray-400 text-sm">
 
                 <div class="flex justify-center">
                     <span class="font-medium">Rota</span>
@@ -42,44 +40,42 @@
                     <span class="font-medium">Quantidade</span>
                 </div>
 
+                <div class="flex justify-center">
+                    <span class="font-medium">Status</span>
+                </div>
             </div>
 
             <div *ngFor="let item of DadosEstoqueSelecionado" class="hover:bg-gray-100">
-
                 <a class="block p-3">
-                    <div class="grid grid-cols-[5%_30%_10%_30%_25%] text-sm">
+                    <div class="grid grid-cols-[5%_25%_10%_20%_20%_10%] text-sm">
                         <div class="flex justify-center">
-                            <span class="">
-                                {{ item.ID_Rota }}
-                            </span>
+                            <span>{{ item.ID_Rota }}</span>
                         </div>
 
                         <div class="flex justify-start ml-10">
-                            <span class="">
-                                {{ item.Nome_Coleta }}
-                            </span>
+                            <span>{{ item.Nome_Coleta }}</span>
                         </div>
 
                         <div class="flex justify-center">
-                            <span class="">
-                                {{ item.ID_Movimen }}
-                            </span>
+                            <span>{{ item.ID_Movimen }}</span>
                         </div>
 
                         <div class="flex justify-center">
-                            <span class="">
-                                {{ CategoriaEnum[item.Categoria] }}
-                            </span>
+                            <span>{{ CategoriaEnum[item.Categoria] }}</span>
                         </div>
 
                         <div class="flex justify-center">
-                            <span class="">
-                                {{ item.Quantidade }}
-                            </span>
+                            <span>{{ item.Quantidade }}</span>
+                        </div>
+
+                        <div class="flex justify-center items-center">
+                            <div 
+                                class="w-3 h-3 rounded-full"
+                                [ngClass]="getCorBolinha(item.Quantidade)">
+                            </div>
                         </div>
                     </div>
                 </a>
-
             </div>
 
             <div class="bg-gray-100 rounded-bl-2xl rounded-br-2xl p-3 text-gray-400 text-sm">
@@ -90,15 +86,14 @@
                             {{ dadosCentro?.Capaci_Armaze }}
                         </strong>
                     </div>
-    
+
                     <div class="pl-2 flex items-center gap-2">
                         <small class="text-gray-600">Total:</small>
                         <span>{{ totalQuantidade }}</span>
+                        <span [ngClass]="getCorBolinhaTotal()" class="w-3 h-3 rounded-full inline-block ml-1"></span>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>

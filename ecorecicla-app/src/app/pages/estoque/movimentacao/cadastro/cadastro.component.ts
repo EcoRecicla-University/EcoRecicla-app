@@ -3,7 +3,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from "@angular/forms";
 import { CadastroMovimenModel } from "../../../../core/models/private/Movimen/cadastroMovimen.model";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -13,7 +12,7 @@ import { DatePipe, NgForOf, NgIf } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { provideNativeDateAdapter } from "@angular/material/core";
-import { AvisosEnum, EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
+import { EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
 import { ListagemRotaModel } from "../../../../core/models/private/rota/listagemRota.model";
 import { DATE_CONFIG_PROVIDERS } from '../../../../core/date-format.config';
 import { RotaService } from "../../../../core/services/rota.service";
@@ -22,12 +21,12 @@ import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt);
 
-@Component ({
+@Component({
     selector: 'app-pages-estoque',
     templateUrl: './cadastro.component.html',
     providers: [provideNativeDateAdapter(), DatePipe, ...DATE_CONFIG_PROVIDERS],
     imports: [
-        MatFormFieldModule, 
+        MatFormFieldModule,
         MatInputModule,
         MatDatepickerModule,
         MatSelectModule,
@@ -36,12 +35,11 @@ registerLocaleData(localePt);
         RouterLink,
         NgForOf,
         ReactiveFormsModule,
-        MatCheckboxModule,
         NgIf
     ],
 })
-export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
-    
+export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit {
+
     readonly startDate = new Date(1990, 0, 1);
 
     public isEdicao = false;
@@ -56,10 +54,8 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
         idRota: new FormControl('', Validators.required),
         categoria: new FormControl(null, Validators.required),
         quantidade: new FormControl('', Validators.required),
-        dataEntrada: new FormControl('', Validators.required),
-        avisarEstoqueMax: new FormControl(false, Validators.required),
-        avisarEstoqueMin: new FormControl(false, Validators.required)
-    })
+        dataEntrada: new FormControl('', Validators.required)
+    });
 
     constructor(
         private rotaService: RotaService,
@@ -71,39 +67,33 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
     ) {}
 
     ngOnInit(): void {
-
         const hoje = new Date();
         this.dataMinimaMovimento = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
 
         this.rotaService.getRotas()
-        .subscribe((rotas) => {
-            this.allRotas = rotas
-        })
+            .subscribe((rotas) => {
+                this.allRotas = rotas;
+            });
 
         const id = this._activatedRoute.snapshot.params['id'];
         if (id) {
             this.isEdicao = true;
-            this.idSelecionado = id
+            this.idSelecionado = id;
             this.service.getMovimenById(id)
-            .subscribe(movimentacao => {
-                const avisarMax = movimentacao.AvisarEstoqueMax == AvisosEnum.Sim;
-                const avisarMin = movimentacao.AvisarEstoqueMin == AvisosEnum.Sim;
-                this.form.patchValue({
-                    idRota: movimentacao.ID_Rota,
-                    quantidade: movimentacao.Quantidade,
-                    dataEntrada: movimentacao.Data_Entrada,
-                    categoria: movimentacao.Categoria,
-                    avisarEstoqueMax: avisarMax,
-                    avisarEstoqueMin: avisarMin
-                })
-            })
+                .subscribe(movimentacao => {
+                    this.form.patchValue({
+                        idRota: movimentacao.ID_Rota,
+                        quantidade: movimentacao.Quantidade,
+                        dataEntrada: movimentacao.Data_Entrada,
+                        categoria: movimentacao.Categoria
+                    });
+                });
         } else {
             this.isEdicao = false;
         }
     }
 
     salvar() {
-
         const entradaItem = new Date(this.form.value.dataEntrada);
 
         if (entradaItem > this.dataMinimaMovimento) {
@@ -117,10 +107,8 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
             Quantidade: this.form.value.quantidade ?? '',
             Data_Entrada: dataValidadeFormatada,
             ID_Rota: this.form.value.idRota ?? '',
-            Categoria: this.form.value.categoria ?? '',
-            AvisarEstoqueMax: this.form.value.avisarEstoqueMax ? AvisosEnum.Sim : AvisosEnum.Nao,
-            AvisarEstoqueMin: this.form.value.avisarEstoqueMin ? AvisosEnum.Sim : AvisosEnum.Nao
-        }
+            Categoria: this.form.value.categoria ?? ''
+        };
 
         if (this.isEdicao && this.idSelecionado) {
             const dadosEditaveis: EditarMovimenModel = {
@@ -128,27 +116,25 @@ export class PagesEstoqueMovimentacaoCadastroComponent implements OnInit{
                 Quantidade: this.form.value.quantidade ?? '',
                 Data_Entrada: dataValidadeFormatada,
                 ID_Rota: this.form.value.idRota ?? '',
-                Categoria: this.form.value.categoria ?? '',
-                AvisarEstoqueMax: this.form.value.avisarEstoqueMax ? AvisosEnum.Sim : AvisosEnum.Nao,
-                AvisarEstoqueMin: this.form.value.avisarEstoqueMin ? AvisosEnum.Sim : AvisosEnum.Nao
+                Categoria: this.form.value.categoria ?? ''
             };
-        
+
             this.service.editarMovimen(this.idSelecionado, dadosEditaveis)
-            .subscribe(() => {
-                this.snackbar.open('Movimentação editada com sucesso', 'Ok', { duration: 5000 })
-                this.router.navigate(['..'], {
-                    relativeTo: this._activatedRoute
-                })
-            });
+                .subscribe(() => {
+                    this.snackbar.open('Movimentação editada com sucesso', 'Ok', { duration: 5000 });
+                    this.router.navigate(['..'], {
+                        relativeTo: this._activatedRoute
+                    });
+                });
 
         } else {
             this.service.criarNovaMovimen(dadosDoFormulario)
-            .subscribe(() => {
-                this.snackbar.open('Movimentação criado com sucesso', 'Ok', { duration: 5000 })
-                this.router.navigate(['..'], {
-                    relativeTo: this._activatedRoute
-                })
-            })
+                .subscribe(() => {
+                    this.snackbar.open('Movimentação criada com sucesso', 'Ok', { duration: 5000 });
+                    this.router.navigate(['..'], {
+                        relativeTo: this._activatedRoute
+                    });
+                });
         }
     }
 }

@@ -15,7 +15,7 @@
             <span class="flex mx-2">|</span>
             <small class="text-gray-600">Data de Entrada:</small>
             <span>
-                {{ movimentacaoSelecionada.Data_Entrada| date: 'dd/MM/yyyy' }}
+                {{ movimentacaoSelecionada.Data_Entrada | date: 'dd/MM/yyyy' }}
             </span>
         </div>
         <div class="ml-auto flex gap-2">
@@ -32,9 +32,7 @@
     <div class="flex flex-col gap-4 mt-4">
         <div class="flex flex-col sm:flex-row gap-4">
             <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-full">
-                <small class="text-gray-600">
-                    Rota
-                </small>
+                <small class="text-gray-600">Rota</small>
                 <div>
                     {{ movimentacaoSelecionada.Nome }}
                 </div>
@@ -42,40 +40,17 @@
         </div>
         <div class="flex flex-col sm:flex-row gap-4">
             <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
-                <small class="text-gray-600">
-                    Tipo do Residuo
-                </small>
+                <small class="text-gray-600">Tipo do Resíduo</small>
                 <div>
                     {{ CategoriaEnum[movimentacaoSelecionada.Categoria] }}
                 </div>
             </div>
             <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
-                <small class="text-gray-600">
-                    Quantidade de entrada
-                </small>
+                <small class="text-gray-600">Quantidade de entrada</small>
                 <div>
                     {{ movimentacaoSelecionada.Quantidade }}
                 </div>
             </div>
         </div>
-        <div class="flex flex-col sm:flex-row gap-4">
-            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
-                <small class="text-gray-600">
-                    Avisar quando atingir estoque Máximo
-                </small>
-                <div>
-                    {{ AvisosEnumLabel[movimentacaoSelecionada.AvisarEstoqueMax] }}
-                </div>
-            </div>
-            <div class="border border-gray-400 rounded-md p-4 flex flex-col gap-1 w-1/2">
-                <small class="text-gray-600">
-                    Avisar quando atingir estoque Mínimo
-                </small>
-                <div>
-                    {{ AvisosEnumLabel[movimentacaoSelecionada.AvisarEstoqueMin] }}
-                </div>
-            </div>
-        </div>
-        
     </div>
 </div>

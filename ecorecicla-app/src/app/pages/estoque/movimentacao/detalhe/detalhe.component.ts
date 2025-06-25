@@ -5,12 +5,8 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatButtonModule } from "@angular/material/button";
-import { FuncionarioService } from "../../../../core/services/funcionarios/funcionario.service";
-import { EditarFuncionarioModel } from "../../../../core/models/private/funcionarios/funcionarios/editarFuncionarioModel";
-import { EditarMotoristaModel } from "../../../../core/models/private/funcionarios/motoristas/editarMotorista.model";
-import { MotoristaService } from "../../../../core/services/funcionarios/motorista.service";
 import { MovimenService } from "../../../../core/services/movimen.service";
-import { AvisosEnum, AvisosEnumLabel, EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
+import { EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
 import { CategoriaEnum } from "../../../../core/models/private/Movimen/cadastroMovimen.model";
 
 @Component({
@@ -31,8 +27,6 @@ export class PagesEstoqueMovimentacaoDetalheComponent implements OnInit, OnDestr
 
     CategoriaEnum = CategoriaEnum;
 
-    AvisosEnumLabel = AvisosEnumLabel;
-
     idSelecionado = null;
 
     constructor(
@@ -50,28 +44,26 @@ export class PagesEstoqueMovimentacaoDetalheComponent implements OnInit, OnDestr
                 this.service.getMovimenById(id)
                     .subscribe((movimentacao) => {
                         this.movimentacaoSelecionada = movimentacao;
-                    })
-            })
+                    });
+            });
     }
 
-    ngOnDestroy(): void {
-
-    }
+    ngOnDestroy(): void {}
 
     deletarFuncionario() {
-        const podeExcluir = confirm('Tem certeza que deseja excluir esta movimentação?')
+        const podeExcluir = confirm('Tem certeza que deseja excluir esta movimentação?');
 
         if (podeExcluir) {
             this.service.excluirMovimen(this.idSelecionado)
-            .subscribe(() => {
-                this.snackbar.open('Movimentação excluido com sucesso', 'Ok', { duration: 5000 })
-                this.router.navigate(['..'], {
-                    relativeTo: this.activeRoute
-                })
-            },
-            (error) => {
-                this.snackbar.open(error.error.error, 'Ok', { duration: 5000 })
-            })
+                .subscribe(() => {
+                    this.snackbar.open('Movimentação excluída com sucesso', 'Ok', { duration: 5000 });
+                    this.router.navigate(['..'], {
+                        relativeTo: this.activeRoute
+                    });
+                },
+                (error) => {
+                    this.snackbar.open(error.error.error, 'Ok', { duration: 5000 });
+                });
         }
     }
 }

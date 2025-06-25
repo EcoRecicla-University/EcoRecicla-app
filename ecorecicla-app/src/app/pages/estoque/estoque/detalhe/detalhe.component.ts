@@ -1,16 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
-import { DatePipe, NgForOf, NgIf } from "@angular/common";
+import { ActivatedRoute, RouterLink } from "@angular/router";
+import { NgForOf, NgIf } from "@angular/common";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
-import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatButtonModule } from "@angular/material/button";
-import { FuncionarioService } from "../../../../core/services/funcionarios/funcionario.service";
-import { EditarFuncionarioModel } from "../../../../core/models/private/funcionarios/funcionarios/editarFuncionarioModel";
-import { EditarMotoristaModel } from "../../../../core/models/private/funcionarios/motoristas/editarMotorista.model";
-import { MotoristaService } from "../../../../core/services/funcionarios/motorista.service";
-import { MovimenService } from "../../../../core/services/movimen.service";
-import { AvisosEnum, AvisosEnumLabel, EditarMovimenModel } from "../../../../core/models/private/Movimen/editarMovimen.model";
 import { CategoriaEnum } from "../../../../core/models/private/Movimen/cadastroMovimen.model";
 import { DestalheEstoqueModel } from "../../../../core/models/private/estoque/detalheEstoque.model";
 import { EstoqueService } from "../../../../core/services/estoque.service";
@@ -32,11 +25,8 @@ import { ListagemTriagemModel } from "../../../../core/models/private/triagem/li
 export class PagesEstoqueEstoqueDetalheComponent implements OnInit, OnDestroy {
 
     DadosEstoqueSelecionado: DestalheEstoqueModel[] = [];
-
     idSelecionado = null;
-
     CategoriaEnum = CategoriaEnum;
-
     dadosCentro: ListagemTriagemModel;
 
     constructor(
@@ -52,27 +42,39 @@ export class PagesEstoqueEstoqueDetalheComponent implements OnInit, OnDestroy {
         }, 0);
     }
 
+    getCorBolinhaTotal(): string {
+        const capacidade = Number(this.dadosCentro?.Capaci_Armaze);
+        const total = this.totalQuantidade;
+
+        if (!capacidade || capacidade === 0) {
+            return 'bg-gray-400'; // fallback neutro
+        }
+
+        const percentual = (total / capacidade) * 100;
+
+        if (percentual >= 95) return 'bg-red-500';     // Crítico
+        if (percentual >= 90) return 'bg-yellow-400';  // Alerta
+        if (percentual >= 20) return 'bg-green-500';   // Normal
+        return 'bg-blue-400';                          // Quase vazio
+    }
+
     ngOnInit(): void {
         this.activeRoute.params
             .subscribe((params) => {
                 const id = params['id'];
                 this.idSelecionado = id;
+
                 this.service.getEstoqueById(id)
                     .subscribe((dadosEstoque) => {
                         this.DadosEstoqueSelecionado = dadosEstoque;
 
                         this.centroService.getCentroTriagem(id)
-                        .subscribe((centro) => {
-                            this.dadosCentro = centro
-                        })
-                    })
-            })
+                            .subscribe((centro) => {
+                                this.dadosCentro = centro;
+                            });
+                    });
+            });
     }
 
-    ngOnDestroy(): void {
-
-    }
-
-    
-
+    ngOnDestroy(): void { }
 }
