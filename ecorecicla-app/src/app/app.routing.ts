@@ -32,6 +32,7 @@ import { PagesTriagemDetalheComponent } from "./pages/triagem/detalhe/detalhe.co
 import { PagesEstoqueMovimentacaoDetalheComponent } from "./pages/estoque/movimentacao/detalhe/detalhe.component";
 import { PagesEstoqueEstoqueDetalheComponent } from "./pages/estoque/estoque/detalhe/detalhe.component";
 import { AuthGuard } from "./core/guards/auth.guard";
+import { PagesFeedbackComponent } from "./pages/feedback/feedback.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -255,6 +256,16 @@ export const APP_ROUTES: Routes = [
                         component: PagesTriagemCadastroComponent
                     }
                 ]
+            },
+            
+        ]
+    },
+    {
+        path: 'feedback',
+        children: [
+            {
+                path: '',
+                component: PagesFeedbackComponent
             }
         ]
     }

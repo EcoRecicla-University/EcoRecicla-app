@@ -1,60 +1,55 @@
-<div class="pt-10 px-10">
-    <div class="flex gap-2">
-        <button mat-icon-button [routerLink]="['..']">
-            <mat-icon>arrow_back</mat-icon>
-          </button>
-        <h1 class="text-4xl font-light">
-            <span>
-                Cadastro de coleta
-            </span>
-        </h1>
-    </div>
-    <h2 class="text-gray-400 pt-5">
-        Cadastro
-    </h2>
-    <div class="w-hull pt-3">
-        <div class="bg-gray-400 w-[90%] h-[1px]"></div>
-    </div>
-    <form [formGroup]="form" class="grid grid-cols-1 max-w-5xl">
-        <div>
+<div class="flex flex-col items-center justify-start min-h-screen bg-[#06467a] px-6 pt-12 pb-6">
+  <!-- Logo -->
+  <div class="mb-4">
+    <img src="images/Logo.png" alt="Logo Eco Recicla" class="h-20 object-contain drop-shadow-md" />
+  </div>
 
-            <div class="flex flex-col pt-5">
-                <label>Cliente</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <mat-select placeholder="Selecione um cliente" [formControlName]="'clienteId'">
-                        <mat-option></mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
+  <!-- Card -->
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-2xl p-8 mt-2">
+    <!-- Título -->
+    <h1 class="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-4">
+      Feedback do Cliente
+    </h1>
 
-            <div class="grid grid-cols-2 gap-4">
-                <div class="flex flex-col pt-1">
-                    <label>Data da coleta</label>
-                    <mat-form-field appearance="outline" class="w-full">
-                        <input matInput [matDatepicker]="picker" placeholder="Selecione uma data" [formControlName]="'dataColeta'">
-                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                </div>
-    
-                <div class="flex flex-col pt-1">
-                    <label>Quantidade Estimada (KG)</label>
-                    <mat-form-field appearance="outline" class="w-full">
-                        <input 
-                        matInput 
-                        placeholder="Digite a quantidade" 
-                        class="w-full"
-                        [formControlName]="'quantidade'">
-                    </mat-form-field>
-                </div>
-            </div>
-            
-        </div>
+    <!-- Linha separadora -->
+    <div class="w-full border-t border-gray-200 mb-6"></div>
 
-        <button
-            type="submit"
-            class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer">
-            Salvar feedback
-        </button>
+    <!-- Formulário -->
+    <form [formGroup]="form" class="flex flex-col gap-6">
+      
+      <!-- Nota -->
+      <div class="flex flex-col gap-2">
+        <label class="text-gray-700 font-medium">Nota para o serviço</label>
+        <mat-slider min="1" max="6" step="0.5" showTickMarks discrete [displayWith]="formatLabel">
+          <input matSliderThumb />
+        </mat-slider>
+      </div>
+
+      <!-- Status da coleta -->
+      <div class="flex flex-col gap-2">
+        <label class="text-gray-700 font-medium">Status da coleta</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-select formControlName="statusColeta" placeholder="Selecione um status">
+            <mat-option value="realizada">Realizada</mat-option>
+            <mat-option value="atrasada">Atrasada</mat-option>
+            <mat-option value="nao_realizada">Não realizada</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Comentário -->
+      <div class="flex flex-col gap-2">
+        <label class="text-gray-700 font-medium">Comentário do cliente</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <textarea matInput rows="4" placeholder="Deixe seu comentário" formControlName="comentario"></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- Botão -->
+      <button type="submit"
+        class="w-full text-white font-medium py-3 rounded-lg hover:bg-[#053961] transition-all bg-[#06467a] cursor-pointer">
+        Salvar feedback
+      </button>
     </form>
+  </div>
 </div>
