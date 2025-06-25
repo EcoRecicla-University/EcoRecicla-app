@@ -214,7 +214,7 @@ export class PagesRotaCadastroComponent implements OnInit{
 
         if (motoristaSelecionado) {
             const categoria = motoristaSelecionado.Categoria;
-            this.erroCarteiraMotorista = !(categoria === 'D' || categoria === 'AD');
+            this.erroCarteiraMotorista = !(categoria === 'D' || categoria === 'AD' || categoria === 'C');
         } else {
             this.erroCarteiraMotorista = false;
         }
