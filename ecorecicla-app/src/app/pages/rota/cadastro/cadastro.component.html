@@ -97,11 +97,11 @@
         </div>
 
         <button 
-        type="submit" 
-        class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer mt-6" 
-        [disabled]="erroCarteiraMotorista || form.invalid"
-        [disabled]="erroCapacidadeVeiculo || form.invalid">
+            type="submit" 
+            class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer mt-6" 
+            [disabled]="erroCarteiraMotorista || erroCapacidadeVeiculo || form.invalid">
             Gravar
         </button>
+
     </form>
 </div>
