@@ -43,6 +43,8 @@ import { EditarRotaModel } from "../../../core/models/private/rota/editarRota.mo
 })
 export class PagesRotaCadastroComponent implements OnInit{
 
+    erroCarteiraMotorista: boolean = false;
+
     erroCapacidadeVeiculo: boolean = false;
 
     public isEdicao = false;
@@ -202,6 +204,19 @@ export class PagesRotaCadastroComponent implements OnInit{
             this.erroCapacidadeVeiculo = capacidade < quantidade;
         } else {
             this.erroCapacidadeVeiculo = false;
+        }
+    }
+
+    verificarCarteiraMotorista() {
+        const idMotorista = this.form.value.idMotorista;
+
+        const motoristaSelecionado = this.allMotoristas.find(m => m.ID_Motorista === idMotorista);
+
+        if (motoristaSelecionado) {
+            const categoria = motoristaSelecionado.Categoria;
+            this.erroCarteiraMotorista = !['A', 'AD'].includes(categoria);
+        } else {
+            this.erroCarteiraMotorista = false;
         }
     }
 }

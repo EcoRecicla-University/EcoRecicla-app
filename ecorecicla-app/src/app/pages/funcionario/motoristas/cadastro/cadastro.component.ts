@@ -43,7 +43,7 @@ export class PagesFuncionariosMotoristasCadastroComponent implements OnInit{
     readonly startDate = new Date(1990, 0, 1);
 
     allFuncionarios: ListagemFuncionarioModel[] = []
-
+    
     public isEdicao = false;
 
     public idSelecionado = null;

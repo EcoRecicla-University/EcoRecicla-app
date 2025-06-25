@@ -144,7 +144,7 @@ export const APP_ROUTES: Routes = [
             },
             {
                 path: 'funcionarios',
-                canActivate: [AuthGuard],
+                //canActivate: [AuthGuard],
                 children: [
                     {
                         path: '',

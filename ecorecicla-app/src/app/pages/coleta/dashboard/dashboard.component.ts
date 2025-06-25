@@ -11,6 +11,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angul
 import { DATE_CONFIG_PROVIDERS } from '../../../core/date-format.config';
 
 @Component ({
+    
     selector: 'app-pages-coleta-dashboard',
     templateUrl: './dashboard.component.html',
     imports: [
