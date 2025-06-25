@@ -46,17 +46,17 @@
                     <div class="flex flex-col">
                         <label for="veiculo">Veículo</label>
                         <mat-form-field appearance="outline" class="w-full">
-                            <mat-select id="veiculo" placeholder="Selecione um veículo cadastrado" [formControlName]="'idVeiculo'" (selectionChange)="verificarCapacidadeVeiculo()">
+                            <mat-select id="veiculo" placeholder="Selecione um veículo cadastrado" [formControlName]="'idVeiculo'" (selectionChange)="verificarCapacidadeVeiculo(); verificarCarteiraMotorista()">
                                 <mat-option 
                                 *ngFor="let veiculo of allVeiculos" 
                                 [value]="veiculo.ID_Veiculo">Modelo: {{ veiculo.Modelo }} | Placa: {{ veiculo.Placa }}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <div 
-                        *ngIf="erroCapacidadeVeiculo" 
-                        class="flex justify-center items-center border-2 border-red-600 p-3 rounded-xl bg-red-200">
-                            <div class="text-red-600 text-sm font-semibold">
-                                <h2>Este veículo não suporta a quantidade da coleta selecionada.</h2>
+                        <div *ngIf="erroCapacidadeVeiculo || erroCarteiraMotorista" 
+                            class="flex justify-center items-center border-2 border-red-600 p-3 rounded-xl bg-red-200">
+                            <div class="text-red-600 text-sm font-semibold text-center">
+                                <h2 *ngIf="erroCapacidadeVeiculo">Este veículo não suporta a quantidade da coleta selecionada.</h2>
+                                <h2 *ngIf="erroCarteiraMotorista">O motorista selecionado não possui carteira do tipo D, AD ou C.</h2>
                             </div>
                         </div>
                     </div>
@@ -97,10 +97,12 @@
         </div>
 
         <button 
-        type="submit" 
-        class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer mt-6" 
-        [disabled]="erroCapacidadeVeiculo || form.invalid">
+            type="submit" 
+            class="bg-blue-400 rounded-lg h-11 hover:bg-blue-600 hover:text-white duration-300 hover:cursor-pointer mt-6" 
+            [disabled]="erroCarteiraMotorista || erroCapacidadeVeiculo || form.invalid">
             Gravar
         </button>
+
     </form>
 </div>
+
