@@ -21,131 +21,62 @@
     <div class="w-hull pt-3">
         <div class="bg-gray-400 w-[90%] h-[1px]"></div>
     </div>
-    <form [formGroup]="form" class="grid grid-cols-1 lg:grid-cols-2 max-w-5xl" (ngSubmit)="salvar()">
+    <form [formGroup]="form" class="flex flex-col max-w-4xl" (ngSubmit)="salvar()">
         <div>
-            <div class="flex flex-col pt-7">
-                <label>Nome do Cliente</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput 
-                           placeholder="Digite o nome do cliente" 
-                           class="w-full"
-                           maxlength="40" 
-                           [formControlName]="'nome'"
-                           (keypress)="permitirApenasLetras($event)">
-                </mat-form-field>
+            <div class="grid grid-cols-2 gap-4">
+
+                <div class="flex flex-col pt-7">
+                    <label>Nome do Cliente</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput 
+                               placeholder="Digite o nome do cliente" 
+                               class="w-full"
+                               maxlength="40" 
+                               [formControlName]="'nome'"
+                               (keypress)="permitirApenasLetras($event)">
+                    </mat-form-field>
+                </div>
+                
+                <div class="flex flex-col pt-7">
+                    <label>Telefone</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput 
+                               placeholder="(xx) x xxxx-xxxx" 
+                               class="w-full" 
+                               maxlength="11"
+                               [formControlName]="'telefone'"
+                               (keypress)="permitirApenasNumeros($event)">
+                    </mat-form-field>
+                </div>
             </div>
-            
-            <div class="flex flex-col pt-1">
-                <label>Telefone</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput 
-                           placeholder="(xx) x xxxx-xxxx" 
-                           class="w-full" 
-                           maxlength="11"
-                           [formControlName]="'telefone'"
-                           (keypress)="permitirApenasNumeros($event)">
-                </mat-form-field>
-            </div>
 
-            <div [formGroupName]="'endereco'">
+            <div class="grid grid-cols-2 gap-4">
                 <div class="flex flex-col pt-1">
-                    <label>CEP</label>
-                    <mat-form-field appearance="outline" class="w-full">
-                        <input 
-                        matInput 
-                        placeholder="Digite o CEP"
-                        [formControlName]="'cep'"
-                        (keypress)="permitirApenasNumeros($event)">
-                        <button
-                            matSuffix
-                            mat-icon-button
-                            type="button"
-                            (click)="buscarEnderecoPorCep()"
-                            [disabled]="form.get('endereco').get('cep').invalid || isLoadingCep">
-                            <mat-icon>search</mat-icon>
-                        </button>
-                        <mat-hint>Digite apenas números</mat-hint>
-                    </mat-form-field>
-                    <mat-progress-bar mode="indeterminate" *ngIf="isLoadingCep"></mat-progress-bar>
-                </div>
-
-                <div class="flex flex-col pt-1">
-                    <label>Logradouro</label>
+                    <label>CPF</label>
                     <mat-form-field appearance="outline" class="w-full">
                         <input matInput 
-                            placeholder="Logradouro"
-                            [formControlName]="'logradouro'">
-                    </mat-form-field>
-                </div>
-
-                <div class="flex flex-col pt-1">
-                    <label>Bairro</label>
-                    <mat-form-field appearance="outline" class="w-full">
-                        <input matInput 
-                            placeholder="Bairro"
-                            [formControlName]="'bairro'">
-                    </mat-form-field>
-                </div>
-
-                <div class="flex flex-col pt-1">
-                    <label>Cidade</label>
-                    <mat-form-field appearance="outline" class="w-full">
-                        <input matInput 
-                            placeholder="Cidade"
-                            [formControlName]="'localidade'">
-                    </mat-form-field>
-                </div>
-
-                <div class="flex flex-col pt-1">
-                    <label>Estado</label>
-                    <mat-form-field appearance="outline" class="w-full">
-                        <input matInput 
-                            placeholder="Estado"
-                            [formControlName]="'estado'">
-                    </mat-form-field>
-                </div>
-
-                <div class="flex flex-col pt-1">
-                    <label>Número</label>
-                    <mat-form-field appearance="outline" class="w-full">
-                        <input 
-                        matInput 
-                        placeholder="Número"
-                        [formControlName]="'numero'"
+                        placeholder="Digite o CPF" 
+                        class="w-full" 
+                        maxlength="11"
+                        [formControlName]="'cpf'"
                         (keypress)="permitirApenasNumeros($event)">
                     </mat-form-field>
                 </div>
                 
+                <div class="flex flex-col pt-1">
+                    <label>CNPJ</label>
+                    <mat-form-field appearance="outline" class="w-full">
+                        <input matInput 
+                        placeholder="Digite o CNPJ" 
+                        class="w-full" 
+                        maxlength="14"
+                        [formControlName]="'cnpj'"
+                        (keypress)="permitirApenasNumeros($event)">
+                    </mat-form-field>
+                </div>
             </div>
-        </div>
 
-        <div class="pl-10 pt-6">
-            
-            <div class="flex flex-col pt-1">
-                <label>CPF</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput 
-                    placeholder="Digite o CPF" 
-                    class="w-full" 
-                    maxlength="11"
-                    [formControlName]="'cpf'"
-                    (keypress)="permitirApenasNumeros($event)">
-                </mat-form-field>
-            </div>
-            
-            <div class="flex flex-col pt-1">
-                <label>CNPJ</label>
-                <mat-form-field appearance="outline" class="w-full">
-                    <input matInput 
-                    placeholder="Digite o CNPJ" 
-                    class="w-full" 
-                    maxlength="14"
-                    [formControlName]="'cnpj'"
-                    (keypress)="permitirApenasNumeros($event)">
-                </mat-form-field>
-            </div>
-            
-            <div class="flex-col p-4 bg-gray-200 rounded-lg">
+            <div class="flex-col p-4 bg-gray-100 rounded-lg mb-3">
                 <h1 class="pl-2">
                     Tipo do cliente
                 </h1>
@@ -154,10 +85,92 @@
                         <mat-radio-button value="V">Cliente de Venda</mat-radio-button>
                         <mat-radio-button value="C">Cliente de Compra</mat-radio-button>
                         <mat-radio-button value="A">Ambos</mat-radio-button>
-                      </mat-radio-group>
+                        </mat-radio-group>
                 </div>
             </div>
+
+            <div [formGroupName]="'endereco'">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col pt-1">
+                        <label>CEP</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input 
+                            matInput 
+                            placeholder="Digite o CEP"
+                            [formControlName]="'cep'"
+                            (keypress)="permitirApenasNumeros($event)">
+                            <button
+                                matSuffix
+                                mat-icon-button
+                                type="button"
+                                (click)="buscarEnderecoPorCep()"
+                                [disabled]="form.get('endereco').get('cep').invalid || isLoadingCep">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                            <mat-hint>Digite apenas números</mat-hint>
+                        </mat-form-field>
+                        <mat-progress-bar mode="indeterminate" *ngIf="isLoadingCep"></mat-progress-bar>
+                    </div>
+    
+                    <div class="flex flex-col pt-1">
+                        <label>Logradouro</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput 
+                                placeholder="Logradouro"
+                                [formControlName]="'logradouro'">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col pt-1">
+                        <label>Bairro</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput 
+                                placeholder="Bairro"
+                                [formControlName]="'bairro'">
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="flex flex-col pt-1">
+                        <label>Cidade</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput 
+                                placeholder="Cidade"
+                                [formControlName]="'localidade'">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col pt-1">
+                        <label>Estado</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input matInput 
+                                placeholder="Estado"
+                                [formControlName]="'estado'">
+                        </mat-form-field>
+                    </div>
+    
+                    <div class="flex flex-col pt-1">
+                        <label>Número</label>
+                        <mat-form-field appearance="outline" class="w-full">
+                            <input 
+                            matInput 
+                            placeholder="Número"
+                            [formControlName]="'numero'"
+                            (keypress)="permitirApenasNumeros($event)">
+                        </mat-form-field>
+                    </div>
+
+                </div>
+                
+            </div>
         </div>
+
+        
 
         <button
         type="submit"
