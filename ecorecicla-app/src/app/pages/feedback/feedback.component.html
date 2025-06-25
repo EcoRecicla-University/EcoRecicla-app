@@ -15,8 +15,24 @@
     <div class="w-full border-t border-gray-200 mb-6"></div>
 
     <!-- Formulário -->
-    <form [formGroup]="form" class="flex flex-col gap-6">
+    <form [formGroup]="form" class="flex flex-col gap-2">
       
+      <!-- CPF -->
+      <div class="flex flex-col gap-2">
+        <label class="text-gray-700 font-medium">CPF</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput placeholder="Digite seu CPF" formControlName="cpf">
+        </mat-form-field>
+      </div>
+
+      <!-- CNPJ -->
+      <div class="flex flex-col gap-2">
+        <label class="text-gray-700 font-medium">CNPJ</label>
+        <mat-form-field appearance="outline" class="w-full">
+          <input matInput placeholder="Digite seu CNPJ" formControlName="cnpj">
+        </mat-form-field>
+      </div>
+
       <!-- Nota -->
       <div class="flex flex-col gap-2">
         <label class="text-gray-700 font-medium">Nota para o serviço</label>
@@ -30,9 +46,9 @@
         <label class="text-gray-700 font-medium">Status da coleta</label>
         <mat-form-field appearance="outline" class="w-full">
           <mat-select formControlName="statusColeta" placeholder="Selecione um status">
-            <mat-option value="realizada">Realizada</mat-option>
-            <mat-option value="atrasada">Atrasada</mat-option>
-            <mat-option value="nao_realizada">Não realizada</mat-option>
+            <mat-option value="R">Realizada</mat-option>
+            <mat-option value="A">Atrasada</mat-option>
+            <mat-option value="N">Não realizada</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -47,7 +63,8 @@
 
       <!-- Botão -->
       <button type="submit"
-        class="w-full text-white font-medium py-3 rounded-lg hover:bg-[#053961] transition-all bg-[#06467a] cursor-pointer">
+        class="w-full text-white font-medium py-3 rounded-lg hover:bg-[#053961] transition-all bg-[#06467a] cursor-pointer"
+        (click)="salvar()">
         Salvar feedback
       </button>
     </form>

@@ -12,6 +12,9 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { provideNativeDateAdapter } from "@angular/material/core";
 import { DATE_CONFIG_PROVIDERS } from '../../core/date-format.config';
 import {MatSliderModule} from '@angular/material/slider';
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
+import { timeout } from "rxjs";
 
 
 @Component ({
@@ -40,15 +43,17 @@ export class PagesFeedbackComponent implements OnInit{
         quantidade: new FormControl('', [Validators.required]),
         notaServico: new FormControl('', [Validators.required]),
         statusColeta: new FormControl('', [Validators.required]),
+        cpf: new FormControl('', [Validators.required, Validators.maxLength(11), Validators.pattern(/^\d+$/)]),
+        cnpj: new FormControl('', [Validators.required, Validators.maxLength(14), Validators.pattern(/^\d+$/)]),
         comentario: new FormControl('') // Comentário opcional
     });
 
     constructor(
-        
+        private snackbar: MatSnackBar,
+        private router: Router
     ) {}
 
     ngOnInit(): void {
-        
     }
 
     formatLabel(value: number): string {
@@ -57,5 +62,9 @@ export class PagesFeedbackComponent implements OnInit{
         }
 
         return `${value}`;
+    }
+
+    salvar(){
+        this.snackbar.open('Feedback registrado com sucesso!', 'Ok', { duration: 5000 })
     }
 }
